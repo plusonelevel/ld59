@@ -3,7 +3,7 @@ extends Node3D
 const MIN_ZOOM_RATIO := 1.0
 const MAX_ZOOM_RATIO := 2.0
 const ZOOM_STEP = 0.1
-@export_range(MIN_ZOOM_RATIO, MAX_ZOOM_RATIO, ZOOM_STEP) var camera_zoom = 1.0
+@export_range(MIN_ZOOM_RATIO, MAX_ZOOM_RATIO, ZOOM_STEP) var camera_zoom = 1.5
 @export_range(1.0, 10.0, 0.1) var camera_sensitivity = 5.0
 @export var invert_vertical = false
 @export var invert_horizontal = false
@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 	pivot.rotate_x(-0.5)
 	planet = focus
-	distance = 500
+	distance = 1000
 
 func _process(delta: float) -> void:
 	position = focus.global_position
@@ -45,9 +45,9 @@ func _input(event: InputEvent) -> void:
 
 func _on_camera_reset() -> void:
 	focus = planet
-	distance = 500
+	distance = 1000
 
 func _on_camera_centered(node: Node3D) -> void:
 	focus = node
-	distance = 50
+	distance = 100
 	
