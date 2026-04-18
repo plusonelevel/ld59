@@ -14,6 +14,15 @@ func _input(event: InputEvent) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("select_1"):
-		Signals.select_satellite.emit(0)
+		Signals.satellite_selected.emit(0)
+	elif event.is_action_pressed("select_2"):
+		Signals.satellite_selected.emit(1)
+	elif event.is_action_pressed("select_3"):
+		Signals.satellite_selected.emit(2)
 	elif event.is_action_pressed("select_default"):
-		Signals.select_planet.emit()
+		Signals.planet_selected.emit()
+	
+	if event.is_action_pressed("ui_left"):
+		Signals.orbit_rotated.emit(Enums.RotateDirection.Left)
+	elif event.is_action_pressed("ui_right"):
+		Signals.orbit_rotated.emit(Enums.RotateDirection.Right)

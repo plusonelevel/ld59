@@ -3,19 +3,28 @@
 [ext_resource type="Script" uid="uid://dqaxtow8pg1kv" path="res://scenes/satellite.gd" id="1_spm53"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0wfyh"]
-radius = 5.0
+radius = 150.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_0wfyh"]
-radius = 5.0
-height = 10.0
+[sub_resource type="BoxMesh" id="BoxMesh_spm53"]
+size = Vector3(50, 50, 50)
 
-[node name="Center" type="Node3D" unique_id=670549205 groups=["satellite"]]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eb6dy"]
+transparency = 1
+albedo_color = Color(0, 0.7060436, 0.90114915, 0.15686275)
+
+[sub_resource type="SphereMesh" id="SphereMesh_spm53"]
+material = SubResource("StandardMaterial3D_eb6dy")
+radius = 150.0
+height = 300.0
+
+[node name="Satellite" type="Area3D" unique_id=2134328555 groups=["satellite"]]
 script = ExtResource("1_spm53")
 
-[node name="Satellite" type="StaticBody3D" parent="." unique_id=434412478]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Satellite" unique_id=152151703]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=152151703]
 shape = SubResource("SphereShape3D_0wfyh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Satellite" unique_id=362001471]
-mesh = SubResource("SphereMesh_0wfyh")
+[node name="SatelliteMesh" type="MeshInstance3D" parent="." unique_id=362001471]
+mesh = SubResource("BoxMesh_spm53")
+
+[node name="RangeMesh" type="MeshInstance3D" parent="." unique_id=2021885354]
+mesh = SubResource("SphereMesh_spm53")
