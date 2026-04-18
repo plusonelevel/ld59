@@ -13,15 +13,15 @@ const ZOOM_STEP = 0.1
 @export var focus: Node3D
 var distance: float
 
-var planet: Node3D
+@onready var planet := $"../Planet"
 
 func _ready() -> void:
 	Signals.camera_reset.connect(_on_camera_reset)
 	Signals.camera_centered.connect(_on_camera_centered)
 	
 	pivot.rotate_x(-0.5)
-	planet = focus
 	distance = 1000
+
 
 func _process(delta: float) -> void:
 	position = focus.global_position
