@@ -1,20 +1,24 @@
 [gd_scene format=3 uid="uid://b38wx223fpw4j"]
 
 [ext_resource type="Script" uid="uid://b02t6gywdk6or" path="res://scenes/ui.gd" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://bysqtk1tq1vtt" path="res://assets/2d/Skybox.png" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://d0bio7o1cli4j" path="res://scenes/camera.gd" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://cktp5g6k57ixp" path="res://assets/3d/planet.blend" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bxcrwy3r46arb" path="res://assets/3d/moon.blend" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://buigx61apn7fw" path="res://assets/3d/moon.gd" id="4_tefeu"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jyhfs"]
+panorama = ExtResource("1_sugp2")
+
+[sub_resource type="Sky" id="Sky_tbgi4"]
+sky_material = SubResource("PanoramaSkyMaterial_jyhfs")
 
 [sub_resource type="Environment" id="Environment_sgp6g"]
+background_mode = 2
+sky = SubResource("Sky_tbgi4")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_o5qli"]
 radius = 500.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
-albedo_color = Color(0, 0.58431375, 0.74509805, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_o5qli"]
-material = SubResource("StandardMaterial3D_0wfyh")
-radius = 500.0
-height = 1000.0
 
 [node name="Main" type="Node" unique_id=8165444]
 
@@ -34,8 +38,11 @@ environment = SubResource("Environment_sgp6g")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet" unique_id=621919284]
 shape = SubResource("SphereShape3D_o5qli")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet" unique_id=471591337]
-mesh = SubResource("SphereMesh_o5qli")
+[node name="planet" parent="World/Planet" unique_id=1344105828 instance=ExtResource("2_jyhfs")]
+
+[node name="moon" parent="World/Planet" unique_id=1467769644 instance=ExtResource("3_tbgi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1534.236, 0, 0)
+script = ExtResource("4_tefeu")
 
 [node name="UI" type="Control" parent="." unique_id=1947374811]
 layout_mode = 3
