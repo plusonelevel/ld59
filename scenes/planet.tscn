@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cijm7gc0ojv53"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wmcs"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
+grow = true
+grow_amount = 10.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cktii"]
+next_pass = SubResource("StandardMaterial3D_0wmcs")
+shading_mode = 0
+albedo_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
+stencil_outline_thickness = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_h8ms6"]
+material = SubResource("StandardMaterial3D_cktii")
+radius = 500.0
+height = 1000.0
+
+[node name="Planet" type="Node3D" unique_id=463863642]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=229713047]
+mesh = SubResource("SphereMesh_h8ms6")
