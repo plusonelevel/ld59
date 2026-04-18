@@ -25,6 +25,11 @@ InputListener="*res://autoloads/input_listener.gd"
 Signals="*uid://dnt8j428kn0fc"
 Enums="*uid://fnwa4rgdw3kb"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [file_customization]
 
 folder_colors={

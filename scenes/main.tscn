@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://d283562d8jfwr" path="res://scenes/main.gd" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://b02t6gywdk6or" path="res://scenes/ui.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://du4qlnscom4ky" path="res://scenes/satellite.tscn" id="1_sugp2"]
-[ext_resource type="Texture2D" uid="uid://bysqtk1tq1vtt" path="res://assets/2d/Skybox.png" id="1_wtf69"]
 [ext_resource type="Script" uid="uid://d0bio7o1cli4j" path="res://scenes/camera.gd" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://cktp5g6k57ixp" path="res://assets/3d/planet.blend" id="2_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://bxcrwy3r46arb" path="res://assets/3d/moon.blend" id="3_tbgi4"]
-[ext_resource type="Script" uid="uid://buigx61apn7fw" path="res://assets/3d/moon.gd" id="4_tefeu"]
+[ext_resource type="Texture2D" uid="uid://2ogk1xmvw65g" path="res://assets/2d/Sky.png" id="2_choun"]
+[ext_resource type="PackedScene" uid="uid://noak0lb744vu" path="res://scenes/moon.tscn" id="4_tipki"]
+[ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="9_85g3d"]
+[ext_resource type="Texture2D" uid="uid://b0lid10nct2w7" path="res://assets/2d/Title.png" id="10_choun"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jyhfs"]
-panorama = ExtResource("1_wtf69")
+panorama = ExtResource("2_choun")
 
 [sub_resource type="Sky" id="Sky_tbgi4"]
 sky_material = SubResource("PanoramaSkyMaterial_jyhfs")
@@ -22,6 +22,31 @@ sky = SubResource("Sky_tbgi4")
 [sub_resource type="SphereShape3D" id="SphereShape3D_o5qli"]
 radius = 500.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_choun"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
+grow = true
+grow_amount = 15.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya4ey"]
+next_pass = SubResource("StandardMaterial3D_choun")
+shading_mode = 0
+albedo_color = Color(0.94509804, 0.9411765, 0.8784314, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
+stencil_outline_thickness = 15.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_eb6dy"]
+material = SubResource("StandardMaterial3D_ya4ey")
+radius = 550.0
+height = 1100.0
 [sub_resource type="Curve3D" id="Curve3D_tipki"]
 closed = true
 _data = {
@@ -29,8 +54,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya4ey"]
 
 [sub_resource type="Curve3D" id="Curve3D_choun"]
 closed = true
@@ -66,13 +89,6 @@ environment = SubResource("Environment_sgp6g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet" unique_id=621919284]
 shape = SubResource("SphereShape3D_o5qli")
-
-[node name="planet" parent="World/Planet" unique_id=1344105828 instance=ExtResource("2_jyhfs")]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
-
-[node name="moon" parent="World/Planet" unique_id=1467769644 instance=ExtResource("3_tbgi4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1534.236, 0, 0)
-script = ExtResource("4_tefeu")
 
 [node name="Satellites" type="Node3D" parent="World/Planet" unique_id=1428361193]
 
@@ -146,6 +162,12 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet" unique_id=1447557441]
+mesh = SubResource("SphereMesh_eb6dy")
+
+[node name="Moon" parent="World/Planet" unique_id=895090358 instance=ExtResource("4_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, 0)
+
 [node name="Camera" type="Node3D" parent="World" unique_id=1725945604 node_paths=PackedStringArray("focus")]
 script = ExtResource("2_0wfyh")
 camera_sensitivity = 2.0
@@ -157,7 +179,73 @@ focus = NodePath("../Planet/Satellites/Path3D/PathFollow3D/Satellite")
 
 [node name="UI" type="Control" parent="." unique_id=1947374811]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_o5qli")
+
+[node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/MainMenu" unique_id=418421445]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_85g3d")
+
+[node name="BG" type="TextureRect" parent="UI/MainMenu/Panel" unique_id=1764865418]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_choun")
+
+[node name="Title" type="Label" parent="UI/MainMenu/Panel" unique_id=699606979]
+layout_mode = 1
+offset_left = 73.0
+offset_top = 52.0
+offset_right = 824.0
+offset_bottom = 229.0
+theme = ExtResource("9_85g3d")
+theme_override_font_sizes/font_size = 120
+text = "COMMGATE"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu/Panel" unique_id=125888855]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 259.0
+offset_right = 280.0
+offset_bottom = 425.0
+
+[node name="Play" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1655061712]
+layout_mode = 2
+theme = ExtResource("9_85g3d")
+text = "Play"
+alignment = 0
+
+[node name="Credits" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1535045554]
+layout_mode = 2
+theme = ExtResource("9_85g3d")
+text = "Credits"
+alignment = 0
+
+[node name="Quit" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1843783977]
+layout_mode = 2
+theme = ExtResource("9_85g3d")
+text = "Quit
+"
+alignment = 0
+
+[connection signal="pressed" from="UI/MainMenu/Panel/VBoxContainer/Play" to="UI" method="_on_play_pressed"]

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://noak0lb744vu"]
+
+[ext_resource type="Script" uid="uid://buigx61apn7fw" path="res://assets/3d/moon.gd" id="1_530pw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_530pw"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.94509804, 0.9411765, 0.8784314, 1)
+grow = true
+grow_amount = 10.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6it2"]
+next_pass = SubResource("StandardMaterial3D_530pw")
+shading_mode = 0
+albedo_color = Color(0.45490196, 0.33333334, 0.42745098, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.94509804, 0.9411765, 0.8784314, 1)
+stencil_outline_thickness = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_530pw"]
+material = SubResource("StandardMaterial3D_q6it2")
+radius = 125.0
+height = 250.0
+
+[node name="Moon" type="Node3D" unique_id=895090358]
+script = ExtResource("1_530pw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2132980223]
+mesh = SubResource("SphereMesh_530pw")
