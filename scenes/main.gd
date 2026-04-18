@@ -1,6 +1,10 @@
 extends Node
 
 @onready var planet := $World/Planet
+@onready var sat1 = $World/Planet/Path3D/PathFollow3D/MeshInstance3D/Area3D
+@onready var sat2 = $World/Planet/Path3D2/PathFollow3D/MeshInstance3D/Area3D
+@onready var sat3 = $World/Planet/Path3D3/PathFollow3D/MeshInstance3D/Area3D
+
 var satellites: Array[Node]
 
 var selection: Node3D
@@ -28,3 +32,7 @@ func _on_satellite_selected(idx: int) -> void:
 		sat = sat as Satellite
 		selection = sat
 		Signals.camera_centered.emit(sat.get_satellite())
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	print(area)
