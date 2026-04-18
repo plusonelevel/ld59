@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://noak0lb744vu"]
 
-[ext_resource type="Script" uid="uid://qdxmj8eldc1k" path="res://scenes/moon.gd" id="1_530pw"]
+[ext_resource type="Script" uid="uid://qdxmj8eldc1k" path="res://scenes/rotation.gd" id="1_530pw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_530pw"]
 render_priority = 1
@@ -30,7 +30,8 @@ height = 250.0
 
 [node name="Moon" type="Node3D" unique_id=895090358]
 script = ExtResource("1_530pw")
-speed = -0.2
+y_speed = -0.2
+z_speed = 0.15
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2132980223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, 0)
