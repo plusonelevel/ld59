@@ -1,3 +1,54 @@
 [gd_scene format=3 uid="uid://b38wx223fpw4j"]
 
+[ext_resource type="Script" uid="uid://b02t6gywdk6or" path="res://scenes/ui.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://d0bio7o1cli4j" path="res://scenes/camera.gd" id="2_0wfyh"]
+
+[sub_resource type="Environment" id="Environment_sgp6g"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o5qli"]
+radius = 500.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
+albedo_color = Color(0, 0.58431375, 0.74509805, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_o5qli"]
+material = SubResource("StandardMaterial3D_0wfyh")
+radius = 500.0
+height = 1000.0
+
 [node name="Main" type="Node" unique_id=8165444]
+
+[node name="World" type="Node3D" parent="." unique_id=1994692815]
+
+[node name="Env" type="Node3D" parent="World" unique_id=639823162]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/Env" unique_id=500747602]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World/Env" unique_id=298647302]
+environment = SubResource("Environment_sgp6g")
+
+[node name="Planet" type="StaticBody3D" parent="World" unique_id=1859286445]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet" unique_id=621919284]
+shape = SubResource("SphereShape3D_o5qli")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet" unique_id=471591337]
+mesh = SubResource("SphereMesh_o5qli")
+
+[node name="UI" type="Control" parent="." unique_id=1947374811]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_o5qli")
+
+[node name="Camera" type="Node3D" parent="." unique_id=1725945604 node_paths=PackedStringArray("focus")]
+script = ExtResource("2_0wfyh")
+camera_sensitivity = 2.0
+focus = NodePath("../World/Planet")
+
+[node name="Pivot" type="Node3D" parent="Camera" unique_id=353975901]
+
+[node name="Camera3D" type="Camera3D" parent="Camera/Pivot" unique_id=1693231485]

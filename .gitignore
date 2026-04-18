@@ -4,3 +4,6 @@
 
 # build files
 /dist/
+
+# editor files
+.idea/
