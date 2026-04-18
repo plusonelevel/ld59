@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cktp5g6k57ixp" path="res://assets/3d/planet.blend" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bxcrwy3r46arb" path="res://assets/3d/moon.blend" id="3_tbgi4"]
 [ext_resource type="Script" uid="uid://buigx61apn7fw" path="res://assets/3d/moon.gd" id="4_tefeu"]
+[ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="9_85g3d"]
+[ext_resource type="Texture2D" uid="uid://b0lid10nct2w7" path="res://assets/2d/Title.png" id="10_choun"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jyhfs"]
 panorama = ExtResource("1_wtf69")
@@ -64,7 +66,73 @@ focus = NodePath("../Planet/Satellites/Satellite")
 
 [node name="UI" type="Control" parent="." unique_id=1947374811]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_o5qli")
+
+[node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/MainMenu" unique_id=418421445]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_85g3d")
+
+[node name="BG" type="TextureRect" parent="UI/MainMenu/Panel" unique_id=1764865418]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_choun")
+
+[node name="Title" type="Label" parent="UI/MainMenu/Panel" unique_id=699606979]
+layout_mode = 1
+offset_left = 73.0
+offset_top = 52.0
+offset_right = 824.0
+offset_bottom = 229.0
+theme = ExtResource("9_85g3d")
+theme_override_font_sizes/font_size = 120
+text = "COMMGATE"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu/Panel" unique_id=125888855]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 259.0
+offset_right = 280.0
+offset_bottom = 425.0
+
+[node name="Play" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1655061712]
+layout_mode = 2
+theme = ExtResource("9_85g3d")
+text = "Play"
+alignment = 0
+
+[node name="Credits" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1535045554]
+layout_mode = 2
+theme = ExtResource("9_85g3d")
+text = "Credits"
+alignment = 0
+
+[node name="Quit" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1843783977]
+layout_mode = 2
+theme = ExtResource("9_85g3d")
+text = "Quit
+"
+alignment = 0
+
+[connection signal="pressed" from="UI/MainMenu/Panel/VBoxContainer/Play" to="UI" method="_on_play_pressed"]
