@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cijm7gc0ojv53" path="res://scenes/planet.tscn" id="5_85g3d"]
 [ext_resource type="PackedScene" uid="uid://c0fwrhpfjcu6t" path="res://scenes/sun.tscn" id="6_choun"]
 [ext_resource type="PackedScene" uid="uid://c8v06kj0kqc46" path="res://scenes/black_hole.tscn" id="7_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://c1cua1f4cj84a" path="res://scenes/planet2.tscn" id="8_yc10j"]
 [ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://b0lid10nct2w7" path="res://assets/2d/Title.png" id="10_choun"]
 [ext_resource type="Texture2D" uid="uid://bijr0154oiu55" path="res://assets/2d/SR.png" id="12_a8y0u"]
@@ -62,6 +63,14 @@ point_count = 4
 closed = true
 _data = {
 "points": PackedVector3Array(325, 0, -325, -325, 0, 325, -650, 0, -650, -325, 0, -325, 325, 0, 325, -650, 0, 650, -325, 0, 325, 325, 0, -325, 650, 0, 650, 325, 0, 325, -325, 0, -325, 650, 0, -650),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_yc10j"]
+closed = true
+_data = {
+"points": PackedVector3Array(-2894.904, 0, 3012.237, 2894.904, 0, -3012.237, 16000, -9000, 18000, -2005.6172, 692.3535, -2668.0762, 2005.6172, -692.3535, 2668.0762, 26000, -12000, 18000, 3075.852, 0, -3365.117, -3075.852, 0, 3365.117, 26000, -15000, 34000, 1902.4004, -760.52344, 2695.5977, -1902.4004, 760.52344, -2695.5977, 16000, -12000, 34000),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -132,6 +141,15 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World/Env" unique_id=298647302]
 environment = SubResource("Environment_sgp6g")
+
+[node name="Moon" parent="World/Env" unique_id=895090358 instance=ExtResource("4_tipki")]
+
+[node name="Sun" parent="World/Env" unique_id=540613059 instance=ExtResource("6_choun")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="BlackHole" parent="World/Env" unique_id=1652954569 instance=ExtResource("7_dp3eg")]
+y_speed = 0.01
+z_speed = -0.01
 
 [node name="Planet" type="StaticBody3D" parent="World" unique_id=1859286445]
 
@@ -221,16 +239,7 @@ path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_85g3d")
 
-[node name="Moon" parent="World/Planet" unique_id=895090358 instance=ExtResource("4_tipki")]
-
 [node name="Planet" parent="World/Planet" unique_id=463863642 instance=ExtResource("5_85g3d")]
-
-[node name="Sun" parent="World/Planet" unique_id=540613059 instance=ExtResource("6_choun")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
-
-[node name="BlackHole" parent="World/Planet" unique_id=1652954569 instance=ExtResource("7_dp3eg")]
-y_speed = 0.01
-z_speed = -0.01
 
 [node name="Camera" type="Node3D" parent="World" unique_id=1725945604 node_paths=PackedStringArray("focus")]
 script = ExtResource("2_0wfyh")
@@ -241,7 +250,40 @@ focus = NodePath("../Planet/Satellites/Path3D/PathFollow3D/Satellite")
 
 [node name="Camera3D" type="Camera3D" parent="World/Camera/Pivot" unique_id=1693231485]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120)
-far = 8000.0
+far = 80000.0
+
+[node name="Planet3" parent="World" unique_id=1744713887 instance=ExtResource("8_yc10j")]
+
+[node name="Planet2" type="StaticBody3D" parent="World/Planet3" unique_id=2077211136]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet3/Planet2" unique_id=1831022158]
+shape = SubResource("SphereShape3D_o5qli")
+
+[node name="Satellites" type="Node3D" parent="World/Planet3/Planet2" unique_id=949803191]
+
+[node name="Path3D" type="Path3D" parent="World/Planet3/Planet2/Satellites" unique_id=1396684431]
+curve = SubResource("Curve3D_yc10j")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Planet3/Planet2/Satellites/Path3D" unique_id=2082006701]
+transform = Transform3D(0.9999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999946, 16000, -9000, 18000)
+rotation_mode = 0
+
+[node name="Satellite" parent="World/Planet3/Planet2/Satellites/Path3D/PathFollow3D" unique_id=948626965 instance=ExtResource("1_sugp2")]
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet3/Planet2/Satellites/Path3D" unique_id=1769634617]
+transform = Transform3D(0.9999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999946, 0, 0, 0)
+polygon = PackedVector2Array(0.043, 0.201, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
 
 [node name="UI" type="Control" parent="." unique_id=1947374811]
 layout_mode = 3
