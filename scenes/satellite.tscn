@@ -10,7 +10,7 @@ radius = 100.0
 resource_name = "Satellite"
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.9490196, 0.17647062, 0.10588236, 1)
+albedo_color = Color(0.67058825, 0.827451, 0.7921569, 1)
 metadata/extras = {
 "yp": {
 "active_ypaint_node": "",
@@ -54,7 +54,7 @@ shadow_mesh = SubResource("ArrayMesh_uhwu0")
 resource_name = "Satellite"
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.9490196, 0.17647062, 0.10588236, 1)
+albedo_color = Color(0.67058825, 0.827451, 0.7921569, 1)
 metadata/extras = {
 "yp": {
 "active_ypaint_node": "",
