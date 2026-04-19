@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0fwrhpfjcu6t"]
 
-[ext_resource type="Script" uid="uid://qdxmj8eldc1k" path="res://scenes/rotation.gd" id="1_cojbh"]
+[ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="1_cojbh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_530pw"]
 render_priority = 1
