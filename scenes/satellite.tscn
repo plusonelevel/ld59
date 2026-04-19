@@ -107,7 +107,6 @@ billboard = 1
 texture = ExtResource("2_icwpa")
 
 [node name="satellite" type="Node3D" parent="." unique_id=694004336]
-transform = Transform3D(-0.8103004, -0.10928185, 0.575735, -0.22302656, 0.96603423, -0.1305262, -0.5419155, -0.23416962, -0.80715066, 0, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="satellite" unique_id=378471391]
 transform = Transform3D(7.9192176, 0, 0, 0, 7.9192176, 0, 0, 0, 7.9192176, 0, 0, 0)

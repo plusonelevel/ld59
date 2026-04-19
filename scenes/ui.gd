@@ -14,3 +14,7 @@ func _process(_delta: float) -> void:
 
 func _on_play_pressed() -> void:
 	mainmenu.hide()
+
+
+func _on_unlock_pressed() -> void:
+	Signals.hack.emit()

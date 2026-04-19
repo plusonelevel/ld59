@@ -7,4 +7,7 @@ signal camera_centered(node: Node3D)
 signal planet_selected
 signal satellite_selected(idx: int)
 
+signal hack
+
+
 @warning_ignore_restore("unused_signal")
