@@ -23,26 +23,42 @@ func _ready() -> void:
 	Signals.hack.connect(_on_hack_used)
 	
 	satellites[0].activate()
-	Signals.planet_selected.emit()
+	Signals.planet_selected.emit(planet)
 
 func _process(_delta: float) -> void:
 	if selection is Satellite and Input.is_action_pressed("move_drag"):
 		(selection as Satellite).set_target_rotation(cam.get_camera_rotation())
 			
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("select_1"):
+		_select_satellite(0)
+	elif event.is_action_pressed("select_2"):
+		_select_satellite(1)
+	elif event.is_action_pressed("select_3"):
+		_select_satellite(2)
+	elif event.is_action_pressed("select_default"):
+		Signals.planet_selected.emit(planet)
+
+func _select_satellite(idx: int):
+	var sat = satellites[idx]
+	if sat and sat.activated:
+		Signals.satellite_selected.emit(sat)
+
 func _on_hack_used() -> void:
 	if selection is not Satellite:
 		return
-	var space_state := selection.get_world_3d().direct_space_state
-	var origin := selection.global_position
+	var sel = selection as Satellite
+	var space_state := sel.get_world_3d().direct_space_state
+	var origin: Vector3 = sel.global_position
 	var possible_targets = []
 	for sat in satellites:
-		if sat == selection:
+		if sat == sel:
 			continue
 		
 		var target := sat.global_position
 		var query := PhysicsRayQueryParameters3D.create(origin, origin + (target - origin).normalized() * hack_distance)
-		query.exclude = [selection]
+		query.exclude = [sel]
 		var result := space_state.intersect_ray(query)
 		DebugDraw.draw_line(query.from, query.to, Color.GREEN_YELLOW, 5.0)
 		if result.has("collider") and result.collider and result.collider is Satellite:
@@ -50,27 +66,29 @@ func _on_hack_used() -> void:
 			# check if in "line of sight"
 			#DebugDraw.draw_arrow_ray(origin, origin.direction_to(result.collider.global_position) * 100, 20.0, 10.0, Color.ALICE_BLUE, 5.0)
 			#DebugDraw.draw_arrow_ray(origin, -selection.global_transform.basis.z * 100, 20, 10, Color.BISQUE, 5.0)
-			if origin.direction_to(result.collider.global_position).dot(-selection.global_transform.basis.z) > cos(hack_angle):
-				possible_targets.append(result.collider)
+			var accuracy := origin.direction_to(result.collider.global_position).dot(-sel.global_transform.basis.z)
+			if accuracy > cos(hack_angle):
+				possible_targets.append([result.collider, accuracy])
 			else:
 				print_debug("Object %s out of sight" % [result.collider.name])
 		else:
 			print_debug("Object out of range or not a satellite")
 		
 	print_debug("Objects in range: %s" % [possible_targets])
-		
+	if possible_targets.size() > 0:
+		possible_targets.sort_custom(func(a, b): a[1] > b[1])
+		var target = possible_targets[0][0] as Satellite
+		if target:
+			sel.hack(target)
+			await get_tree().create_timer(3.0).timeout
+			target.activate()
+	else:
+		sel.hack_fail()
 
-func _on_planet_selected() -> void:
+func _on_planet_selected(new_planet: Node3D) -> void:
+	planet = new_planet
 	selection = planet
-	Signals.camera_reset.emit()
-	Signals.current_location.emit("Planet")
 
-func _on_satellite_selected(idx: int) -> void:
-	var sat := satellites[idx]
-	
-	if sat and sat is Satellite and sat.activated:
-		sat = sat as Satellite
+func _on_satellite_selected(sat: Satellite) -> void:
+	if sat.activated:
 		selection = sat
-		Signals.camera_centered.emit(sat)
-		Signals.current_location.emit("Sat")
-		_on_hack_used()
