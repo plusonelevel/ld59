@@ -15,4 +15,7 @@ signal ability2
 signal ability3
 signal ability4
 
+signal hack
+
+
 @warning_ignore_restore("unused_signal")

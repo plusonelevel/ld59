@@ -230,6 +230,7 @@ focus = NodePath("../Planet/Satellites/Path3D/PathFollow3D/Satellite")
 [node name="Pivot" type="Node3D" parent="World/Camera" unique_id=353975901]
 
 [node name="Camera3D" type="Camera3D" parent="World/Camera/Pivot" unique_id=1693231485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120)
 far = 8000.0
 
 [node name="UI" type="Control" parent="." unique_id=1947374811]
@@ -698,3 +699,4 @@ alignment = 0
 [connection signal="pressed" from="UI/GameControl/Buttons/ShortRange" to="UI" method="_on_ability1_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/LongRange" to="UI" method="_on_ability2_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/Unlock" to="UI" method="_on_ability3_pressed"]
+[connection signal="pressed" from="UI/GameControl/Unlock" to="UI" method="_on_unlock_pressed"]

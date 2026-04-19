@@ -6,6 +6,7 @@ extends Node
 @export var ping_angle := 30.0
 
 @onready var planet := $World/Planet
+@onready var cam := $World/Camera
 
 var satellites: Array[Satellite]
 
@@ -17,10 +18,15 @@ func _ready() -> void:
 
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
+	Signals.hack.connect(_on_hack_used)
 	
 	satellites[0].activate()
 	Signals.planet_selected.emit()
 
+func _process(_delta: float) -> void:
+	if selection is Satellite and Input.is_action_pressed("move_drag"):
+		(selection as Satellite).set_target_rotation(cam.get_camera_rotation())
+			
 
 func _on_hack_used() -> void:
 	if selection is not Satellite:

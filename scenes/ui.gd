@@ -42,3 +42,6 @@ func _on_ability2_pressed() -> void:
 
 func _on_ability3_pressed() -> void:
 	Signals.ability3.emit()
+
+func _on_unlock_pressed() -> void:
+	Signals.hack.emit()

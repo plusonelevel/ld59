@@ -1,12 +1,10 @@
 extends Node3D
 
 const MIN_ZOOM_RATIO := 1.0
-const MAX_ZOOM_RATIO := 2.0
+const MAX_ZOOM_RATIO := 3.0
 const ZOOM_STEP = 0.1
 @export_range(MIN_ZOOM_RATIO, MAX_ZOOM_RATIO, ZOOM_STEP) var camera_zoom = 1.5
 @export_range(1.0, 10.0, 0.1) var camera_sensitivity = 5.0
-@export var invert_vertical = false
-@export var invert_horizontal = false
 @onready var pivot = $Pivot
 @onready var cam = $Pivot/Camera3D
 
@@ -19,7 +17,6 @@ func _ready() -> void:
 	Signals.camera_reset.connect(_on_camera_reset)
 	Signals.camera_centered.connect(_on_camera_centered)
 	
-	pivot.rotate_x(-0.5)
 	distance = 1000
 
 
@@ -34,13 +31,18 @@ func _input(event: InputEvent) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
-	if event is InputEventMouseMotion and Input.is_action_pressed("camera_drag"):
-		rotate_y(event.screen_relative.x * 0.001 * camera_sensitivity * (1 if invert_horizontal else -1))
-		pivot.rotate_x(event.screen_relative.y * 0.001 * camera_sensitivity * (1 if invert_horizontal else -1))
+	if event is InputEventMouseMotion and (Input.is_action_pressed("camera_drag") or Input.is_action_pressed("move_drag")):
+		var sensitivity = camera_sensitivity / 10.0 if Input.is_action_pressed("move_drag") else camera_sensitivity
+		rotate_y(-event.screen_relative.x * 0.001 * sensitivity)
+		pivot.rotate_x(-event.screen_relative.y * 0.001 * sensitivity)
 	elif event.is_action("zoom_in"):
 		camera_zoom = maxf(MIN_ZOOM_RATIO, camera_zoom - ZOOM_STEP)
 	elif event.is_action("zoom_out"):
 		camera_zoom = minf(MAX_ZOOM_RATIO, camera_zoom + ZOOM_STEP)
+
+
+func get_camera_rotation() -> Vector3:
+	return cam.global_rotation
 
 
 func _on_camera_reset() -> void:
