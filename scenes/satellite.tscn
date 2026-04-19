@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://ssbufcqtrxxo" path="res://scenes/satellite.gd" id="1_spm53"]
 [ext_resource type="Texture2D" uid="uid://day58irtakig" path="res://assets/2d/Sat.png" id="2_icwpa"]
 [ext_resource type="PackedScene" uid="uid://digsi8v1m2dgt" path="res://assets/fx/hack.tscn" id="4_5hscv"]
-[ext_resource type="PackedScene" uid="uid://eaaxx1gme477" path="res://scenes/satellite_models/satellite1.tscn" id="4_hte63"]
 [ext_resource type="PackedScene" uid="uid://dlq44y8elgqew" path="res://assets/fx/scan_LR.tscn" id="5_vldv0"]
 [ext_resource type="PackedScene" uid="uid://csj88a2ilhls7" path="res://assets/fx/scan_SR.tscn" id="6_2raoy"]
 [ext_resource type="PackedScene" uid="uid://cjbxsupd6yg86" path="res://assets/fx/LRhack.tscn" id="7_2raoy"]
@@ -22,8 +21,6 @@ transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
 visible = false
 billboard = 1
 texture = ExtResource("2_icwpa")
-
-[node name="Satellite" parent="." unique_id=1426937462 instance=ExtResource("4_hte63")]
 
 [node name="Hack" parent="." unique_id=622870475 instance=ExtResource("4_5hscv")]
 emitting = false
