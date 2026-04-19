@@ -5,7 +5,7 @@ extends Node
 
 @export var ping_angle := 30.0
 
-@onready var planet := $World/Planet
+@onready var planet := $World/Aiga
 @onready var cam := $World/Camera
 
 var satellites: Array[Satellite]

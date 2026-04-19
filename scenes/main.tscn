@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://dwx5kilcyckch" path="res://assets/2d/line.png" id="15_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://deql1gacrqliv" path="res://assets/2d/SR_hack.png" id="18_0ld40"]
 [ext_resource type="Texture2D" uid="uid://re81q0an3f3e" path="res://assets/2d/LR_hack.png" id="19_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="27_yq6so"]
+[ext_resource type="Texture2D" uid="uid://cppgdftl45emj" path="res://assets/2d/sat-sprite.png" id="28_2f3dj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("2_choun")
@@ -198,6 +200,14 @@ unicode = 102
 [sub_resource type="Shortcut" id="Shortcut_y6deb"]
 events = [SubResource("InputEventKey_jscy8")]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv21b"]
+bg_color = Color(0.9529412, 0.9372549, 0.87058824, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+
 [node name="Main" type="Node" unique_id=8165444]
 script = ExtResource("1_jyhfs")
 hack_distance = 300.0
@@ -222,28 +232,28 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 y_speed = 0.01
 z_speed = -0.01
 
-[node name="Planet" type="StaticBody3D" parent="World" unique_id=1859286445]
+[node name="Aiga" type="StaticBody3D" parent="World" unique_id=1859286445]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet" unique_id=621919284]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Aiga" unique_id=621919284]
 shape = SubResource("SphereShape3D_o5qli")
 
-[node name="Satellites" type="Node3D" parent="World/Planet" unique_id=1428361193]
+[node name="Satellites" type="Node3D" parent="World/Aiga" unique_id=1428361193]
 
-[node name="Path3D" type="Path3D" parent="World/Planet/Satellites" unique_id=957064632]
+[node name="Path3D" type="Path3D" parent="World/Aiga/Satellites" unique_id=957064632]
 transform = Transform3D(1.0000001, 0, 0, 0, 0.9659258, -0.258819, 0, 0.25881904, 0.96592575, 0, 0, 0)
 curve = SubResource("Curve3D_tipki")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/Planet/Satellites/Path3D" unique_id=1765511152]
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Aiga/Satellites/Path3D" unique_id=1765511152]
 transform = Transform3D(0.99999547, 0, 0, 0, 1, 0, 0, 0, 0.99999547, 104.912415, 0, -680.92645)
 progress = 3728.07
 rotation_mode = 0
 
-[node name="Satellite" parent="World/Planet/Satellites/Path3D/PathFollow3D" unique_id=434412478 instance=ExtResource("1_sugp2")]
+[node name="Satte-1" parent="World/Aiga/Satellites/Path3D/PathFollow3D" unique_id=434412478 instance=ExtResource("1_sugp2")]
 transform = Transform3D(1.0000024, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000023, 0, 0, 0)
 sat_model = ExtResource("7_pm3ni")
 speed = 30.0
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D" unique_id=534762476]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Aiga/Satellites/Path3D" unique_id=534762476]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
 polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
 mode = 2
@@ -259,18 +269,18 @@ path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_85g3d")
 
-[node name="Path3D2" type="Path3D" parent="World/Planet/Satellites" unique_id=313585038]
+[node name="Path3D2" type="Path3D" parent="World/Aiga/Satellites" unique_id=313585038]
 curve = SubResource("Curve3D_choun")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/Planet/Satellites/Path3D2" unique_id=1732977435]
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Aiga/Satellites/Path3D2" unique_id=1732977435]
 transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, -600, 0, -600)
 rotation_mode = 0
 
-[node name="Satellite" parent="World/Planet/Satellites/Path3D2/PathFollow3D" unique_id=2134328555 instance=ExtResource("1_sugp2")]
+[node name="Satte-2" parent="World/Aiga/Satellites/Path3D2/PathFollow3D" unique_id=2134328555 instance=ExtResource("1_sugp2")]
 sat_model = ExtResource("8_vxglm")
 speed = 15.0
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D2" unique_id=570443404]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Aiga/Satellites/Path3D2" unique_id=570443404]
 polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
 mode = 2
 path_node = NodePath("..")
@@ -285,19 +295,19 @@ path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_85g3d")
 
-[node name="Path3D3" type="Path3D" parent="World/Planet/Satellites" unique_id=2104374244]
+[node name="Path3D3" type="Path3D" parent="World/Aiga/Satellites" unique_id=2104374244]
 transform = Transform3D(1, 0, 0, 0, 0.64278764, -0.76604444, 0, 0.76604444, 0.64278764, 0, 0, 0)
 curve = SubResource("Curve3D_ya4ey")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/Planet/Satellites/Path3D3" unique_id=245595815]
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Aiga/Satellites/Path3D3" unique_id=245595815]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -650, 0, -650)
 rotation_mode = 0
 
-[node name="Satellite" parent="World/Planet/Satellites/Path3D3/PathFollow3D" unique_id=1118772254 instance=ExtResource("1_sugp2")]
+[node name="LRSatte-1" parent="World/Aiga/Satellites/Path3D3/PathFollow3D" unique_id=1118772254 instance=ExtResource("1_sugp2")]
 sat_model = ExtResource("9_2f3dj")
 speed = 80.0
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D3" unique_id=2043161800]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Aiga/Satellites/Path3D3" unique_id=2043161800]
 transform = Transform3D(1, 0, 0, 0, 0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, 0, 0, 0)
 polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
 mode = 2
@@ -313,12 +323,12 @@ path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_85g3d")
 
-[node name="Planet" parent="World/Planet" unique_id=463863642 instance=ExtResource("5_85g3d")]
+[node name="Planet" parent="World/Aiga" unique_id=463863642 instance=ExtResource("5_85g3d")]
 
 [node name="Camera" type="Node3D" parent="World" unique_id=1725945604 node_paths=PackedStringArray("focus")]
 script = ExtResource("2_0wfyh")
 camera_sensitivity = 2.0
-focus = NodePath("../Planet/Satellites/Path3D/PathFollow3D/Satellite")
+focus = NodePath("../Aiga/Satellites/Path3D/PathFollow3D/Satte-1")
 
 [node name="Pivot" type="Node3D" parent="World/Camera" unique_id=353975901]
 
@@ -423,13 +433,13 @@ grow_vertical = 2
 
 [node name="Sats" type="Panel" parent="UI/GameControl" unique_id=489136306]
 layout_mode = 1
-offset_right = 366.0
+offset_right = 389.0
 offset_bottom = 956.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dp3eg")
 
 [node name="Label" type="Label" parent="UI/GameControl/Sats" unique_id=702503419]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -102.5
@@ -469,12 +479,9 @@ expand_mode = 1
 
 [node name="Sat1" type="Control" parent="UI/GameControl/Sats" unique_id=2009001006]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -176.0
+offset_left = 7.0
 offset_top = 103.0
-offset_right = 176.0
+offset_right = 359.0
 offset_bottom = 197.0
 grow_horizontal = 2
 
@@ -502,18 +509,15 @@ offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
 text = "ID: Sat - 1
-Loc: PMK-67.N
+Loc: AIGA.LO
 Status: ONLINE"
 scroll_active = false
 
 [node name="Sat2" type="Control" parent="UI/GameControl/Sats" unique_id=555606218]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -176.0
+offset_left = 7.0
 offset_top = 197.0
-offset_right = 176.0
+offset_right = 359.0
 offset_bottom = 291.0
 grow_horizontal = 2
 
@@ -541,18 +545,15 @@ offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
 text = "ID: Sat - 2
-Loc: PMK-67.DIS
+Loc: AIGA.DIS
 Status: OFFLINE"
 scroll_active = false
 
 [node name="Sat3" type="Control" parent="UI/GameControl/Sats" unique_id=98165777]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -176.0
+offset_left = 7.0
 offset_top = 290.0
-offset_right = 176.0
+offset_right = 359.0
 offset_bottom = 384.0
 grow_horizontal = 2
 
@@ -580,18 +581,15 @@ offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
 text = "ID: LRSATTE-1
-Loc: PMK-67.-OW
+Loc: AIGA.-OW
 Status: ???"
 scroll_active = false
 
 [node name="Sat4" type="Control" parent="UI/GameControl/Sats" unique_id=592595056]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -176.0
+offset_left = 7.0
 offset_top = 387.0
-offset_right = 176.0
+offset_right = 359.0
 offset_bottom = 481.0
 grow_horizontal = 2
 
@@ -645,6 +643,7 @@ offset_bottom = 64.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 46
 text = "SAT - 1"
+horizontal_alignment = 1
 
 [node name="Line" type="TextureRect" parent="UI/GameControl/Name" unique_id=631313780]
 layout_mode = 1
@@ -653,7 +652,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 20.0
 offset_top = -20.0
-offset_right = 265.04254
+offset_right = 194.0
 offset_bottom = 20.0
 grow_vertical = 2
 texture = ExtResource("15_jbj1t")
@@ -666,7 +665,7 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -265.04254
+offset_left = -192.00006
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = 20.0
@@ -849,6 +848,62 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
 text = "[F]"
 
+[node name="Dialogue" type="Control" parent="UI/GameControl" unique_id=1865856948]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -442.0
+offset_top = -134.0
+offset_right = 442.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/GameControl/Dialogue" unique_id=394790976]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 199.0
+offset_top = -127.0
+offset_right = 878.0
+offset_bottom = 127.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fv21b")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/GameControl/Dialogue/Panel" unique_id=1033134812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 112.0
+offset_top = 50.0
+offset_right = -48.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.4509804, 0.33333334, 0.43529412, 1)
+text = "BIG BLACK HOLE BOOM
+fix pls
+SCARY SHIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/GameControl/Dialogue" unique_id=851837576]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -155.0
+offset_right = 310.0
+offset_bottom = 155.0
+grow_vertical = 2
+texture = ExtResource("27_yq6so")
+expand_mode = 1
+
 [node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
 visible = false
 layout_mode = 1
@@ -866,6 +921,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_choun")
+
+[node name="Sat" type="TextureRect" parent="UI/MainMenu" unique_id=200363705]
+layout_mode = 0
+offset_left = 132.00002
+offset_top = 607.0
+offset_right = 487.93195
+offset_bottom = 962.9319
+scale = Vector2(0.19666667, 0.19666667)
+texture = ExtResource("28_2f3dj")
+expand_mode = 1
 
 [node name="Title" type="Label" parent="UI/MainMenu" unique_id=699606979]
 layout_mode = 1
