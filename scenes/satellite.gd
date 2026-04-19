@@ -6,7 +6,7 @@ extends StaticBody3D
 @onready var orbit = $"../../CSGPolygon3D"
 
 @export var speed := 300.0
-var target_rotation
+var target_rotation: Vector3
 var elapsed := 0.0
 
 @export var activated := false
@@ -15,7 +15,7 @@ var elapsed := 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	assert(path and path is Path3D and path_follow and path_follow is PathFollow3D, "Satellite must be a child of PathFollow3D!")
-	target_rotation = path.rotation.x
+	target_rotation = rotation
 	if activated:
 		$Sprite3D.hide()
 		$Satellite.show()
@@ -23,9 +23,16 @@ func _ready() -> void:
 		$Sprite3D.show()
 		$Satellite.hide()
 
+var progress := 0.0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	path_follow.progress += delta * speed
+	
+	if rotation.is_equal_approx(target_rotation):
+		progress = 0.0
+	else:
+		progress += delta / 1000.0
+		rotation = rotation.lerp(target_rotation, progress)
 
 
 func activate() -> void:
@@ -33,6 +40,8 @@ func activate() -> void:
 	$Sprite3D.hide()
 	$Satellite.show()
 
+func set_target_rotation(new_rotation: Vector3) -> void:
+	target_rotation = new_rotation
 
 func hack() -> void:
 	pass
