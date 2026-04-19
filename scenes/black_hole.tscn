@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8v06kj0kqc46"]
 
-[ext_resource type="Script" uid="uid://qdxmj8eldc1k" path="res://scenes/rotation.gd" id="1_djpiu"]
+[ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="1_djpiu"]
 [ext_resource type="Shader" uid="uid://gmppkc8h4s1r" path="res://scenes/blackhole.gdshader" id="1_ic33f"]
 [ext_resource type="Texture2D" uid="uid://bw3dj01rr1ktc" path="res://assets/2d/circle.png" id="2_djpiu"]
 
@@ -50,7 +50,7 @@ shader_parameter/noise_intensity = 0.34
 lightmap_size_hint = Vector2i(7855, 1572)
 material = SubResource("ShaderMaterial_jkv2x")
 inner_radius = 150.0
-outer_radius = 240.0
+outer_radius = 260.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbj1t"]
 load_path = "res://.godot/imported/circle_red.png-a5566f9e7292c3f615fa9ce8d51ab199.s3tc.ctex"
@@ -83,7 +83,7 @@ y_speed = 0.05
 z_speed = -0.05
 
 [node name="BlackHole" type="MeshInstance3D" parent="." unique_id=690092645]
-transform = Transform3D(-3.1962407, 3.4467516, -1.7040982, -3.8219833, -3.0901525, 0.91836864, -0.42010695, 1.8896724, 4.6100597, -3233.8208, 1082.3326, -772.03284)
+transform = Transform3D(-3.1962407, 3.4467516, -1.7040982, -3.8219833, -3.0901525, 0.91836864, -0.42010695, 1.8896724, 4.6100597, -7000, 6848.8237, -772.033)
 mesh = SubResource("SphereMesh_eb6dy")
 skeleton = NodePath("../..")
 

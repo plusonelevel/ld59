@@ -25,13 +25,13 @@ stencil_outline_thickness = 15.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_530pw"]
 material = SubResource("StandardMaterial3D_q6it2")
-radius = 1500.0
-height = 3000.0
+radius = 3000.0
+height = 6000.0
 
 [node name="Sun" type="Node3D" unique_id=895090358]
 script = ExtResource("1_cojbh")
-y_speed = 0.1
+y_speed = 0.01
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2132980223]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5312.1406, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14000, 0, 0)
 mesh = SubResource("SphereMesh_530pw")
