@@ -175,7 +175,44 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_85g3d")
 script = ExtResource("1_o5qli")
+
+[node name="GameControl" type="Control" parent="UI" unique_id=1214834009]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/GameControl" unique_id=489136306]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -961.0
+offset_top = -317.0
+offset_right = 961.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/GameControl" unique_id=702503419]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -466.0
+offset_top = -295.0
+offset_right = -246.0
+offset_bottom = -232.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Control panel"
 
 [node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
 layout_mode = 1
@@ -192,7 +229,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("9_85g3d")
 
 [node name="BG" type="TextureRect" parent="UI/MainMenu/Panel" unique_id=1764865418]
 layout_mode = 1
@@ -205,11 +241,10 @@ texture = ExtResource("10_choun")
 
 [node name="Title" type="Label" parent="UI/MainMenu/Panel" unique_id=699606979]
 layout_mode = 1
-offset_left = 73.0
-offset_top = 52.0
-offset_right = 824.0
-offset_bottom = 229.0
-theme = ExtResource("9_85g3d")
+offset_left = 103.0
+offset_top = 54.0
+offset_right = 932.0
+offset_bottom = 231.0
 theme_override_font_sizes/font_size = 120
 text = "COMMGATE"
 
@@ -222,19 +257,16 @@ offset_bottom = 425.0
 
 [node name="Play" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1655061712]
 layout_mode = 2
-theme = ExtResource("9_85g3d")
 text = "Play"
 alignment = 0
 
 [node name="Credits" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1535045554]
 layout_mode = 2
-theme = ExtResource("9_85g3d")
 text = "Credits"
 alignment = 0
 
 [node name="Quit" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1843783977]
 layout_mode = 2
-theme = ExtResource("9_85g3d")
 text = "Quit
 "
 alignment = 0
