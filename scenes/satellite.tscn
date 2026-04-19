@@ -20,7 +20,6 @@ visible = false
 billboard = 1
 texture = ExtResource("2_icwpa")
 
-[node name="satellite" type="Node3D" parent="." unique_id=694004336]
 [node name="Satellite" parent="." unique_id=1426937462 instance=ExtResource("4_hte63")]
 
 [node name="Hack" parent="." unique_id=622870475 instance=ExtResource("4_5hscv")]
