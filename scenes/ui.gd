@@ -16,21 +16,27 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$MainMenu/VBoxContainer/Play.pressed.connect(_on_play_pressed)
-	Signals.connect("current_location",_location_change)
-	Signals.connect("toggle_abilities",_toggle_abilities)
+	
+	Signals.planet_selected.connect(_on_planet_selected)
+	Signals.satellite_selected.connect(_on_satellite_selected)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
-func _location_change(location):
-	loc.text = location
-
 func _on_play_pressed() -> void:
 	mainmenu.hide()
+	
+func _on_satellite_selected(satellite: Satellite):
+	_toggle_abilities(true)
+	loc.text = satellite.name
 
-func _toggle_abilities(input):
-	if input == false:
+func _on_planet_selected(planet: Node3D):
+	_toggle_abilities(false)
+	loc.text = planet.name
+
+func _toggle_abilities(enabled: bool):
+	if not enabled:
 		ability1_butt.disabled = true
 		ability2_butt.disabled = true
 		ability3_butt.disabled = true
@@ -52,18 +58,17 @@ func _toggle_abilities(input):
 		keyf.modulate = key_ab_color
 
 func _on_ability1_pressed() -> void:
-	Signals.ability1.emit()
-
+	print_debug("Ability 1 pressed")
+	#Signals.ability1.emit()
 
 func _on_ability2_pressed() -> void:
-	Signals.ability2.emit()
-
+	print_debug("Ability 2 pressed")
+	#Signals.ability2.emit()
 
 func _on_ability3_pressed() -> void:
-	Signals.ability3.emit()
+	print_debug("Ability 3 pressed")
+	#Signals.ability3.emit()
 	
 func _on_ability4_pressed() -> void:
-	Signals.ability4.emit()
-
-func _on_unlock_pressed() -> void:
+	print_debug("Ability 4 pressed")
 	Signals.hack.emit()

@@ -11,11 +11,9 @@ const ZOOM_STEP = 0.1
 @export var focus: Node3D
 var distance: float
 
-@onready var planet := $"../Planet"
-
 func _ready() -> void:
-	Signals.camera_reset.connect(_on_camera_reset)
-	Signals.camera_centered.connect(_on_camera_centered)
+	Signals.planet_selected.connect(_on_planet_selected)
+	Signals.satellite_selected.connect(_on_satellite_selected)
 	
 	distance = 1000
 
@@ -45,11 +43,11 @@ func get_camera_rotation() -> Vector3:
 	return cam.global_rotation
 
 
-func _on_camera_reset() -> void:
+func _on_planet_selected(planet: Node3D) -> void:
 	focus = planet
 	distance = 1000
 
-func _on_camera_centered(node: Node3D) -> void:
-	focus = node
+func _on_satellite_selected(sat: Satellite) -> void:
+	focus = sat
 	distance = 100
 	
