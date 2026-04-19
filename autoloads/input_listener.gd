@@ -24,6 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		Signals.satellite_selected.emit(2)
 	elif event.is_action_pressed("select_default"):
 		Signals.planet_selected.emit()
+		
 	
 	elif event.is_action_pressed("speed_up"):
 		Engine.time_scale = minf(MAX_SPEED, Engine.time_scale + SPEED_STEP)

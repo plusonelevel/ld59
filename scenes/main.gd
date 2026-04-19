@@ -48,6 +48,7 @@ func _on_hack_used() -> void:
 func _on_planet_selected() -> void:
 	selection = planet
 	Signals.camera_reset.emit()
+	Signals.current_location.emit("Planet")
 
 func _on_satellite_selected(idx: int) -> void:
 	var sat := satellites[idx]
@@ -56,4 +57,5 @@ func _on_satellite_selected(idx: int) -> void:
 		sat = sat as Satellite
 		selection = sat
 		Signals.camera_centered.emit(sat)
+		Signals.current_location.emit("Sat")
 		_on_hack_used()

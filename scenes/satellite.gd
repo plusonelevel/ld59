@@ -4,10 +4,14 @@ extends StaticBody3D
 @onready var path = $"../.."
 @onready var path_follow = $".."
 @onready var orbit = $"../../CSGPolygon3D"
+@onready var hack_fx = $Hack
+@onready var LRscan_fx = $Scan_LR
+@onready var SRscan_fx = $Scan_SR
 
 @export var speed := 300.0
 var target_rotation
 var elapsed := 0.0
+var sat_abilities = false
 
 @export var activated := false
 
@@ -22,6 +26,11 @@ func _ready() -> void:
 	else:
 		$Sprite3D.show()
 		$Satellite.hide()
+		
+	Signals.connect("ability1",_ability1)
+	Signals.connect("ability2",_ability2)
+	Signals.connect("ability3",_ability3)
+	Signals.connect("current_location",_location_change)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -33,6 +42,31 @@ func activate() -> void:
 	$Sprite3D.hide()
 	$Satellite.show()
 
+func _location_change(location):
+	if location == "Planet":
+		sat_abilities = false
+		Signals.toggle_abilities.emit(sat_abilities)
+	else:
+		sat_abilities = true
+		Signals.toggle_abilities.emit(sat_abilities)
+
+func _ability1():
+	if SRscan_fx.emitting == false:
+		SRscan_fx.emitting = true
+	else:
+		SRscan_fx.emitting = false
+	
+func _ability2():
+	if LRscan_fx.emitting == false:
+		LRscan_fx.emitting = true
+	else:
+		LRscan_fx.emitting = false
+
+func _ability3():
+	if hack_fx.emitting == false:
+		hack_fx.emitting = true
+	else:
+		hack_fx.emitting = false
 
 func hack() -> void:
 	pass
