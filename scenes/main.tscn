@@ -418,6 +418,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_85g3d")
 script = ExtResource("1_o5qli")
+lines = Array[String](["[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]", "test", "asd"])
 
 [node name="GameControl" type="Control" parent="UI" unique_id=1214834009]
 layout_mode = 1
@@ -508,9 +509,10 @@ offset_top = -41.5
 offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
-text = "ID: Sat - 1
+bbcode_enabled = true
+text = "ID: Sat-1
 Loc: AIGA.LO
-Status: ONLINE"
+Status: [color=#abd3ca]ONLINE[/color]"
 scroll_active = false
 
 [node name="Sat2" type="Control" parent="UI/GameControl/Sats" unique_id=555606218]
@@ -544,9 +546,10 @@ offset_top = -41.5
 offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
-text = "ID: Sat - 2
+bbcode_enabled = true
+text = "ID: Sat-2
 Loc: AIGA.DIS
-Status: OFFLINE"
+Status: [pulse freq=3.0 color=#D90D0D 50]OFFLINE[/pulse]"
 scroll_active = false
 
 [node name="Sat3" type="Control" parent="UI/GameControl/Sats" unique_id=98165777]
@@ -580,9 +583,10 @@ offset_top = -41.5
 offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
+bbcode_enabled = true
 text = "ID: LRSATTE-1
 Loc: AIGA.-OW
-Status: ???"
+Status: [shake rate=50 level=50 connected=0]----------[/shake]"
 scroll_active = false
 
 [node name="Sat4" type="Control" parent="UI/GameControl/Sats" unique_id=592595056]
@@ -616,9 +620,10 @@ offset_top = -41.5
 offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
-text = "ID: ???
-Loc: ???
-Status: ???"
+bbcode_enabled = true
+text = "ID: [shake rate=50 level=50 connected=0]----------[/shake]
+Loc: [shake rate=50 level=50 connected=0]----------[/shake]
+Status: [shake rate=50 level=50 connected=0]----------[/shake]"
 scroll_active = false
 
 [node name="Name" type="Panel" parent="UI/GameControl" unique_id=1500183693]
@@ -855,10 +860,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -442.0
-offset_top = -134.0
-offset_right = 442.0
-offset_bottom = 134.0
+offset_left = -635.0
+offset_top = -191.0
+offset_right = 635.0
+offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -869,7 +874,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 199.0
 offset_top = -127.0
-offset_right = 878.0
+offset_right = 1164.0
 offset_bottom = 127.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fv21b")
@@ -879,18 +884,36 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 112.0
-offset_top = 50.0
+offset_left = 129.0
+offset_top = 53.0
 offset_right = -48.0
-offset_bottom = -50.0
+offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.4509804, 0.33333334, 0.43529412, 1)
-text = "BIG BLACK HOLE BOOM
-fix pls
-SCARY SHIT"
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Next" type="Label" parent="UI/GameControl/Dialogue/Panel" unique_id=437993392]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -55.0
+offset_right = -34.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.4509804, 0.33333334, 0.43529412, 1)
+theme_override_font_sizes/font_size = 26
+text = "[NEXT]"
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="UI/GameControl/Dialogue" unique_id=851837576]
 layout_mode = 1

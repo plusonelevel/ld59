@@ -54,5 +54,5 @@ Label/fonts/font = ExtResource("1_e1x85")
 Label/styles/normal = SubResource("StyleBoxEmpty_e1x85")
 Panel/styles/panel = SubResource("StyleBoxFlat_e1x85")
 RichTextLabel/colors/default_color = Color(0.94509804, 0.9411765, 0.8745098, 1)
-RichTextLabel/font_sizes/normal_font_size = 28
+RichTextLabel/font_sizes/normal_font_size = 18
 RichTextLabel/fonts/normal_font = ExtResource("1_e1x85")

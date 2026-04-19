@@ -10,8 +10,11 @@ extends Control
 @onready var keys = $GameControl/Buttons/KeyS
 @onready var keyd = $GameControl/Buttons/KeyD
 @onready var keyf = $GameControl/Buttons/KeyF
+@onready var dialogue_bubble = $GameControl/Dialogue/Panel/RichTextLabel
 
+@export var lines : Array[String]
 
+var line_id = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,10 +22,20 @@ func _ready() -> void:
 	
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
+	
+	dialogue_bubble.text = lines[line_id]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
+func _unhandled_key_input(event):
+	if event.is_action_pressed("select_default"):
+		line_id += 1
+		if line_id < lines.size():
+			dialogue_bubble.text = lines[line_id]
+		else:
+			dialogue_bubble.text = ""
 
 func _on_play_pressed() -> void:
 	mainmenu.hide()
