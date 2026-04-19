@@ -1,5 +1,8 @@
 extends Node
 
+const MIN_SPEED := 1.0
+const MAX_SPEED := 3.0
+const SPEED_STEP := 1.0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_fullscreen"):
@@ -21,3 +24,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		Signals.satellite_selected.emit(2)
 	elif event.is_action_pressed("select_default"):
 		Signals.planet_selected.emit()
+	
+	elif event.is_action_pressed("speed_up"):
+		Engine.time_scale = minf(MAX_SPEED, Engine.time_scale + SPEED_STEP)
+	elif event.is_action_pressed("speed_down"):
+		Engine.time_scale = maxf(MIN_SPEED, Engine.time_scale - SPEED_STEP)
