@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://eaaxx1gme477" path="res://scenes/satellite_models/satellite1.tscn" id="4_hte63"]
 [ext_resource type="PackedScene" uid="uid://dlq44y8elgqew" path="res://assets/fx/scan_LR.tscn" id="5_vldv0"]
 [ext_resource type="PackedScene" uid="uid://csj88a2ilhls7" path="res://assets/fx/scan_SR.tscn" id="6_2raoy"]
+[ext_resource type="PackedScene" uid="uid://cjbxsupd6yg86" path="res://assets/fx/LRhack.tscn" id="7_2raoy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0wfyh"]
 radius = 100.0
@@ -25,7 +26,12 @@ texture = ExtResource("2_icwpa")
 [node name="Satellite" parent="." unique_id=1426937462 instance=ExtResource("4_hte63")]
 
 [node name="Hack" parent="." unique_id=622870475 instance=ExtResource("4_5hscv")]
+emitting = false
 
 [node name="Scan_LR" parent="." unique_id=1476702277 instance=ExtResource("5_vldv0")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
 
 [node name="Scan_SR" parent="." unique_id=2009638868 instance=ExtResource("6_2raoy")]
+
+[node name="LRhack" parent="." unique_id=1483447581 instance=ExtResource("7_2raoy")]
+emitting = false

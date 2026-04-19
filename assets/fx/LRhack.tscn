@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://digsi8v1m2dgt"]
+[gd_scene format=3 uid="uid://cjbxsupd6yg86"]
 
 [sub_resource type="Curve" id="Curve_7nw8l"]
 _data = [Vector2(0, 1), 0.0, -1.1916405, 0, 0, Vector2(1, 0), -1.1903135, 0.0, 0, 0]
@@ -9,8 +9,8 @@ curve = SubResource("Curve_7nw8l")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mpy4i"]
 spread = 0.0
-initial_velocity_min = 500.0
-initial_velocity_max = 500.0
+initial_velocity_min = 1250.0
+initial_velocity_max = 1250.0
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_lvhda")
 
@@ -23,12 +23,12 @@ albedo_color = Color(0.9490196, 0.019607844, 0.019607844, 0.5882353)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_12m5o"]
 material = SubResource("StandardMaterial3D_ukbj4")
-size = Vector2(20, 5)
+size = Vector2(100, 2)
 center_offset = Vector3(50, 0, 0)
 
-[node name="Hack" type="GPUParticles3D" unique_id=622870475]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-amount = 40
+[node name="LRhack" type="GPUParticles3D" unique_id=622870475]
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0, 0, 0)
+amount = 30
 lifetime = 5.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_mpy4i")
