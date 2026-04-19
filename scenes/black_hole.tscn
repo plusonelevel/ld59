@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://c8v06kj0kqc46"]
+
+[ext_resource type="Script" uid="uid://qdxmj8eldc1k" path="res://scenes/rotation.gd" id="1_djpiu"]
+[ext_resource type="Shader" uid="uid://gmppkc8h4s1r" path="res://scenes/blackhole.gdshader" id="1_ic33f"]
+[ext_resource type="Texture2D" uid="uid://bw3dj01rr1ktc" path="res://assets/2d/circle.png" id="2_djpiu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trceg"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.9372549, 0.8784314, 0.81960785, 1)
+grow = true
+grow_amount = 5.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya4ey"]
+next_pass = SubResource("StandardMaterial3D_trceg")
+shading_mode = 0
+albedo_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.9372549, 0.8784314, 0.81960785, 1)
+stencil_outline_thickness = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_eb6dy"]
+material = SubResource("StandardMaterial3D_ya4ey")
+radius = 150.0
+height = 300.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_trceg"]
+noise_type = 0
+frequency = 0.0045
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a8y0u"]
+noise = SubResource("FastNoiseLite_trceg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkv2x"]
+render_priority = 0
+shader = ExtResource("1_ic33f")
+shader_parameter/my_texture = ExtResource("2_djpiu")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_a8y0u")
+shader_parameter/speed = 0.1
+shader_parameter/noise_intensity = 0.34
+
+[sub_resource type="TorusMesh" id="TorusMesh_trceg"]
+lightmap_size_hint = Vector2i(7855, 1572)
+material = SubResource("ShaderMaterial_jkv2x")
+inner_radius = 150.0
+outer_radius = 240.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbj1t"]
+load_path = "res://.godot/imported/circle_red.png-a5566f9e7292c3f615fa9ce8d51ab199.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_muem4"]
+noise_type = 0
+frequency = 0.0126
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dp3eg"]
+noise = SubResource("FastNoiseLite_muem4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ld40"]
+render_priority = 0
+shader = ExtResource("1_ic33f")
+shader_parameter/my_texture = SubResource("CompressedTexture2D_jbj1t")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_dp3eg")
+shader_parameter/speed = 0.2
+shader_parameter/noise_intensity = 0.2
+
+[sub_resource type="TorusMesh" id="TorusMesh_0ld40"]
+lightmap_size_hint = Vector2i(7855, 1572)
+material = SubResource("ShaderMaterial_0ld40")
+inner_radius = 150.0
+outer_radius = 250.0
+
+[node name="BlackHole" type="Node3D" unique_id=1652954569]
+script = ExtResource("1_djpiu")
+y_speed = 0.05
+z_speed = -0.05
+
+[node name="BlackHole" type="MeshInstance3D" parent="." unique_id=690092645]
+transform = Transform3D(-3.1962407, 3.4467516, -1.7040982, -3.8219833, -3.0901525, 0.91836864, -0.42010695, 1.8896724, 4.6100597, -3233.8208, 1082.3326, -772.03284)
+mesh = SubResource("SphereMesh_eb6dy")
+skeleton = NodePath("../..")
+
+[node name="BlackHoleRing1" type="MeshInstance3D" parent="BlackHole" unique_id=645760110]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 0.01, 0, -0.86602545, 0, 0.49999997, 0, 0, 0)
+mesh = SubResource("TorusMesh_trceg")
+skeleton = NodePath("../../..")
+
+[node name="BlackHoleRing2" type="MeshInstance3D" parent="BlackHole" unique_id=1682213946]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 0.01, 0, -0.86602545, 0, 0.49999997, 0, -2.687439, 0)
+mesh = SubResource("TorusMesh_0ld40")
+skeleton = NodePath("../../..")

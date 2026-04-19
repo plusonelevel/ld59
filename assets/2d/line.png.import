@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtx4nrq8hslu7"
-path.s3tc="res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.s3tc.ctex"
-path.etc2="res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.etc2.ctex"
+uid="uid://dwx5kilcyckch"
+path.s3tc="res://.godot/imported/line.png-956d994c48bb6f5bf3f3d093130ac454.s3tc.ctex"
+path.etc2="res://.godot/imported/line.png-956d994c48bb6f5bf3f3d093130ac454.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/2d/button.png"
-dest_files=["res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.s3tc.ctex", "res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.etc2.ctex"]
+source_file="res://assets/2d/line.png"
+dest_files=["res://.godot/imported/line.png-956d994c48bb6f5bf3f3d093130ac454.s3tc.ctex", "res://.godot/imported/line.png-956d994c48bb6f5bf3f3d093130ac454.etc2.ctex"]
 
 [params]
 

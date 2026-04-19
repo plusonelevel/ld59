@@ -2,6 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://dkfcl682p3a2m" path="res://assets/Notable-Regular.ttf" id="1_e1x85"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cjfk0"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjfk0"]
 bg_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
 border_width_left = 25
@@ -29,16 +31,12 @@ border_color = Color(0.8509804, 0.043137256, 0.10980392, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1x85"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1x85"]
-bg_color = Color(0.4509804, 0.33333334, 0.43137255, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+bg_color = Color(0.94509804, 0.9411765, 0.8784314, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.4509804, 0.33333334, 0.43137255, 1)
 
 [resource]
 Button/colors/font_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
@@ -46,14 +44,15 @@ Button/colors/font_hover_color = Color(0.8509804, 0.043137256, 0.10980392, 1)
 Button/colors/font_pressed_color = Color(0.9490196, 0.9372549, 0.87058824, 1)
 Button/font_sizes/font_size = 46
 Button/fonts/font = ExtResource("1_e1x85")
+Button/styles/focus = SubResource("StyleBoxEmpty_cjfk0")
 Button/styles/hover = SubResource("StyleBoxFlat_cjfk0")
 Button/styles/normal = SubResource("StyleBoxFlat_wvktn")
 Button/styles/pressed = SubResource("StyleBoxFlat_vj6dk")
-Label/colors/font_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
+Label/colors/font_color = Color(0.9490196, 0.019607844, 0.019607844, 1)
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_e1x85")
 Label/styles/normal = SubResource("StyleBoxEmpty_e1x85")
 Panel/styles/panel = SubResource("StyleBoxFlat_e1x85")
 RichTextLabel/colors/default_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
-RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 20
 RichTextLabel/fonts/normal_font = ExtResource("1_e1x85")
