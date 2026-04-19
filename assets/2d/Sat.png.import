@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxgrbrcbaxvqa"
-path.s3tc="res://.godot/imported/Planet1.png-47f1f7653b9e97b880429ef396a92111.s3tc.ctex"
-path.etc2="res://.godot/imported/Planet1.png-47f1f7653b9e97b880429ef396a92111.etc2.ctex"
+uid="uid://c5we0aw3f2oal"
+path.s3tc="res://.godot/imported/Sat.png-41a3b8f2f3b69ef47e3671f4669f1161.s3tc.ctex"
+path.etc2="res://.godot/imported/Sat.png-41a3b8f2f3b69ef47e3671f4669f1161.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/3d/Planet1.png"
-dest_files=["res://.godot/imported/Planet1.png-47f1f7653b9e97b880429ef396a92111.s3tc.ctex", "res://.godot/imported/Planet1.png-47f1f7653b9e97b880429ef396a92111.etc2.ctex"]
+source_file="res://assets/2d/Sat.png"
+dest_files=["res://.godot/imported/Sat.png-41a3b8f2f3b69ef47e3671f4669f1161.s3tc.ctex", "res://.godot/imported/Sat.png-41a3b8f2f3b69ef47e3671f4669f1161.etc2.ctex"]
 
 [params]
 

@@ -4,7 +4,7 @@
 render_priority = 1
 transparency = 1
 shading_mode = 0
-albedo_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
+albedo_color = Color(0.94509804, 0.9411765, 0.8784314, 1)
 grow = true
 grow_amount = 10.0
 stencil_mode = 3
@@ -15,10 +15,10 @@ metadata/_stencil_owned = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cktii"]
 next_pass = SubResource("StandardMaterial3D_0wmcs")
 shading_mode = 0
-albedo_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
+albedo_color = Color(0.45490196, 0.33333334, 0.42745098, 1)
 stencil_mode = 1
 stencil_flags = 2
-stencil_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
+stencil_color = Color(0.94509804, 0.9411765, 0.8784314, 1)
 stencil_outline_thickness = 10.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_h8ms6"]

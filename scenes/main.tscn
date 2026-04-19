@@ -4,16 +4,18 @@
 [ext_resource type="Script" uid="uid://b02t6gywdk6or" path="res://scenes/ui.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://du4qlnscom4ky" path="res://scenes/satellite.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://d0bio7o1cli4j" path="res://scenes/camera.gd" id="2_0wfyh"]
-[ext_resource type="Texture2D" uid="uid://2ogk1xmvw65g" path="res://assets/2d/Sky.png" id="2_choun"]
-[ext_resource type="PackedScene" path="res://scenes/moon.tscn" id="4_tipki"]
+[ext_resource type="Texture2D" uid="uid://oph2b6du1tj8" path="res://assets/2d/Sky.png" id="2_choun"]
+[ext_resource type="PackedScene" uid="uid://noak0lb744vu" path="res://scenes/moon.tscn" id="4_tipki"]
+[ext_resource type="PackedScene" uid="uid://cijm7gc0ojv53" path="res://scenes/planet.tscn" id="5_85g3d"]
+[ext_resource type="PackedScene" uid="uid://c0fwrhpfjcu6t" path="res://scenes/sun.tscn" id="6_choun"]
 [ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://b0lid10nct2w7" path="res://assets/2d/Title.png" id="10_choun"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jyhfs"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("2_choun")
 
 [sub_resource type="Sky" id="Sky_tbgi4"]
-sky_material = SubResource("PanoramaSkyMaterial_jyhfs")
+sky_material = SubResource("PanoramaSkyMaterial_tipki")
 
 [sub_resource type="Environment" id="Environment_sgp6g"]
 background_mode = 2
@@ -30,26 +32,12 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_choun"]
-render_priority = 1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85g3d"]
 transparency = 1
 shading_mode = 0
-albedo_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
-grow = true
-grow_amount = 15.0
-stencil_mode = 3
-stencil_flags = 1
-stencil_compare = 5
-metadata/_stencil_owned = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya4ey"]
-next_pass = SubResource("StandardMaterial3D_choun")
-shading_mode = 0
-albedo_color = Color(0.94509804, 0.9411765, 0.8784314, 1)
-stencil_mode = 1
 stencil_flags = 2
 stencil_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
-stencil_outline_thickness = 15.0
+stencil_outline_thickness = 0.65
 
 [sub_resource type="Curve3D" id="Curve3D_choun"]
 closed = true
@@ -107,11 +95,11 @@ speed = 30.0
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D" unique_id=534762476]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
-visible = false
+polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
 mode = 2
 path_node = NodePath("..")
-path_interval_type = 0
-path_interval = 1.0
+path_interval_type = 1
+path_interval = 0.02
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
@@ -119,7 +107,7 @@ path_local = false
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
-material = SubResource("StandardMaterial3D_ya4ey")
+material = SubResource("StandardMaterial3D_85g3d")
 
 [node name="Path3D2" type="Path3D" parent="World/Planet/Satellites" unique_id=313585038]
 curve = SubResource("Curve3D_choun")
@@ -131,10 +119,11 @@ transform = Transform3D(-0.70710665, 0, 0.70710665, 0, 1, 0, -0.70710665, 0, -0.
 speed = 15.0
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D2" unique_id=570443404]
+polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
 mode = 2
 path_node = NodePath("..")
-path_interval_type = 0
-path_interval = 1.0
+path_interval_type = 1
+path_interval = 0.02
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
@@ -142,6 +131,7 @@ path_local = false
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
+material = SubResource("StandardMaterial3D_85g3d")
 
 [node name="Path3D3" type="Path3D" parent="World/Planet/Satellites" unique_id=2104374244]
 transform = Transform3D(1, 0, 0, 0, 0.64278764, -0.76604444, 0, 0.76604444, 0.64278764, 0, 0, 0)
@@ -155,10 +145,11 @@ speed = 80.0
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D3" unique_id=2043161800]
 transform = Transform3D(1, 0, 0, 0, 0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, 0, 0, 0)
+polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
 mode = 2
 path_node = NodePath("..")
-path_interval_type = 0
-path_interval = 1.0
+path_interval_type = 1
+path_interval = 0.02
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
@@ -166,12 +157,14 @@ path_local = false
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet" unique_id=1447557441]
-mesh = SubResource("SphereMesh_eb6dy")
+material = SubResource("StandardMaterial3D_85g3d")
 
 [node name="Moon" parent="World/Planet" unique_id=895090358 instance=ExtResource("4_tipki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, 0)
+
+[node name="Planet" parent="World/Planet" unique_id=463863642 instance=ExtResource("5_85g3d")]
+
+[node name="Sun" parent="World/Planet" unique_id=540613059 instance=ExtResource("6_choun")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Camera" type="Node3D" parent="World" unique_id=1725945604 node_paths=PackedStringArray("focus")]
 script = ExtResource("2_0wfyh")
@@ -181,6 +174,7 @@ focus = NodePath("../Planet/Satellites/Path3D/PathFollow3D/Satellite")
 [node name="Pivot" type="Node3D" parent="World/Camera" unique_id=353975901]
 
 [node name="Camera3D" type="Camera3D" parent="World/Camera/Pivot" unique_id=1693231485]
+far = 8000.0
 
 [node name="UI" type="Control" parent="." unique_id=1947374811]
 layout_mode = 3
@@ -189,7 +183,44 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_85g3d")
 script = ExtResource("1_o5qli")
+
+[node name="GameControl" type="Control" parent="UI" unique_id=1214834009]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/GameControl" unique_id=489136306]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -961.0
+offset_top = -317.0
+offset_right = 961.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/GameControl" unique_id=702503419]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -466.0
+offset_top = -295.0
+offset_right = -246.0
+offset_bottom = -232.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Control panel"
 
 [node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
 layout_mode = 1
@@ -206,7 +237,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("9_85g3d")
 
 [node name="BG" type="TextureRect" parent="UI/MainMenu/Panel" unique_id=1764865418]
 layout_mode = 1
@@ -219,11 +249,10 @@ texture = ExtResource("10_choun")
 
 [node name="Title" type="Label" parent="UI/MainMenu/Panel" unique_id=699606979]
 layout_mode = 1
-offset_left = 73.0
-offset_top = 52.0
-offset_right = 824.0
-offset_bottom = 229.0
-theme = ExtResource("9_85g3d")
+offset_left = 103.0
+offset_top = 54.0
+offset_right = 932.0
+offset_bottom = 231.0
 theme_override_font_sizes/font_size = 120
 text = "COMMGATE"
 
@@ -236,19 +265,16 @@ offset_bottom = 425.0
 
 [node name="Play" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1655061712]
 layout_mode = 2
-theme = ExtResource("9_85g3d")
 text = "Play"
 alignment = 0
 
 [node name="Credits" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1535045554]
 layout_mode = 2
-theme = ExtResource("9_85g3d")
 text = "Credits"
 alignment = 0
 
 [node name="Quit" type="Button" parent="UI/MainMenu/Panel/VBoxContainer" unique_id=1843783977]
 layout_mode = 2
-theme = ExtResource("9_85g3d")
 text = "Quit
 "
 alignment = 0
