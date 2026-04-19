@@ -57,7 +57,10 @@ outer_radius = 3500.0
 rings = 32
 ring_segments = 4
 
-[node name="Planet2" type="Node3D" unique_id=463863642]
+[sub_resource type="SphereShape3D" id="SphereShape3D_pibw8"]
+radius = 1500.0
+
+[node name="Planet2" type="StaticBody3D" unique_id=188102119]
 script = ExtResource("1_tc8um")
 x_speed = 0.01
 
@@ -69,3 +72,7 @@ script = ExtResource("2_pibw8")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=752237190]
 transform = Transform3D(-0.104153186, 0.0043273275, 0.89548576, 0.37185144, 0.008520259, -0.36848164, -0.9224312, 0.0029460916, -0.24965347, 0, 0, 0)
 mesh = SubResource("TorusMesh_pibw8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=781015554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21076.129, -12568.249, 21924.936)
+shape = SubResource("SphereShape3D_pibw8")

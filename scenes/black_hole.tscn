@@ -83,7 +83,7 @@ y_speed = 0.05
 z_speed = -0.05
 
 [node name="BlackHole" type="MeshInstance3D" parent="." unique_id=690092645]
-transform = Transform3D(-3.1962407, 3.4467516, -1.7040982, -3.8219833, -3.0901525, 0.91836864, -0.42010695, 1.8896724, 4.6100597, -7000, 6848.8237, -772.033)
+transform = Transform3D(-9.588722, 10.340255, -5.1122947, -11.46595, -9.270457, 2.755106, -1.2603209, 5.6690173, 13.830178, -17592.723, 16381.041, 378.47162)
 mesh = SubResource("SphereMesh_eb6dy")
 skeleton = NodePath("../..")
 

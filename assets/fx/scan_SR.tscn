@@ -26,6 +26,7 @@ load_path = "res://.godot/imported/circle.png-1a5a6c7a5fd8d86a9953adabf9bb7e7b.s
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_myqgy"]
 transparency = 1
+cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.67058825, 0.827451, 0.7921569, 1)

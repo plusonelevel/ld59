@@ -27,6 +27,7 @@ alpha_curve = SubResource("CurveTexture_lvhda")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_go5hw"]
 transparency = 1
+cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.67058825, 0.827451, 0.7921569, 1)
