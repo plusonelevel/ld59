@@ -23,7 +23,7 @@ func _ready() -> void:
 	distance = 1000
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	position = focus.global_position
 	cam.position.z = camera_zoom * distance
 

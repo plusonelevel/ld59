@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://d0bio7o1cli4j" path="res://scenes/camera.gd" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://oph2b6du1tj8" path="res://assets/2d/Sky.png" id="2_choun"]
 [ext_resource type="PackedScene" uid="uid://noak0lb744vu" path="res://scenes/moon.tscn" id="4_tipki"]
-[ext_resource type="PackedScene" uid="uid://cijm7gc0ojv53" path="res://scenes/planet.tscn" id="5_85g3d"]
-[ext_resource type="PackedScene" uid="uid://c0fwrhpfjcu6t" path="res://scenes/sun.tscn" id="6_choun"]
+[ext_resource type="PackedScene" path="res://scenes/planet.tscn" id="5_85g3d"]
+[ext_resource type="PackedScene" path="res://scenes/sun.tscn" id="6_choun"]
 [ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://b0lid10nct2w7" path="res://assets/2d/Title.png" id="10_choun"]
 
@@ -77,14 +77,16 @@ shape = SubResource("SphereShape3D_o5qli")
 [node name="Satellites" type="Node3D" parent="World/Planet" unique_id=1428361193]
 
 [node name="Path3D" type="Path3D" parent="World/Planet/Satellites" unique_id=957064632]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0)
+transform = Transform3D(1.0000001, 0, 0, 0, 0.9659258, -0.258819, 0, 0.25881904, 0.96592575, 0, 0, 0)
 curve = SubResource("Curve3D_tipki")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="World/Planet/Satellites/Path3D" unique_id=1765511152]
-transform = Transform3D(-0.7071051, 0, 0.7071051, 0, 1, 0, -0.7071051, 0, -0.7071051, -500, 0, -500)
+transform = Transform3D(0.12530689, 0, 0.9921135, 0, 1, 0, -0.9921135, 0, 0.12530689, 104.912415, 0, -680.92645)
+progress = 3728.07
 
 [node name="Satellite" parent="World/Planet/Satellites/Path3D/PathFollow3D" unique_id=434412478 instance=ExtResource("1_sugp2")]
 transform = Transform3D(1.0000024, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000023, 0, 0, 0)
+speed = 30.0
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D" unique_id=534762476]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
@@ -109,7 +111,7 @@ curve = SubResource("Curve3D_choun")
 transform = Transform3D(-0.70710665, 0, 0.70710665, 0, 1, 0, -0.70710665, 0, -0.70710665, -600, 0, -600)
 
 [node name="Satellite" parent="World/Planet/Satellites/Path3D2/PathFollow3D" unique_id=2134328555 instance=ExtResource("1_sugp2")]
-speed = 150.0
+speed = 15.0
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D2" unique_id=570443404]
 polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
@@ -134,6 +136,7 @@ curve = SubResource("Curve3D_ya4ey")
 transform = Transform3D(-0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071067, -650, 0, -650)
 
 [node name="Satellite" parent="World/Planet/Satellites/Path3D3/PathFollow3D" unique_id=1118772254 instance=ExtResource("1_sugp2")]
+speed = 80.0
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D3" unique_id=2043161800]
 transform = Transform3D(1, 0, 0, 0, 0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, 0, 0, 0)
@@ -179,6 +182,7 @@ theme = ExtResource("9_85g3d")
 script = ExtResource("1_o5qli")
 
 [node name="GameControl" type="Control" parent="UI" unique_id=1214834009]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -270,5 +274,3 @@ layout_mode = 2
 text = "Quit
 "
 alignment = 0
-
-[connection signal="pressed" from="UI/MainMenu/Panel/VBoxContainer/Play" to="UI" method="_on_play_pressed"]

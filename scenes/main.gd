@@ -14,11 +14,9 @@ func _ready() -> void:
 	Signals.satellite_selected.connect(_on_satellite_selected)
 	Signals.orbit_rotated.connect(_on_orbit_rotated)
 	
+	satellites[0].activate()
 	Signals.planet_selected.emit()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_planet_selected() -> void:
 	selection = planet
@@ -27,7 +25,7 @@ func _on_planet_selected() -> void:
 func _on_satellite_selected(idx: int) -> void:
 	var sat := satellites[idx]
 	
-	if sat and sat is Satellite:
+	if sat and sat is Satellite and sat.activated:
 		sat = sat as Satellite
 		selection = sat
 		Signals.camera_centered.emit(sat)
