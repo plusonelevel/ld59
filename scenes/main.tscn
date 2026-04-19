@@ -1,16 +1,23 @@
 [gd_scene format=3 uid="uid://b38wx223fpw4j"]
 
 [ext_resource type="Script" uid="uid://ditxjg0bygfbt" path="res://scenes/main.gd" id="1_jyhfs"]
-[ext_resource type="Script" uid="uid://ccebqf8xs15qw" path="res://scenes/ui.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://b02t6gywdk6or" path="res://scenes/ui.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://du4qlnscom4ky" path="res://scenes/satellite.tscn" id="1_sugp2"]
-[ext_resource type="Script" uid="uid://cbbj87431fiw6" path="res://scenes/camera.gd" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://d0bio7o1cli4j" path="res://scenes/camera.gd" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://oph2b6du1tj8" path="res://assets/2d/Sky.png" id="2_choun"]
 [ext_resource type="PackedScene" uid="uid://noak0lb744vu" path="res://scenes/moon.tscn" id="4_tipki"]
 [ext_resource type="PackedScene" uid="uid://cijm7gc0ojv53" path="res://scenes/planet.tscn" id="5_85g3d"]
 [ext_resource type="PackedScene" uid="uid://c0fwrhpfjcu6t" path="res://scenes/sun.tscn" id="6_choun"]
+[ext_resource type="PackedScene" uid="uid://c8v06kj0kqc46" path="res://scenes/black_hole.tscn" id="7_dp3eg"]
 [ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://b0lid10nct2w7" path="res://assets/2d/Title.png" id="10_choun"]
-[ext_resource type="Texture2D" uid="uid://dtx4nrq8hslu7" path="res://assets/2d/button.png" id="10_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://bijr0154oiu55" path="res://assets/2d/SR.png" id="12_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://d17vx4wpetx5u" path="res://assets/2d/LR.png" id="13_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://dql5i64va5aq0" path="res://assets/2d/icon.png" id="13_muem4"]
+[ext_resource type="Texture2D" uid="uid://c08kv6ewi1c0s" path="res://assets/2d/icon_pressed.png" id="14_0ld40"]
+[ext_resource type="Texture2D" uid="uid://vtk35nq1nkns" path="res://assets/2d/hack.png" id="14_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://dpreqvlc8kkjh" path="res://assets/2d/icon_hover.png" id="15_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://dwx5kilcyckch" path="res://assets/2d/line.png" id="15_jbj1t"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("2_choun")
@@ -36,6 +43,7 @@ point_count = 4
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85g3d"]
 transparency = 1
 shading_mode = 0
+albedo_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
 stencil_flags = 2
 stencil_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
 stencil_outline_thickness = 0.65
@@ -56,11 +64,22 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ya4ey"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp3eg"]
+bg_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.4509804, 0.33333334, 0.43137255, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eb6dy"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jbj1t"]
+texture = ExtResource("13_muem4")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trceg"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yc10j"]
+texture = ExtResource("14_0ld40")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_muem4"]
+texture = ExtResource("15_gqmmt")
 
 [node name="Main" type="Node" unique_id=8165444]
 script = ExtResource("1_jyhfs")
@@ -171,6 +190,10 @@ material = SubResource("StandardMaterial3D_85g3d")
 [node name="Sun" parent="World/Planet" unique_id=540613059 instance=ExtResource("6_choun")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
+[node name="BlackHole" parent="World/Planet" unique_id=1652954569 instance=ExtResource("7_dp3eg")]
+y_speed = 0.01
+z_speed = -0.01
+
 [node name="Camera" type="Node3D" parent="World" unique_id=1725945604 node_paths=PackedStringArray("focus")]
 script = ExtResource("2_0wfyh")
 camera_sensitivity = 2.0
@@ -200,110 +223,344 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="UI/GameControl" unique_id=489136306]
+[node name="Sats" type="Panel" parent="UI/GameControl" unique_id=489136306]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -300.0
+offset_right = 391.0
+offset_bottom = 300.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dp3eg")
+
+[node name="Label" type="Label" parent="UI/GameControl/Sats" unique_id=702503419]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.5
+offset_top = 13.0
+offset_right = 102.5
+offset_bottom = 76.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.6666667, 0.827451, 0.79607844, 1)
+theme_override_font_sizes/font_size = 46
+text = "Uplink"
+
+[node name="Line" type="TextureRect" parent="UI/GameControl/Sats" unique_id=1694960566]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.0
+offset_top = 30.0
+offset_right = -108.0
+offset_bottom = 70.0
+grow_horizontal = 2
+texture = ExtResource("15_jbj1t")
+expand_mode = 1
+
+[node name="Line2" type="TextureRect" parent="UI/GameControl/Sats" unique_id=459995281]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 108.0
+offset_top = 30.0
+offset_right = 165.0
+offset_bottom = 70.0
+grow_horizontal = 2
+texture = ExtResource("15_jbj1t")
+expand_mode = 1
+
+[node name="Sat1" type="Control" parent="UI/GameControl/Sats" unique_id=2009001006]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = 103.0
+offset_right = 176.0
+offset_bottom = 197.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/GameControl/Sats/Sat1" unique_id=913833010]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 21.0
+offset_top = -31.0
+offset_right = 81.0
+offset_bottom = 29.0
+grow_vertical = 2
+texture = ExtResource("14_0ld40")
+expand_mode = 1
+
+[node name="Label" type="RichTextLabel" parent="UI/GameControl/Sats/Sat1" unique_id=1218844551]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 109.0
+offset_top = -41.5
+offset_right = 353.0
+offset_bottom = 41.5
+grow_vertical = 2
+text = "ID: Sat - 1
+Loc: PMK-67.N
+Status: ONLINE"
+scroll_active = false
+
+[node name="Sat2" type="Control" parent="UI/GameControl/Sats" unique_id=555606218]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = 197.0
+offset_right = 176.0
+offset_bottom = 291.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/GameControl/Sats/Sat2" unique_id=1969875497]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -32.0
+offset_right = 80.0
+offset_bottom = 28.0
+grow_vertical = 2
+texture = ExtResource("15_gqmmt")
+expand_mode = 1
+
+[node name="Label" type="RichTextLabel" parent="UI/GameControl/Sats/Sat2" unique_id=197745361]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 109.0
+offset_top = -41.5
+offset_right = 353.0
+offset_bottom = 41.5
+grow_vertical = 2
+text = "ID: Sat - 2
+Loc: PMK-67.DIS
+Status: OFFLINE"
+scroll_active = false
+
+[node name="Sat3" type="Control" parent="UI/GameControl/Sats" unique_id=98165777]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = 290.0
+offset_right = 176.0
+offset_bottom = 384.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/GameControl/Sats/Sat3" unique_id=1155697190]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -32.0
+offset_right = 80.0
+offset_bottom = 28.0
+grow_vertical = 2
+texture = ExtResource("15_gqmmt")
+expand_mode = 1
+
+[node name="Label" type="RichTextLabel" parent="UI/GameControl/Sats/Sat3" unique_id=686621106]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 109.0
+offset_top = -41.5
+offset_right = 353.0
+offset_bottom = 41.5
+grow_vertical = 2
+text = "ID: LRSATTE-1
+Loc: PMK-67.-OW
+Status: ???"
+scroll_active = false
+
+[node name="Sat4" type="Control" parent="UI/GameControl/Sats" unique_id=592595056]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = 387.0
+offset_right = 176.0
+offset_bottom = 481.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/GameControl/Sats/Sat4" unique_id=1448381752]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -32.0
+offset_right = 80.0
+offset_bottom = 28.0
+grow_vertical = 2
+texture = ExtResource("15_gqmmt")
+expand_mode = 1
+
+[node name="Label" type="RichTextLabel" parent="UI/GameControl/Sats/Sat4" unique_id=1977228548]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 109.0
+offset_top = -41.5
+offset_right = 353.0
+offset_bottom = 41.5
+grow_vertical = 2
+text = "ID: ???
+Loc: ???
+Status: ???"
+scroll_active = false
+
+[node name="Name" type="Panel" parent="UI/GameControl" unique_id=1500183693]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -379.0
+offset_top = 103.0
+offset_right = 379.0
+offset_bottom = 221.0
+grow_horizontal = 2
+
+[node name="SatName" type="Label" parent="UI/GameControl/Name" unique_id=429904036]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.49997
+offset_top = 21.0
+offset_right = 67.50003
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 46
+text = "SAT - 1"
+
+[node name="Line" type="TextureRect" parent="UI/GameControl/Name" unique_id=631313780]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -20.0
+offset_right = 265.04254
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("15_jbj1t")
+expand_mode = 1
+
+[node name="Line2" type="TextureRect" parent="UI/GameControl/Name" unique_id=1442489436]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -265.04254
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("15_jbj1t")
+expand_mode = 1
+
+[node name="Buttons" type="Control" parent="UI/GameControl" unique_id=678460478]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -556.0
-offset_top = -317.0
-offset_right = 556.0
+offset_left = -280.0
+offset_top = -191.0
+offset_right = 280.0
+offset_bottom = -51.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="UI/GameControl" unique_id=702503419]
+[node name="ShortRange" type="Button" parent="UI/GameControl/Buttons" unique_id=1421943888]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -466.0
-offset_top = -295.0
-offset_right = -246.0
-offset_bottom = -232.0
+offset_left = -262.5
+offset_top = -125.0
+offset_right = -137.5
 grow_horizontal = 2
 grow_vertical = 0
-text = "Control panel"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/GameControl" unique_id=1069802507]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -518.0
-offset_top = -232.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "test"
-
-[node name="ShortRange" type="Button" parent="UI/GameControl" unique_id=1421943888]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -277.0
-offset_top = -183.0
-offset_right = -127.0
-offset_bottom = -33.0
-grow_horizontal = 2
-grow_vertical = 0
+size_flags_horizontal = 4
+focus_mode = 0
 theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ya4ey")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb6dy")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_trceg")
-text = "SR"
-icon = ExtResource("10_ya4ey")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
+icon = ExtResource("12_a8y0u")
 icon_alignment = 1
+expand_icon = true
 
-[node name="LongRange" type="Button" parent="UI/GameControl" unique_id=605761156]
+[node name="LongRange" type="Button" parent="UI/GameControl/Buttons" unique_id=605761156]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -79.0
-offset_top = -183.0
-offset_right = 71.0
-offset_bottom = -33.0
+offset_left = -62.5
+offset_top = -125.0
+offset_right = 62.5
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ya4ey")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb6dy")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_trceg")
-text = "LR"
-icon = ExtResource("10_ya4ey")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
+icon = ExtResource("13_jkv2x")
 icon_alignment = 1
+expand_icon = true
 
-[node name="Unlock" type="Button" parent="UI/GameControl" unique_id=388741094]
+[node name="Unlock" type="Button" parent="UI/GameControl/Buttons" unique_id=388741094]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 119.0
-offset_top = -183.0
-offset_right = 269.0
-offset_bottom = -33.0
+offset_left = 137.5
+offset_top = -125.0
+offset_right = 262.5
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ya4ey")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb6dy")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_trceg")
-text = "UL"
-icon = ExtResource("10_ya4ey")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
+icon = ExtResource("14_jbj1t")
 icon_alignment = 1
+expand_icon = true
 
 [node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
 visible = false
@@ -329,6 +586,7 @@ offset_left = 103.0
 offset_top = 54.0
 offset_right = 932.0
 offset_bottom = 231.0
+theme_override_colors/font_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
 theme_override_font_sizes/font_size = 120
 text = "COMMGATE"
 

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtx4nrq8hslu7"
-path.s3tc="res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.s3tc.ctex"
-path.etc2="res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.etc2.ctex"
+uid="uid://dpreqvlc8kkjh"
+path.s3tc="res://.godot/imported/icon_hover.png-2553f372136f2cede87b14db55aeb0cb.s3tc.ctex"
+path.etc2="res://.godot/imported/icon_hover.png-2553f372136f2cede87b14db55aeb0cb.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/2d/button.png"
-dest_files=["res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.s3tc.ctex", "res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.etc2.ctex"]
+source_file="res://assets/2d/icon_hover.png"
+dest_files=["res://.godot/imported/icon_hover.png-2553f372136f2cede87b14db55aeb0cb.s3tc.ctex", "res://.godot/imported/icon_hover.png-2553f372136f2cede87b14db55aeb0cb.etc2.ctex"]
 
 [params]
 

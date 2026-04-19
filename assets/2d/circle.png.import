@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtx4nrq8hslu7"
-path.s3tc="res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.s3tc.ctex"
-path.etc2="res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.etc2.ctex"
+uid="uid://bw3dj01rr1ktc"
+path.s3tc="res://.godot/imported/circle.png-1a5a6c7a5fd8d86a9953adabf9bb7e7b.s3tc.ctex"
+path.etc2="res://.godot/imported/circle.png-1a5a6c7a5fd8d86a9953adabf9bb7e7b.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/2d/button.png"
-dest_files=["res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.s3tc.ctex", "res://.godot/imported/button.png-d7374efbf1389c9cdcf8f72fb5f702fd.etc2.ctex"]
+source_file="res://assets/2d/circle.png"
+dest_files=["res://.godot/imported/circle.png-1a5a6c7a5fd8d86a9953adabf9bb7e7b.s3tc.ctex", "res://.godot/imported/circle.png-1a5a6c7a5fd8d86a9953adabf9bb7e7b.etc2.ctex"]
 
 [params]
 

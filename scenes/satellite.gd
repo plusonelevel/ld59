@@ -18,10 +18,10 @@ func _ready() -> void:
 	target_rotation = rotation
 	if activated:
 		$Sprite3D.hide()
-		$satellite.show()
+		$Satellite.show()
 	else:
 		$Sprite3D.show()
-		$satellite.hide()
+		$Satellite.hide()
 
 var progress := 0.0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 func activate() -> void:
 	activated = true
 	$Sprite3D.hide()
-	$satellite.show()
+	$Satellite.show()
 
 func set_target_rotation(new_rotation: Vector3) -> void:
 	target_rotation = new_rotation

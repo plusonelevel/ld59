@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cxf1tii8lh0oj"]
+
+[ext_resource type="Script" uid="uid://qdxmj8eldc1k" path="res://scenes/rotation.gd" id="1_d6mas"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_530pw"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.94509804, 0.9411765, 0.8784314, 1)
+grow = true
+grow_amount = 10.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6it2"]
+next_pass = SubResource("StandardMaterial3D_530pw")
+shading_mode = 0
+albedo_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.94509804, 0.9411765, 0.8784314, 1)
+stencil_outline_thickness = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_530pw"]
+material = SubResource("StandardMaterial3D_q6it2")
+radius = 125.0
+height = 250.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fyi6v"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.4509804, 0.33333334, 0.43137255, 1)
+grow = true
+grow_amount = 5.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7l7dh"]
+next_pass = SubResource("StandardMaterial3D_fyi6v")
+shading_mode = 0
+albedo_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.4509804, 0.33333334, 0.43137255, 1)
+stencil_outline_thickness = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_xatjt"]
+material = SubResource("StandardMaterial3D_7l7dh")
+radius = 25.0
+height = 50.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1781630479]
+mesh = SubResource("SphereMesh_530pw")
+script = ExtResource("1_d6mas")
+y_speed = 1.0
+z_speed = 0.07
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=521082286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 224.60492)
+mesh = SubResource("SphereMesh_xatjt")
+skeleton = NodePath("../..")
