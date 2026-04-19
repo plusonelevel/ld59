@@ -14,7 +14,9 @@ var selection: Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	satellites.assign(get_tree().get_nodes_in_group("satellite").filter(func(sat): return sat is Satellite))
+	satellites.assign(get_tree().get_nodes_in_group("satellite").filter(
+		func(sat): return sat is Satellite
+	))
 
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
@@ -42,13 +44,20 @@ func _on_hack_used() -> void:
 		var query := PhysicsRayQueryParameters3D.create(origin, origin + (target - origin).normalized() * hack_distance)
 		query.exclude = [selection]
 		var result := space_state.intersect_ray(query)
-		if result.has("collider") and result.collider:
+		DebugDraw.draw_line(query.from, query.to, Color.GREEN_YELLOW, 5.0)
+		if result.has("collider") and result.collider and result.collider is Satellite:
 			
 			# check if in "line of sight"
-			if origin.direction_to(result.collider.position).dot(-selection.global_transform.basis.z) > cos(hack_angle):
+			#DebugDraw.draw_arrow_ray(origin, origin.direction_to(result.collider.global_position) * 100, 20.0, 10.0, Color.ALICE_BLUE, 5.0)
+			#DebugDraw.draw_arrow_ray(origin, -selection.global_transform.basis.z * 100, 20, 10, Color.BISQUE, 5.0)
+			if origin.direction_to(result.collider.global_position).dot(-selection.global_transform.basis.z) > cos(hack_angle):
 				possible_targets.append(result.collider)
+			else:
+				print_debug("Object %s out of sight" % [result.collider.name])
+		else:
+			print_debug("Object out of range or not a satellite")
 		
-	print_debug("Objects in range: %d" % [possible_targets.size()])
+	print_debug("Objects in range: %s" % [possible_targets])
 		
 
 func _on_planet_selected() -> void:
