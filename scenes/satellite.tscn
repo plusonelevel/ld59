@@ -6,22 +6,6 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_0wfyh"]
 radius = 100.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_spm53"]
-size = Vector3(50, 50, 50)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x51yp"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0.9490196, 0.1764706, 0.105882354, 0.1764706)
-billboard_mode = 2
-stencil_flags = 2
-stencil_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
-stencil_outline_thickness = 5.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_5hscv"]
-material = SubResource("StandardMaterial3D_x51yp")
-radius = 150.0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icwpa"]
 resource_name = "Satellite"
 cull_mode = 2
@@ -115,14 +99,6 @@ script = ExtResource("1_spm53")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=152151703]
 shape = SubResource("SphereShape3D_0wfyh")
-
-[node name="SatelliteMesh" type="MeshInstance3D" parent="." unique_id=362001471]
-visible = false
-mesh = SubResource("BoxMesh_spm53")
-
-[node name="RangeMesh" type="MeshInstance3D" parent="." unique_id=2021885354]
-visible = false
-mesh = SubResource("SphereMesh_5hscv")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=789792988]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)

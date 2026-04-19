@@ -16,6 +16,12 @@ var elapsed := 0.0
 func _ready() -> void:
 	assert(path and path is Path3D and path_follow and path_follow is PathFollow3D, "Satellite must be a child of PathFollow3D!")
 	target_rotation = path.rotation.x
+	if activated:
+		$Sprite3D.hide()
+		$satellite.show()
+	else:
+		$Sprite3D.show()
+		$satellite.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -31,4 +37,5 @@ func rotate_orbit(dir: Enums.RotateDirection) -> void:
 
 func activate() -> void:
 	activated = true
-	$SatelliteMesh.scale = Vector3(2.0, 2.0, 2.0)
+	$Sprite3D.hide()
+	$satellite.show()
