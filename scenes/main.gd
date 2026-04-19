@@ -17,7 +17,6 @@ func _ready() -> void:
 
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
-	Signals.orbit_rotated.connect(_on_orbit_rotated)
 	
 	satellites[0].activate()
 	Signals.planet_selected.emit()
@@ -58,7 +57,3 @@ func _on_satellite_selected(idx: int) -> void:
 		selection = sat
 		Signals.camera_centered.emit(sat)
 		_on_hack_used()
-		
-func _on_orbit_rotated(dir: Enums.RotateDirection) -> void:
-	if selection and selection is Satellite:
-		selection.rotate_orbit(dir)

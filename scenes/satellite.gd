@@ -28,13 +28,6 @@ func _physics_process(delta: float) -> void:
 	path_follow.progress += delta * speed
 
 
-func rotate_orbit(dir: Enums.RotateDirection) -> void:
-	var diff := 0.1 if dir == Enums.RotateDirection.Right else -0.1
-	path.rotation.x += diff
-	orbit.rotation.x -= diff
-	orbit.operation = orbit.operation
-
-
 func activate() -> void:
 	activated = true
 	$Sprite3D.hide()

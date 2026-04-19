@@ -21,8 +21,3 @@ func _unhandled_input(event: InputEvent) -> void:
 		Signals.satellite_selected.emit(2)
 	elif event.is_action_pressed("select_default"):
 		Signals.planet_selected.emit()
-	
-	if event.is_action_pressed("ui_left"):
-		Signals.orbit_rotated.emit(Enums.RotateDirection.Left)
-	elif event.is_action_pressed("ui_right"):
-		Signals.orbit_rotated.emit(Enums.RotateDirection.Right)

@@ -7,6 +7,4 @@ signal camera_centered(node: Node3D)
 signal planet_selected
 signal satellite_selected(idx: int)
 
-signal orbit_rotated(dir: Enums.RotateDirection)
-
 @warning_ignore_restore("unused_signal")

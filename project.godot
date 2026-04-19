@@ -22,7 +22,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 InputListener="*res://autoloads/input_listener.gd"
-Enums="*uid://brkn7367v8lkf"
 Signals="*uid://ynet8jfn6j52"
 
 [display]
