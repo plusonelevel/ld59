@@ -40,6 +40,7 @@ size = Vector2(5000, 5000)
 
 [node name="Scan_LR" type="GPUParticles3D" unique_id=622870475]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 0, 0)
+emitting = false
 amount = 10
 lifetime = 5.0
 fixed_fps = 60
