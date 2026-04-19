@@ -18,10 +18,10 @@ func _ready() -> void:
 	target_rotation = path.rotation.x
 	if activated:
 		$Sprite3D.hide()
-		$satellite.show()
+		$Satellite.show()
 	else:
 		$Sprite3D.show()
-		$satellite.hide()
+		$Satellite.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 func activate() -> void:
 	activated = true
 	$Sprite3D.hide()
-	$satellite.show()
+	$Satellite.show()
 
 
 func hack() -> void:

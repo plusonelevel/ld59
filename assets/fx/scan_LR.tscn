@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dlq44y8elgqew"]
+
+[ext_resource type="Texture2D" uid="uid://bw3dj01rr1ktc" path="res://assets/2d/circle.png" id="1_x1eqr"]
+
+[sub_resource type="Curve" id="Curve_7nw8l"]
+_data = [Vector2(0, 1), 0.0, -1.1916405, 0, 0, Vector2(1, 0), -1.1903135, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lvhda"]
+curve = SubResource("Curve_7nw8l")
+
+[sub_resource type="Curve" id="Curve_hjpls"]
+_data = [Vector2(0, 0), 0.0, 1.1905087, 0, 0, Vector2(1, 1), 1.1924086, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c3vyf"]
+curve = SubResource("Curve_hjpls")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mpy4i"]
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_c3vyf")
+alpha_curve = SubResource("CurveTexture_lvhda")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_go5hw"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+albedo_texture = ExtResource("1_x1eqr")
+stencil_flags = 2
+stencil_outline_thickness = 0.165
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t2e76"]
+material = SubResource("StandardMaterial3D_go5hw")
+size = Vector2(5000, 5000)
+
+[node name="Scan_LR" type="GPUParticles3D" unique_id=622870475]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 0, 0)
+amount = 10
+lifetime = 5.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_mpy4i")
+draw_pass_1 = SubResource("PlaneMesh_t2e76")
