@@ -15,9 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://d17vx4wpetx5u" path="res://assets/2d/LR.png" id="13_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://dql5i64va5aq0" path="res://assets/2d/icon.png" id="13_muem4"]
 [ext_resource type="Texture2D" uid="uid://c08kv6ewi1c0s" path="res://assets/2d/icon_pressed.png" id="14_0ld40"]
-[ext_resource type="Texture2D" uid="uid://vtk35nq1nkns" path="res://assets/2d/hack.png" id="14_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://8kl60occ27d3" path="res://assets/2d/icon_disabled.png" id="15_0ld40"]
 [ext_resource type="Texture2D" uid="uid://dpreqvlc8kkjh" path="res://assets/2d/icon_hover.png" id="15_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://dwx5kilcyckch" path="res://assets/2d/line.png" id="15_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://ufes5bfovyx2" path="res://assets/2d/hack_dis.png" id="18_0ld40"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("2_choun")
@@ -80,6 +81,33 @@ texture = ExtResource("14_0ld40")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_muem4"]
 texture = ExtResource("15_gqmmt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gqmmt"]
+texture = ExtResource("15_0ld40")
+
+[sub_resource type="InputEventKey" id="InputEventKey_dp3eg"]
+device = -1
+keycode = 65
+unicode = 97
+
+[sub_resource type="Shortcut" id="Shortcut_0ld40"]
+events = [SubResource("InputEventKey_dp3eg")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_gqmmt"]
+device = -1
+keycode = 83
+unicode = 115
+
+[sub_resource type="Shortcut" id="Shortcut_yc10j"]
+events = [SubResource("InputEventKey_gqmmt")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_jscy8"]
+device = -1
+keycode = 68
+unicode = 100
+
+[sub_resource type="Shortcut" id="Shortcut_pm3ni"]
+events = [SubResource("InputEventKey_jscy8")]
 
 [node name="Main" type="Node" unique_id=8165444]
 script = ExtResource("1_jyhfs")
@@ -230,9 +258,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 25.0
-offset_top = -300.0
+offset_top = -478.0
 offset_right = 391.0
-offset_bottom = 300.0
+offset_bottom = 478.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dp3eg")
 
@@ -438,12 +466,12 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -379.0
-offset_top = 103.0
+offset_top = 62.0
 offset_right = 379.0
-offset_bottom = 221.0
+offset_bottom = 180.0
 grow_horizontal = 2
 
-[node name="SatName" type="Label" parent="UI/GameControl/Name" unique_id=429904036]
+[node name="LocName" type="Label" parent="UI/GameControl/Name" unique_id=429904036]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -517,6 +545,8 @@ theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+shortcut = SubResource("Shortcut_0ld40")
 icon = ExtResource("12_a8y0u")
 icon_alignment = 1
 expand_icon = true
@@ -538,6 +568,8 @@ theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+shortcut = SubResource("Shortcut_yc10j")
 icon = ExtResource("13_jkv2x")
 icon_alignment = 1
 expand_icon = true
@@ -559,9 +591,60 @@ theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
-icon = ExtResource("14_jbj1t")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+disabled = true
+shortcut = SubResource("Shortcut_pm3ni")
+icon = ExtResource("18_0ld40")
 icon_alignment = 1
 expand_icon = true
+
+[node name="KeyA" type="Label" parent="UI/GameControl/Buttons" unique_id=625007764]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -223.0
+offset_top = -3.0
+offset_right = -177.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+text = "[A]"
+
+[node name="KeyS" type="Label" parent="UI/GameControl/Buttons" unique_id=1782069044]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -3.0
+offset_right = 24.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+text = "[S]"
+
+[node name="KeyD" type="Label" parent="UI/GameControl/Buttons" unique_id=1023370374]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 178.0
+offset_top = -3.0
+offset_right = 224.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+text = "[D]"
 
 [node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
 visible = false
@@ -614,4 +697,7 @@ text = "Quit
 "
 alignment = 0
 
-[connection signal="pressed" from="UI/GameControl/Buttons/Unlock" to="UI" method="_on_unlock_pressed"]
+[connection signal="pressed" from="UI/GameControl/Buttons/ShortRange" to="UI" method="_on_ability1_pressed"]
+[connection signal="pressed" from="UI/GameControl/Buttons/LongRange" to="UI" method="_on_ability2_pressed"]
+[connection signal="pressed" from="UI/GameControl/Buttons/Unlock" to="UI" method="_on_ability3_pressed"]
+[connection signal="pressed" from="UI/GameControl/Unlock" to="UI" method="_on_unlock_pressed"]
