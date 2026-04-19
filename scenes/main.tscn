@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c1cua1f4cj84a" path="res://scenes/planet2.tscn" id="8_yc10j"]
 [ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://b0lid10nct2w7" path="res://assets/2d/Title.png" id="10_choun"]
+[ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="10_pm3ni"]
 [ext_resource type="Texture2D" uid="uid://bijr0154oiu55" path="res://assets/2d/SR.png" id="12_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://d17vx4wpetx5u" path="res://assets/2d/LR.png" id="13_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://dql5i64va5aq0" path="res://assets/2d/icon.png" id="13_muem4"]
@@ -71,6 +72,71 @@ point_count = 4
 closed = true
 _data = {
 "points": PackedVector3Array(-2894.904, 0, 3012.237, 2894.904, 0, -3012.237, 16000, -9000, 18000, -2005.6172, 692.3535, -2668.0762, 2005.6172, -692.3535, 2668.0762, 26000, -12000, 18000, 3075.852, 0, -3365.117, -3075.852, 0, 3365.117, 26000, -15000, 34000, 1902.4004, -760.52344, 2695.5977, -1902.4004, 760.52344, -2695.5977, 16000, -12000, 34000),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_og1vs"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+grow = true
+grow_amount = 25.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wyq8"]
+next_pass = SubResource("StandardMaterial3D_og1vs")
+shading_mode = 0
+albedo_color = Color(0.9490196, 0.019607844, 0.019607844, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+stencil_outline_thickness = 25.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_vxglm"]
+material = SubResource("StandardMaterial3D_2wyq8")
+radius = 800.0
+height = 1600.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pm3ni"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.4509804, 0.33333334, 0.43137255, 1)
+grow = true
+grow_amount = 20.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6deb"]
+next_pass = SubResource("StandardMaterial3D_pm3ni")
+shading_mode = 0
+albedo_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.4509804, 0.33333334, 0.43137255, 1)
+stencil_outline_thickness = 20.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_og1vs"]
+material = SubResource("StandardMaterial3D_y6deb")
+inner_radius = 900.0
+outer_radius = 1100.0
+rings = 32
+ring_segments = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jscy8"]
+radius = 800.0
+
+[sub_resource type="Curve3D" id="Curve3D_pm3ni"]
+closed = true
+_data = {
+"points": PackedVector3Array(1300.7158, 0, 0, -1300.7158, 0, 0, -1744.605, 19400, -36326.113, 211.08105, 0, -1192.3242, -211.08105, 0, 1192.3242, -4380.267, 19400, -34101.203, -2487.334, 0, 34.228516, 2487.334, 0, -34.228516, -826.118, 19400, -31476.951, 1563.1416, 0, 1500.3867, -1563.1416, 0, -1500.3867, 2214.591, 19400, -34968.348),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -252,31 +318,69 @@ focus = NodePath("../Planet/Satellites/Path3D/PathFollow3D/Satellite")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120)
 far = 80000.0
 
-[node name="Planet3" parent="World" unique_id=1744713887 instance=ExtResource("8_yc10j")]
+[node name="Planet2" parent="World" unique_id=1744713887 instance=ExtResource("8_yc10j")]
 
-[node name="Planet2" type="StaticBody3D" parent="World/Planet3" unique_id=2077211136]
+[node name="Satellites" type="Node3D" parent="World/Planet2" unique_id=949803191]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet3/Planet2" unique_id=1831022158]
-shape = SubResource("SphereShape3D_o5qli")
-
-[node name="Satellites" type="Node3D" parent="World/Planet3/Planet2" unique_id=949803191]
-
-[node name="Path3D" type="Path3D" parent="World/Planet3/Planet2/Satellites" unique_id=1396684431]
+[node name="Path3D" type="Path3D" parent="World/Planet2/Satellites" unique_id=1396684431]
 curve = SubResource("Curve3D_yc10j")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/Planet3/Planet2/Satellites/Path3D" unique_id=2082006701]
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Planet2/Satellites/Path3D" unique_id=2082006701]
 transform = Transform3D(0.9999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999946, 16000, -9000, 18000)
 rotation_mode = 0
 
-[node name="Satellite" parent="World/Planet3/Planet2/Satellites/Path3D/PathFollow3D" unique_id=948626965 instance=ExtResource("1_sugp2")]
+[node name="Satellite" parent="World/Planet2/Satellites/Path3D/PathFollow3D" unique_id=948626965 instance=ExtResource("1_sugp2")]
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet3/Planet2/Satellites/Path3D" unique_id=1769634617]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet2/Satellites/Path3D" unique_id=1769634617]
 transform = Transform3D(0.9999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999946, 0, 0, 0)
 polygon = PackedVector2Array(0.043, 0.201, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
 mode = 2
 path_node = NodePath("..")
-path_interval_type = 0
-path_interval = 1.0
+path_interval_type = 1
+path_interval = 0.02
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="Planet3" type="StaticBody3D" parent="World" unique_id=188102119]
+script = ExtResource("10_pm3ni")
+y_speed = -0.001
+x_speed = 0.001
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet3" unique_id=229713047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1145.2344, 19415.676, -33961.086)
+mesh = SubResource("SphereMesh_vxglm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet3/MeshInstance3D" unique_id=1989761095]
+transform = Transform3D(-0.104153186, 0.0043273275, 0.89548576, 0.37185144, 0.008520259, -0.36848164, -0.9224312, 0.0029460916, -0.24965347, 0, 0, 0)
+mesh = SubResource("TorusMesh_og1vs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet3" unique_id=781015554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1145.2344, 19415.676, -33961.086)
+shape = SubResource("SphereShape3D_jscy8")
+
+[node name="Satellites" type="Node3D" parent="World/Planet3" unique_id=577644141]
+
+[node name="Path3D" type="Path3D" parent="World/Planet3/Satellites" unique_id=1801580731]
+curve = SubResource("Curve3D_pm3ni")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Planet3/Satellites/Path3D" unique_id=995710058]
+transform = Transform3D(0.9999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999946, -1744.605, 19400, -36326.113)
+rotation_mode = 0
+
+[node name="Satellite" parent="World/Planet3/Satellites/Path3D/PathFollow3D" unique_id=1066161982 instance=ExtResource("1_sugp2")]
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet3/Satellites/Path3D" unique_id=1726997026]
+transform = Transform3D(0.9999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999946, 0, 0, 0)
+polygon = PackedVector2Array(0.043, 0.201, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 1
+path_interval = 0.02
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
