@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://du4qlnscom4ky"]
 
-[ext_resource type="Script" uid="uid://dqaxtow8pg1kv" path="res://scenes/satellite.gd" id="1_spm53"]
-[ext_resource type="Texture2D" uid="uid://c5we0aw3f2oal" path="res://assets/2d/Sat.png" id="2_icwpa"]
+[ext_resource type="Script" uid="uid://ssbufcqtrxxo" path="res://scenes/satellite.gd" id="1_spm53"]
+[ext_resource type="Texture2D" uid="uid://day58irtakig" path="res://assets/2d/Sat.png" id="2_icwpa"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0wfyh"]
 radius = 100.0

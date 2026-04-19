@@ -22,13 +22,17 @@ config/icon="res://icon.svg"
 [autoload]
 
 InputListener="*res://autoloads/input_listener.gd"
-Signals="*uid://dnt8j428kn0fc"
-Enums="*uid://fnwa4rgdw3kb"
+Enums="*uid://brkn7367v8lkf"
+Signals="*uid://ynet8jfn6j52"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/rider-plugin/plugin.cfg")
 
 [file_customization]
 
