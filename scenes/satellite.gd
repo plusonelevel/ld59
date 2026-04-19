@@ -39,3 +39,11 @@ func activate() -> void:
 	activated = true
 	$Sprite3D.hide()
 	$satellite.show()
+
+
+func hack() -> void:
+	pass
+
+func ping() -> void:
+	pass
+	
