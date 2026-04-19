@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		progress = 0.0
 	else:
 		if target_lock:
-			look_at(target_lock)
+			look_at(target_lock.global_position)
 		else:
 			progress += delta / 1000.0
 			rotation = rotation.lerp(target_rotation, progress)
@@ -57,7 +57,7 @@ func hack_fail():
 	hack_fx.emitting = false
 	
 func hack(target: Satellite):
-	target_lock = target.global_position
+	target_lock = target
 	hack_fx.emitting = true
 	await get_tree().create_timer(3.0).timeout
 	hack_fx.emitting = false
