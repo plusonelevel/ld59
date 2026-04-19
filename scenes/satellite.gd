@@ -9,6 +9,8 @@ extends StaticBody3D
 @onready var SRscan_fx = $Scan_SR
 @onready var LRhack_fx = $LRhack
 
+@export var sat_model : PackedScene
+
 @export var speed := 300.0
 var target_rotation: Vector3
 var target_lock: Variant = null
@@ -20,6 +22,9 @@ var sat_abilities = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var model_instance = sat_model.instantiate()
+	add_child(model_instance)
+	
 	assert(path and path is Path3D and path_follow and path_follow is PathFollow3D, "Satellite must be a child of PathFollow3D!")
 	target_rotation = rotation
 	if activated:
@@ -28,6 +33,8 @@ func _ready() -> void:
 	else:
 		$Sprite3D.show()
 		$Satellite.hide()
+	
+	
 
 
 var progress := 0.0

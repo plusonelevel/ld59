@@ -307,6 +307,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4m7ny")
 
 [node name="Satellite" type="Node3D" unique_id=1426937462]
+visible = false
 
 [node name="satellite" type="Node3D" parent="." unique_id=154128898]
 
