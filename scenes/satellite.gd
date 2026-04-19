@@ -7,6 +7,7 @@ extends StaticBody3D
 @onready var hack_fx = $Hack
 @onready var LRscan_fx = $Scan_LR
 @onready var SRscan_fx = $Scan_SR
+@onready var LRhack_fx = $LRhack
 
 @export var speed := 300.0
 var target_rotation: Vector3
@@ -30,6 +31,7 @@ func _ready() -> void:
 	Signals.connect("ability1",_ability1)
 	Signals.connect("ability2",_ability2)
 	Signals.connect("ability3",_ability3)
+	Signals.connect("ability4",_ability4)
 	Signals.connect("current_location",_location_change)
 
 var progress := 0.0
@@ -74,6 +76,14 @@ func _ability3():
 		hack_fx.emitting = true
 	else:
 		hack_fx.emitting = false
+		
+func _ability4():
+	if LRhack_fx.emitting == false:
+		LRhack_fx.emitting = true
+	else:
+		LRhack_fx.emitting = false
+		
+
 func set_target_rotation(new_rotation: Vector3) -> void:
 	target_rotation = new_rotation
 
