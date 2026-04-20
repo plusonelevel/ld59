@@ -4,6 +4,7 @@ extends Node3D
 
 func _ready() -> void:
 	anim.play("loss_anim")
+	Engine.time_scale = 1
 
 
 func _on_back_to_main_pressed() -> void:

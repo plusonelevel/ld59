@@ -506,7 +506,7 @@ mesh = SubResource("TorusMesh_0ld40")
 skeleton = NodePath("../../..")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1916679548]
-transform = Transform3D(0.8417672, 0.24253976, 0.4822885, -0.023502747, 0.90900874, -0.41611382, -0.5393286, 0.3389359, 0.7708742, -71.90963, -197.80103, 728.87445)
+transform = Transform3D(0.84176713, 0.24253976, 0.4822885, -0.023502747, 0.90900874, -0.41611382, -0.5393285, 0.3389359, 0.7708742, -71.90963, -197.80103, 728.87445)
 far = 160000.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1040162955]
