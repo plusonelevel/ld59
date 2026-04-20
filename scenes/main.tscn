@@ -26,7 +26,9 @@
 [ext_resource type="Texture2D" uid="uid://dpreqvlc8kkjh" path="res://assets/2d/icon_hover.png" id="15_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://dwx5kilcyckch" path="res://assets/2d/line.png" id="15_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://deql1gacrqliv" path="res://assets/2d/SR_hack.png" id="18_0ld40"]
+[ext_resource type="Script" uid="uid://d0ywadpfrl1by" path="res://scenes/ui/sats.gd" id="18_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://re81q0an3f3e" path="res://assets/2d/LR_hack.png" id="19_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://nk6quv8ur5y5" path="res://scenes/ui/planet.tscn" id="20_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://bqdoi8k10omcp" path="res://assets/2d/time-forward-svgrepo-com.svg" id="21_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="27_yq6so"]
 [ext_resource type="Texture2D" uid="uid://cppgdftl45emj" path="res://assets/2d/sat-sprite.png" id="28_2f3dj"]
@@ -795,6 +797,8 @@ layout_mode = 1
 offset_right = 389.0
 offset_bottom = 956.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dp3eg")
+script = ExtResource("18_5q0nq")
+planet_scene = ExtResource("20_5q0nq")
 
 [node name="Label" type="Label" parent="UI/GameControl/Sats" unique_id=702503419]
 layout_mode = 1
@@ -836,231 +840,16 @@ grow_horizontal = 2
 texture = ExtResource("15_jbj1t")
 expand_mode = 1
 
-[node name="Planet" type="Control" parent="UI/GameControl/Sats" unique_id=1462710014]
-anchors_preset = 0
-offset_left = 6.0
-offset_top = 90.0
-offset_right = 383.0
-offset_bottom = 394.0
-
-[node name="PlanetLabel" type="RichTextLabel" parent="UI/GameControl/Sats/Planet" unique_id=2142738591]
+[node name="Planets" type="VBoxContainer" parent="UI/GameControl/Sats" unique_id=1967005426]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.30098686
-anchor_bottom = -0.30098686
-offset_left = 14.0
-offset_top = 85.5
-offset_right = 326.0
-offset_bottom = 132.5
-theme_override_font_sizes/normal_font_size = 34
-bbcode_enabled = true
-text = "AIGA"
-scroll_active = false
-metadata/_edit_use_anchors_ = true
-
-[node name="Ping1" type="RichTextLabel" parent="UI/GameControl/Sats/Planet" unique_id=248706631]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 10
 anchor_right = 1.0
-offset_left = -31.0
-offset_top = -8.0
-offset_right = -9.0
-offset_bottom = 32.0
-grow_horizontal = 0
-theme_override_font_sizes/normal_font_size = 34
-bbcode_enabled = true
-text = "I"
-scroll_active = false
-
-[node name="Ping2" type="RichTextLabel" parent="UI/GameControl/Sats/Planet" unique_id=1664731110]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -50.0
-offset_top = -8.0
-offset_right = -28.0
-offset_bottom = 32.0
-grow_horizontal = 0
-theme_override_font_sizes/normal_font_size = 34
-bbcode_enabled = true
-text = "I"
-scroll_active = false
-
-[node name="Ping3" type="RichTextLabel" parent="UI/GameControl/Sats/Planet" unique_id=1603568783]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -70.0
-offset_top = -8.0
-offset_right = -48.0
-offset_bottom = 32.0
-grow_horizontal = 0
-theme_override_font_sizes/normal_font_size = 34
-bbcode_enabled = true
-text = "I"
-scroll_active = false
-
-[node name="Sat1" type="Control" parent="UI/GameControl/Sats/Planet" unique_id=2009001006]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 1.0
-offset_top = 53.0
-offset_right = 353.0
-offset_bottom = 147.0
-
-[node name="Label_online" type="RichTextLabel" parent="UI/GameControl/Sats/Planet/Sat1" unique_id=1218844551]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = -41.5
-offset_right = 375.0
-offset_bottom = 41.5
-grow_vertical = 2
-bbcode_enabled = true
-text = "ID: Sat-1
-Status: [color=#abd3ca]ONLINE[/color]"
-scroll_active = false
-
-[node name="Label_offline" type="RichTextLabel" parent="UI/GameControl/Sats/Planet/Sat1" unique_id=377207639]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = -41.5
-offset_right = 375.0
-offset_bottom = 41.5
-grow_vertical = 2
-bbcode_enabled = true
-text = "ID: Sat-1
-Status: [pulse freq=3.0 color=#D90D0D 50]OFFLINE[/pulse]"
-scroll_active = false
-
-[node name="Label_locked" type="RichTextLabel" parent="UI/GameControl/Sats/Planet/Sat1" unique_id=406808755]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = -41.5
-offset_right = 375.0
-offset_bottom = 41.5
-grow_vertical = 2
-bbcode_enabled = true
-text = "ID: [shake rate=50 level=50 connected=0]----------[/shake]
-Status: [shake rate=50 level=50 connected=0]----------[/shake]"
-scroll_active = false
-
-[node name="Sat2" type="Control" parent="UI/GameControl/Sats/Planet" unique_id=555606218]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 1.0
-offset_top = 134.0
-offset_right = 353.0
-offset_bottom = 228.0
-
-[node name="Label_online" type="RichTextLabel" parent="UI/GameControl/Sats/Planet/Sat2" unique_id=833426767]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = -41.5
-offset_right = 375.0
-offset_bottom = 41.5
-grow_vertical = 2
-bbcode_enabled = true
-text = "ID: Sat-1
-Status: [color=#abd3ca]ONLINE[/color]"
-scroll_active = false
-
-[node name="Label_offline" type="RichTextLabel" parent="UI/GameControl/Sats/Planet/Sat2" unique_id=986402359]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = -41.5
-offset_right = 375.0
-offset_bottom = 41.5
-grow_vertical = 2
-bbcode_enabled = true
-text = "ID: Sat-1
-Status: [pulse freq=3.0 color=#D90D0D 50]OFFLINE[/pulse]"
-scroll_active = false
-
-[node name="Label_locked" type="RichTextLabel" parent="UI/GameControl/Sats/Planet/Sat2" unique_id=956230895]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = -41.5
-offset_right = 375.0
-offset_bottom = 41.5
-grow_vertical = 2
-bbcode_enabled = true
-text = "ID: [shake rate=50 level=50 connected=0]----------[/shake]
-Status: [shake rate=50 level=50 connected=0]----------[/shake]"
-scroll_active = false
-
-[node name="Sat3" type="Control" parent="UI/GameControl/Sats/Planet" unique_id=2125379003]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 1.0
-offset_top = 216.0
-offset_right = 353.0
-offset_bottom = 310.0
-
-[node name="Label_online" type="RichTextLabel" parent="UI/GameControl/Sats/Planet/Sat3" unique_id=512768111]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = -41.5
-offset_right = 375.0
-offset_bottom = 41.5
-grow_vertical = 2
-bbcode_enabled = true
-text = "ID: Sat-1
-Status: [color=#abd3ca]ONLINE[/color]"
-scroll_active = false
-
-[node name="Label_offline" type="RichTextLabel" parent="UI/GameControl/Sats/Planet/Sat3" unique_id=1813052806]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = -41.5
-offset_right = 375.0
-offset_bottom = 41.5
-grow_vertical = 2
-bbcode_enabled = true
-text = "ID: Sat-1
-Status: [pulse freq=3.0 color=#D90D0D 50]OFFLINE[/pulse]"
-scroll_active = false
-
-[node name="Label_locked" type="RichTextLabel" parent="UI/GameControl/Sats/Planet/Sat3" unique_id=1140048903]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = -41.5
-offset_right = 375.0
-offset_bottom = 41.5
-grow_vertical = 2
-bbcode_enabled = true
-text = "ID: [shake rate=50 level=50 connected=0]----------[/shake]
-Status: [shake rate=50 level=50 connected=0]----------[/shake]"
-scroll_active = false
+offset_left = 17.0
+offset_top = 82.48
+offset_right = -15.0
+offset_bottom = 89.99999
+grow_horizontal = 2
+alignment = 1
 
 [node name="Name" type="Panel" parent="UI/GameControl" unique_id=1500183693]
 layout_mode = 1
@@ -1451,6 +1240,7 @@ texture = ExtResource("27_yq6so")
 expand_mode = 1
 
 [node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://sj8xh0m5hip2"]
+
+[ext_resource type="Script" uid="uid://cxf8dlg456ddo" path="res://scenes/ui/sat.gd" id="1_wu6ya"]
+
+[node name="Sat1" type="VBoxContainer" unique_id=776958157]
+offset_right = 109.0
+offset_bottom = 46.0
+script = ExtResource("1_wu6ya")
+
+[node name="Locked" type="VBoxContainer" parent="." unique_id=577748590]
+layout_mode = 2
+
+[node name="Label_locked" type="RichTextLabel" parent="Locked" unique_id=1355585914]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "ID: [shake rate=50 level=50 connected=0]----------[/shake]
+Status: [shake rate=50 level=50 connected=0]----------[/shake]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Unlocked" type="VBoxContainer" parent="." unique_id=1702530328]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Unlocked" unique_id=1112847649]
+layout_mode = 2
+bbcode_enabled = true
+text = "ID: Sat-1
+"
+fit_content = true
+scroll_active = false
+
+[node name="Online" type="RichTextLabel" parent="Unlocked" unique_id=1305627157]
+layout_mode = 2
+bbcode_enabled = true
+text = "Status: [color=#abd3ca]ONLINE[/color]"
+fit_content = true
+scroll_active = false
+
+[node name="Offline" type="RichTextLabel" parent="Unlocked" unique_id=286713986]
+layout_mode = 2
+bbcode_enabled = true
+text = "Status: [pulse freq=3.0 color=#D90D0D 50]OFFLINE[/pulse]"
+fit_content = true
+scroll_active = false
