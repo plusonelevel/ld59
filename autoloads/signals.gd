@@ -8,6 +8,8 @@ signal planet_discovered(planet: Planet)
 signal planet_beamed(planet: Planet)
 signal planet_unlocked(planet: Planet)
 signal planet_selected(planet: Planet)
+
+signal satellite_activated(sat: Satellite)
 signal satellite_selected(idx: int)
 
 signal hack

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8v06kj0kqc46"]
 
 [ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="1_djpiu"]
-[ext_resource type="Shader" uid="uid://gmppkc8h4s1r" path="res://scenes/blackhole.gdshader" id="1_ic33f"]
+[ext_resource type="Shader" path="res://scenes/blackhole.gdshader" id="1_ic33f"]
 [ext_resource type="Texture2D" uid="uid://bw3dj01rr1ktc" path="res://assets/2d/circle.png" id="2_djpiu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trceg"]
@@ -83,7 +83,7 @@ y_speed = 0.05
 z_speed = -0.05
 
 [node name="BlackHole" type="MeshInstance3D" parent="." unique_id=690092645]
-transform = Transform3D(-9.588722, 10.340255, -5.1122947, -11.46595, -9.270457, 2.755106, -1.2603209, 5.6690173, 13.830178, -17592.723, 16381.041, 378.47162)
+transform = Transform3D(-9.588722, 10.340255, -5.1122947, -11.46595, -9.270457, 2.755106, -1.2603209, 5.6690173, 13.830178, 0, 0, 0)
 mesh = SubResource("SphereMesh_eb6dy")
 skeleton = NodePath("../..")
 
