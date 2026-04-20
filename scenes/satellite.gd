@@ -60,6 +60,8 @@ func _physics_process(delta: float) -> void:
 
 func activate() -> void:
 	activated = true
+	Signals.satellite_activated.emit(self)
+	
 	$Sprite3D.hide()
 	$Satellite.show()
 

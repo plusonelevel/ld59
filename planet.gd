@@ -27,7 +27,6 @@ func discover() -> void:
 	mesh.show()
 	
 	if security_level <= 0:
-		await get_tree().create_timer(1.0).timeout
 		_unlock()
 
 func get_beamed(from: Satellite):
