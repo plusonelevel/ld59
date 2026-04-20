@@ -23,12 +23,12 @@ albedo_color = Color(0.9490196, 0.019607844, 0.019607844, 0.5882353)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_12m5o"]
 material = SubResource("StandardMaterial3D_ukbj4")
-size = Vector2(20, 5)
+size = Vector2(20, 40)
 center_offset = Vector3(50, 0, 0)
 
 [node name="Hack" type="GPUParticles3D" unique_id=622870475]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-amount = 40
+amount = 60
 lifetime = 5.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_mpy4i")
