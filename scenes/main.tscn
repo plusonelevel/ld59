@@ -544,12 +544,13 @@ _data = {
 &"start_game": SubResource("Animation_yq6so")
 }
 
-[node name="Main" type="Node" unique_id=8165444]
+[node name="Main" type="Node" unique_id=8165444 node_paths=PackedStringArray("starting_satellite")]
 script = ExtResource("1_jyhfs")
 hack_distance = 300.0
 hack_angle = 15.0
 ping_distance = 3000.0
 scan_angle = 30.0
+starting_satellite = NodePath("World/Aiga/Satellites/Path3D/PathFollow3D/Sat-1")
 
 [node name="World" type="Node3D" parent="." unique_id=1994692815]
 
