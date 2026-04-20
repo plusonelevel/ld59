@@ -28,7 +28,6 @@
 [ext_resource type="Script" uid="uid://d0ywadpfrl1by" path="res://scenes/ui/sats.gd" id="18_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://re81q0an3f3e" path="res://assets/2d/LR_hack.png" id="19_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://nk6quv8ur5y5" path="res://scenes/ui/planet.tscn" id="20_5q0nq"]
-[ext_resource type="Texture2D" uid="uid://bqdoi8k10omcp" path="res://assets/2d/time-forward-svgrepo-com.svg" id="21_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="27_yq6so"]
 [ext_resource type="Texture2D" uid="uid://cppgdftl45emj" path="res://assets/2d/sat-sprite.png" id="28_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://c6rjjncks16b1" path="res://assets/2d/sun.png" id="30_fv21b"]
@@ -241,6 +240,8 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.4509804, 0.33333334, 0.43137255, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fv21b"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jbj1t"]
 texture = ExtResource("13_muem4")
@@ -806,7 +807,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_85g3d")
 script = ExtResource("1_o5qli")
-lines = Array[String](["[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]", "What the [shake rate=500 level=50 connected=0].-.-.-.-.[/shake] was that?", "Can you hea[shake rate=500 level=50 connected=0].-.[/shake] me?", "We’ve lost every link down here. How’s your connection?", "Hold on. I’m pulling your [color=#D90D0D]SatBoard[/color].", "...", "Oh [shake rate=500 level=50 connected=0].-.-.-.-.[/shake]", "That’s not good. ", "Listen.", "The [color=#D90D0D]Mother Soother[/color] system is offline and we don’t have time to reconnect it from base.", "Without it, the Mother’s event horizon starts expanding - and will swallow us whole.", "You have [color=#D90D0D]20 minutes[/color] to establish a link and restart the [color=#D90D0D]Soother[/color].", "You may need to route the signal through other satellites to reach long range.", "Find [color=#D90D0D]LRSAT-1[/color] on [color=#D90D0D]Aiga[/color]’s outer orbit."])
+lines = Array[String](["[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]", "What the [shake rate=500 level=50 connected=0].-.-.-.-.[/shake] was that?", "Can you hea[shake rate=500 level=50 connected=0].-.[/shake] me?", "We’ve lost every link down here. How’s your connection?", "Hold on. I’m pulling your [color=#F20505]SatBoard[/color].", "...", "Oh [shake rate=500 level=50 connected=0].-.-.-.-.[/shake]", "That’s not good. ", "Listen.", "The [color=#F20505]Mother Soother[/color] system is offline and we don’t have time to reconnect it from base.", "We have about 20 minutes to restart the [color=#F20505]Soother[/color] before the [color=#F20505]Mother[/color] starts eating us up.", "You have [color=#F20505]20 minutes[/color] to establish a link and restart the [color=#F20505]Soother[/color].", "You may need to route the signal through other satellites to reach long range.", "Find [color=#F20505]LRSAT-1[/color] on [color=#F20505]Aiga[/color]’s outer orbit."])
 
 [node name="GameControl" type="Control" parent="UI" unique_id=1214834009]
 layout_mode = 1
@@ -879,6 +880,24 @@ offset_bottom = 89.99999
 grow_horizontal = 2
 alignment = 1
 
+[node name="Countdown" type="Label" parent="UI/GameControl/Sats" unique_id=936838195]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -121.5
+offset_top = -77.0
+offset_right = 122.5
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "00:00:000"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="Name" type="Panel" parent="UI/GameControl" unique_id=1500183693]
 layout_mode = 1
 anchors_preset = 5
@@ -937,57 +956,64 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -174.0
-offset_bottom = 118.0
+offset_left = -232.0
+offset_top = 18.0
+offset_right = -38.0
+offset_bottom = 136.0
 grow_horizontal = 0
-
-[node name="TextureRect" type="TextureRect" parent="UI/GameControl/TimeScale" unique_id=836415310]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 15.0
-offset_top = -28.0
-offset_right = 72.0
-offset_bottom = 30.0
-grow_vertical = 2
-texture = ExtResource("21_2f3dj")
-expand_mode = 4
-stretch_mode = 5
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fv21b")
 
 [node name="X" type="Label" parent="UI/GameControl/TimeScale" unique_id=550998936]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -25.999992
-offset_right = 33.0
-offset_bottom = 17.000008
+offset_left = -19.59436
+offset_top = 3.0
+offset_right = 3.4056396
+offset_bottom = 46.0
 grow_horizontal = 2
-grow_vertical = 2
 rotation = 0.7853982
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
 text = "+"
 
 [node name="Value" type="Label" parent="UI/GameControl/TimeScale" unique_id=1434046029]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -79.0
-offset_top = -37.0
-offset_right = -14.0
-offset_bottom = 24.0
-grow_horizontal = 0
-grow_vertical = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.09436
+offset_top = -15.0
+offset_right = 37.90564
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
 theme_override_font_sizes/font_size = 46
 text = "10"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="KeyQ" type="Label" parent="UI/GameControl/TimeScale" unique_id=656443499]
+layout_mode = 1
+offset_top = 3.0
+offset_right = 53.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+text = "<<
+[Q]"
+
+[node name="KeyE" type="Label" parent="UI/GameControl/TimeScale" unique_id=1403557777]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -46.0
+offset_top = 3.0
+offset_bottom = 92.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+text = ">>
+[E]"
 
 [node name="Buttons" type="Control" parent="UI/GameControl" unique_id=678460478]
 layout_mode = 1
@@ -1397,9 +1423,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -363.0
-offset_top = 403.0
+offset_top = -536.0
 offset_right = 361.0
-offset_bottom = 502.0
+offset_bottom = -437.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.9490196, 0.015686275, 0.023529412, 1)
