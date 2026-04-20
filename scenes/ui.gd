@@ -128,6 +128,7 @@ func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == "start_game":
 		start_game_controls = true
 		start_dialogue()
+	skip_button.hide()
 
 func _on_satellite_selected(satellite: Satellite) -> void:
 	if dialogue_active:
