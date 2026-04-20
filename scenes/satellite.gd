@@ -94,5 +94,11 @@ func beam(target: Node3D):
 	target_lock = null
 
 
+func aim_start():
+	$Aim.show()
+
+func aim_stop():
+	$Aim.hide()
+
 func set_target_rotation(new_rotation: Vector3) -> void:
 	target_rotation = new_rotation

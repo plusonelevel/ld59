@@ -36,7 +36,7 @@ func _on_satellite_selected(satellite: Satellite):
 	_toggle_abilities(true)
 	loc.text = satellite.name
 
-func _on_planet_selected(planet: Node3D):
+func _on_planet_selected(planet: Planet):
 	_toggle_abilities(false)
 	loc.text = planet.name
 
