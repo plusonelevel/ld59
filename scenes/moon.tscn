@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://noak0lb744vu"]
 
-[ext_resource type="Script" uid="uid://qdxmj8eldc1k" path="res://scenes/rotation.gd" id="1_530pw"]
+[ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="1_530pw"]
 [ext_resource type="PackedScene" uid="uid://cxf1tii8lh0oj" path="res://scenes/moonmoon.tscn" id="2_q6it2"]
 
 [node name="Moon" type="Node3D" unique_id=895090358]
@@ -9,4 +9,4 @@ y_speed = -0.08
 z_speed = 0.06
 
 [node name="MeshInstance3D" parent="." unique_id=1781630479 instance=ExtResource("2_q6it2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2060.4868, 0, 0)

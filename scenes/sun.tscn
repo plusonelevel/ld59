@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0fwrhpfjcu6t"]
 
-[ext_resource type="Script" uid="uid://qdxmj8eldc1k" path="res://scenes/rotation.gd" id="1_cojbh"]
+[ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="1_cojbh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_530pw"]
 render_priority = 1
@@ -8,7 +8,7 @@ transparency = 1
 shading_mode = 0
 albedo_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
 grow = true
-grow_amount = 15.0
+grow_amount = 500.0
 stencil_mode = 3
 stencil_flags = 1
 stencil_compare = 5
@@ -21,17 +21,17 @@ albedo_color = Color(0.94509804, 0.9411765, 0.8784314, 1)
 stencil_mode = 1
 stencil_flags = 2
 stencil_color = Color(0.9490196, 0.1764706, 0.105882354, 1)
-stencil_outline_thickness = 15.0
+stencil_outline_thickness = 500.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_530pw"]
 material = SubResource("StandardMaterial3D_q6it2")
-radius = 3000.0
-height = 6000.0
+radius = 15000.0
+height = 30000.0
 
 [node name="Sun" type="Node3D" unique_id=895090358]
 script = ExtResource("1_cojbh")
 y_speed = 0.01
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2132980223]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14000, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80413.07, 0, 0)
 mesh = SubResource("SphereMesh_530pw")

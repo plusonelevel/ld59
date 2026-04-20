@@ -21,6 +21,8 @@ extends Control
 @onready var next_line = $GameControl/Dialogue/Panel/Next
 @onready var skip_button = $MainMenu/Skip
 @onready var countdown = $GameControl/Sats/Countdown
+@onready var credits = $MainMenu/Credits
+@onready var quit_butt = $MainMenu/VBoxContainer/Quit
 
 @export var lines: Array[String]
 
@@ -53,6 +55,8 @@ func _ready() -> void:
 	abilities_bar.hide()
 	dialogue_overlay.show()
 	
+	if OS.has_feature("web"):
+		quit_butt.hide()
 	
 	_toggle_abilities(false)
 
@@ -133,6 +137,7 @@ func end_dialogue() -> void:
 	_toggle_abilities(true)
 
 func _on_play_pressed() -> void:
+	credits.hide()
 	start_game_controls = false
 	InputListener.input_locked = true
 	anim.play("start_game")
@@ -237,3 +242,14 @@ func _on_time_scale_set(scale: float) -> void:
 		pass
 	else:
 		time_scale.show()
+
+
+func _on_credits_pressed() -> void:
+	if credits.visible:
+		credits.hide()
+	else:
+		credits.show()
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
