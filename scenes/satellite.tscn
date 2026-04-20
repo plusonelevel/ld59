@@ -8,9 +8,61 @@
 [ext_resource type="PackedScene" uid="uid://cjbxsupd6yg86" path="res://assets/fx/LRhack.tscn" id="7_2raoy"]
 [ext_resource type="Texture2D" uid="uid://bfq4ry6albqt0" path="res://assets/2d/circle_white.png" id="7_cgr3m"]
 [ext_resource type="AudioStream" uid="uid://nsn3t5dxp834" path="res://assets/sounds/pju.mp3" id="7_ec352"]
+[ext_resource type="Shader" uid="uid://gmppkc8h4s1r" path="res://scenes/blackhole.gdshader" id="7_gir2f"]
+[ext_resource type="Texture2D" uid="uid://cxgllgbur6tam" path="res://assets/2d/circle_blue.png" id="8_bdwl6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0wfyh"]
 radius = 100.0
+
+[sub_resource type="Curve" id="Curve_d5rpo"]
+_data = [Vector2(0, 1), 0.0, -1.1916405, 0, 0, Vector2(1, 0), -1.1903135, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tylv2"]
+curve = SubResource("Curve_d5rpo")
+
+[sub_resource type="Curve" id="Curve_sdejx"]
+_data = [Vector2(0, 0), 0.0, 1.1905087, 0, 0, Vector2(1, 1), 1.1924086, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4826q"]
+curve = SubResource("Curve_sdejx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4faov"]
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 500.0
+initial_velocity_max = 1500.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 7.0
+scale_curve = SubResource("CurveTexture_4826q")
+alpha_curve = SubResource("CurveTexture_tylv2")
+turbulence_noise_speed = Vector3(2.385, 4, 4.745)
+turbulence_noise_speed_random = 1.91
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d70ak"]
+noise_type = 2
+frequency = 0.002
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sx66s"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_d70ak")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rx2gv"]
+render_priority = 0
+shader = ExtResource("7_gir2f")
+shader_parameter/my_texture = ExtResource("8_bdwl6")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_sx66s")
+shader_parameter/speed = 0.2
+shader_parameter/noise_intensity = 0.1
+
+[sub_resource type="SphereMesh" id="SphereMesh_xuk2f"]
+material = SubResource("ShaderMaterial_rx2gv")
+radius = 500.0
+height = 1000.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gir2f"]
 transparency = 1
@@ -44,6 +96,16 @@ transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.3
 
 [node name="LRhack" parent="." unique_id=1483447581 instance=ExtResource("7_2raoy")]
 emitting = false
+
+[node name="Soothe" type="GPUParticles3D" parent="." unique_id=1924159744]
+transform = Transform3D(1.0000005, 0, 0, 0, -4.3711424e-08, -1.0000005, 0, 1.0000008, -4.371141e-08, 0, 0, 0)
+emitting = false
+amount = 500
+lifetime = 15.0
+fixed_fps = 60
+visibility_aabb = AABB(-4, -4, -4, 500, 500, 500)
+process_material = SubResource("ParticleProcessMaterial_4faov")
+draw_pass_1 = SubResource("SphereMesh_xuk2f")
 
 [node name="Aim" type="MeshInstance3D" parent="." unique_id=204948457]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)

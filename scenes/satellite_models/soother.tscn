@@ -122,7 +122,7 @@ radius = 100.0
 height = 200.0
 
 [node name="Satellite" type="Node3D" unique_id=1426937462]
-visible = false
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
 
 [node name="soother" type="Node3D" parent="." unique_id=2129798378]
 

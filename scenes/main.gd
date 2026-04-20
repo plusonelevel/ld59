@@ -39,6 +39,7 @@ func _ready() -> void:
 	Signals.beam.connect(_on_beam_used)
 	Signals.ping.connect(_on_ping_used)
 	Signals.scan.connect(_on_scan_used)
+	Signals.soothe.connect(_on_soothe_used)
 	
 	Signals.mother_soothed.connect(_on_mother_soothed)
 	Signals.timer_expired.connect(_on_timer_expired)
@@ -217,6 +218,7 @@ func _on_scan_used():
 func _on_soothe_used():
 	if selection.name == "Soother":
 		selection.soothe()
+	
 		
 
 func _on_planet_discovered(new_planet: Planet) -> void:
