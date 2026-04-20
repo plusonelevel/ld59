@@ -777,7 +777,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_85g3d")
 script = ExtResource("1_o5qli")
-lines = Array[String](["[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]", "What the [shake rate=500 level=50 connected=0].-.-.-.-.[/shake] was that?", "Can you hea[shake rate=500 level=50 connected=0].-.[/shake] me?", "We’ve lost every link down here. How’s your connection?", "Hold on. I’m pulling your [color=#F20505]SatBoard[/color].", "...", "Oh [shake rate=500 level=50 connected=0].-.-.-.-.[/shake]", "That’s not good. ", "Listen.", "The [color=#F20505]Mother Soother[/color] system is offline and we don’t have time to reconnect it from base.", "Without it, the Mother’s event horizon starts expanding - and will swallow us whole.", "You have [color=#F20505]20 minutes[/color] to establish a link and restart the [color=#F20505]Soother[/color].", "You may need to route the signal through other satellites to reach long range.", "Find [color=#F20505]LRSAT-1[/color] on [color=#F20505]Aiga[/color]’s outer orbit."])
+lines = Array[String](["[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]", "What the [shake rate=500 level=50 connected=0].-.-.-.-.[/shake] was that?", "Can you hea[shake rate=500 level=50 connected=0].-.[/shake] me?", "We’ve lost every link down here. How’s your connection?", "Hold on. I’m pulling your [color=#F20505]SatBoard[/color].", "...", "Oh [shake rate=500 level=50 connected=0].-.-.-.-.[/shake]", "That’s not good. ", "Listen.", "The [color=#F20505]Mother Soother[/color] system is offline and we don’t have time to reconnect it from base.", "We have about 20 minutes to restart the [color=#F20505]Soother[/color] before the [color=#F20505]Mother[/color] starts eating us up.", "You have [color=#F20505]20 minutes[/color] to establish a link and restart the [color=#F20505]Soother[/color].", "You may need to route the signal through other satellites to reach long range.", "Find [color=#F20505]LRSAT-1[/color] on [color=#F20505]Aiga[/color]’s outer orbit."])
 
 [node name="GameControl" type="Control" parent="UI" unique_id=1214834009]
 layout_mode = 1
@@ -1063,6 +1063,24 @@ text = "ID: [shake rate=50 level=50 connected=0]----------[/shake]
 Status: [shake rate=50 level=50 connected=0]----------[/shake]"
 scroll_active = false
 
+[node name="Countdown" type="Label" parent="UI/GameControl/Sats" unique_id=936838195]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -121.5
+offset_top = -77.0
+offset_right = 122.5
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "00:00:000"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="Name" type="Panel" parent="UI/GameControl" unique_id=1500183693]
 layout_mode = 1
 anchors_preset = 5
@@ -1122,9 +1140,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -232.0
-offset_top = 10.0
+offset_top = 18.0
 offset_right = -38.0
-offset_bottom = 128.0
+offset_bottom = 136.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fv21b")
 
