@@ -2,6 +2,8 @@ extends Control
 
 @onready var mainmenu = $MainMenu
 @onready var loc = $GameControl/Name/LocName
+@onready var time_scale := $GameControl/TimeScale
+@onready var time_scale_value := $GameControl/TimeScale/Value
 @onready var ability1_butt = $GameControl/Buttons/ShortRange
 @onready var ability2_butt = $GameControl/Buttons/LongRange
 @onready var ability3_butt = $GameControl/Buttons/SRhack
@@ -19,6 +21,9 @@ func _ready() -> void:
 	
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
+	Signals.time_scale_set.connect(_on_time_scale_set)
+	
+	_on_time_scale_set(1.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -59,16 +64,24 @@ func _toggle_abilities(enabled: bool):
 
 func _on_ability1_pressed() -> void:
 	print_debug("Ability 1 pressed")
-	#Signals.ability1.emit()
+	Signals.ping.emit()
 
 func _on_ability2_pressed() -> void:
 	print_debug("Ability 2 pressed")
-	#Signals.ability2.emit()
+	Signals.scan.emit()
 
 func _on_ability3_pressed() -> void:
 	print_debug("Ability 3 pressed")
-	#Signals.ability3.emit()
+	Signals.hack.emit()
 	
 func _on_ability4_pressed() -> void:
 	print_debug("Ability 4 pressed")
-	Signals.hack.emit()
+	Signals.beam.emit()
+	
+	
+func _on_time_scale_set(scale: float) -> void:
+	time_scale_value.text = "%d" % [scale]
+	if scale == 1.0:
+		time_scale.hide()
+	else:
+		time_scale.show()
