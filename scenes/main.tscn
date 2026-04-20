@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cbbj87431fiw6" path="res://scenes/camera.gd" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://oph2b6du1tj8" path="res://assets/2d/Sky.png" id="2_choun"]
 [ext_resource type="PackedScene" uid="uid://noak0lb744vu" path="res://scenes/moon.tscn" id="4_tipki"]
-[ext_resource type="Shader" uid="uid://gmppkc8h4s1r" path="res://scenes/blackhole.gdshader" id="5_qkpxi"]
+[ext_resource type="Shader" path="res://scenes/blackhole.gdshader" id="5_qkpxi"]
 [ext_resource type="Script" uid="uid://uuq4rgq8jngs" path="res://planet.gd" id="6_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://bw3dj01rr1ktc" path="res://assets/2d/circle.png" id="6_5q0nq"]
 [ext_resource type="PackedScene" uid="uid://c0fwrhpfjcu6t" path="res://scenes/sun.tscn" id="6_choun"]
@@ -33,7 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="27_yq6so"]
 [ext_resource type="Texture2D" uid="uid://cppgdftl45emj" path="res://assets/2d/sat-sprite.png" id="28_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://c6rjjncks16b1" path="res://assets/2d/sun.png" id="30_fv21b"]
-[ext_resource type="Script" uid="uid://be820dv7r6ecx" path="res://scenes/audio_manager.gd" id="32_5q0nq"]
+[ext_resource type="Script" path="res://scenes/audio_manager.gd" id="32_5q0nq"]
 [ext_resource type="AudioStream" uid="uid://nsn3t5dxp834" path="res://assets/sounds/pju.mp3" id="33_dgi5k"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
@@ -709,8 +709,9 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 
 [node name="???" type="StaticBody3D" parent="World/Env" unique_id=579671042 groups=["planet"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17592.723, 16381.041, 378.47162)
+collision_layer = 2
 script = ExtResource("6_2f3dj")
-security_level = 3
+security_level = 0
 cam_distance = 4000.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Env/???" unique_id=690092645]
@@ -739,9 +740,13 @@ curve = SubResource("Curve3D_dgi5k")
 [node name="PathFollow3D" type="PathFollow3D" parent="World/Env/???/Satellites/Path3D" unique_id=1771720211]
 transform = Transform3D(-0.9790414, 0.0022087593, 0.20363785, -1.1641505e-10, 0.99993557, -0.010845876, -0.20364985, -0.010618553, -0.97898376, 2544.4736, -4167.2803, 493.7741)
 
-[node name="Satellite" parent="World/Env/???/Satellites/Path3D/PathFollow3D" unique_id=948626965 instance=ExtResource("1_sugp2")]
+[node name="Soother" parent="World/Env/???/Satellites/Path3D/PathFollow3D" unique_id=948626965 instance=ExtResource("1_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3181.3672, -3100.7861, 1532.978)
 sat_model = ExtResource("9_j8jky")
+can_ping = false
+can_scan = false
+can_hack = false
+can_beam = false
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Env/???/Satellites/Path3D" unique_id=2086303329]
 transform = Transform3D(-0.9790414, 0.002208759, 0.20363784, -1.1641505e-10, 0.9999355, -0.010845875, -0.20364985, -0.010618552, -0.9789837, 2544.4736, -4167.2803, 493.7741)
@@ -866,7 +871,7 @@ focus = NodePath("../Aiga/Satellites/Path3D/PathFollow3D/Sat-1")
 [node name="Pivot" type="Node3D" parent="World/Camera" unique_id=353975901]
 
 [node name="Camera3D" type="Camera3D" parent="World/Camera/Pivot" unique_id=1693231485]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 120)
 far = 160000.0
 
 [node name="Planet2" type="StaticBody3D" parent="World" unique_id=1744713887 groups=["planet"]]
@@ -1382,6 +1387,54 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "[F]"
 
+[node name="Soothe" type="Button" parent="UI/GameControl/Buttons" unique_id=643317692]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -287.5
+offset_top = -170.0
+offset_right = -162.5
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+tooltip_text = "Mother is restless.
+Soothe her.
+
+Range: MOTHER"
+focus_mode = 0
+theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+disabled = true
+shortcut = SubResource("Shortcut_0ld40")
+shortcut_in_tooltip = false
+icon = ExtResource("12_a8y0u")
+icon_alignment = 1
+expand_icon = true
+
+[node name="KeyA" type="Label" parent="UI/GameControl/Buttons/Soothe" unique_id=1838393247]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -3.0
+offset_right = 22.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "[A]"
+
 [node name="Dialogue" type="Control" parent="UI/GameControl" unique_id=1865856948]
 layout_mode = 1
 anchors_preset = 8
@@ -1458,6 +1511,7 @@ texture = ExtResource("27_yq6so")
 expand_mode = 1
 
 [node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1613,6 +1667,8 @@ text = "LUDUM DARE #59
 PARXER and NADAN"
 horizontal_alignment = 2
 
+[node name="CountdownTimer" type="Timer" parent="UI" unique_id=1708006775]
+
 [node name="AudioManager" type="Node" parent="." unique_id=392114094]
 script = ExtResource("32_5q0nq")
 
@@ -1633,6 +1689,7 @@ stream = ExtResource("33_dgi5k")
 [connection signal="pressed" from="UI/GameControl/Buttons/LongRange" to="UI" method="_on_ability2_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/SRhack" to="UI" method="_on_ability3_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/LRhack" to="UI" method="_on_ability4_pressed"]
+[connection signal="pressed" from="UI/GameControl/Buttons/Soothe" to="UI" method="_on_ability5_pressed"]
 [connection signal="mouse_entered" from="UI/MainMenu/VBoxContainer/Play" to="AudioManager" method="_on_play_mouse_entered"]
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Play" to="UI" method="_on_play_pressed"]
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Play" to="AudioManager" method="_on_play_pressed"]

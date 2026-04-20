@@ -47,20 +47,17 @@ func _ready() -> void:
 	
 	
 
-
-var progress := 0.0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	path_follow.progress += delta * speed
 	
-	if rotation.is_equal_approx(target_rotation):
-		progress = 0.0
-	else:
+	if not rotation.is_equal_approx(target_rotation):
 		if target_lock:
 			look_at(target_lock.global_position)
 		else:
-			progress += delta / 1000.0
-			rotation = rotation.lerp(target_rotation, progress)
+			rotation.y = lerp_angle(rotation.y, target_rotation.y, 0.1)
+			rotation.x = lerp_angle(rotation.x, target_rotation.x, 0.1)
+			rotation.z = lerp_angle(rotation.z, target_rotation.z, 0.1)
 
 
 func activate() -> void:
@@ -114,7 +111,11 @@ func beam(target: Node3D):
 	LRhack_fx.emitting = false
 	target_lock = null
 	
-
+func soothe():
+	#TODO effects
+	await get_tree().create_timer(3.0).timeout
+	#TODO stop effects
+	Signals.mother_soothed.emit()
 
 func aim_start():
 	$Aim.show()

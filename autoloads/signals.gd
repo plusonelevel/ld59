@@ -16,7 +16,11 @@ signal hack
 signal ping
 signal scan
 signal beam
+signal soothe
 
 signal time_scale_set(scale: float)
+
+signal timer_expired
+signal mother_soothed
 
 @warning_ignore_restore("unused_signal")

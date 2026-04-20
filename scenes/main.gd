@@ -111,7 +111,7 @@ func _on_hack_used() -> void:
 		
 	print_debug("Objects in range: %s" % [possible_targets])
 	if possible_targets.size() > 0:
-		possible_targets.sort_custom(func(a, b): a[1] > b[1])
+		possible_targets.sort_custom(func(a, b): return a[1] > b[1])
 		var target = possible_targets[0][0] as Satellite
 		if target:
 			sel.hack(target)
@@ -169,7 +169,7 @@ func _on_beam_used():
 		
 	print_debug("Objects in range: %s" % [possible_targets])
 	if possible_targets.size() > 0:
-		possible_targets.sort_custom(func(a, b): a[1] > b[1])
+		possible_targets.sort_custom(func(a, b): return a[1] > b[1])
 		var target = possible_targets[0][0] as Planet
 		if target:
 			sel.beam(target)
@@ -211,6 +211,10 @@ func _on_scan_used():
 	for p in possible_targets:
 		p.discover()
 
+func _on_soothe_used():
+	if selection.name == "Soother":
+		selection.soothe()
+		
 
 func _on_planet_discovered(new_planet: Planet) -> void:
 	undiscovered_planets.erase(new_planet)

@@ -12,6 +12,7 @@ extends Control
 @onready var ability2_butt = $GameControl/Buttons/LongRange
 @onready var ability3_butt = $GameControl/Buttons/SRhack
 @onready var ability4_butt = $GameControl/Buttons/LRhack
+@onready var ability5_butt = $GameControl/Buttons/Soothe
 @onready var keya = $GameControl/Buttons/ShortRange/KeyA
 @onready var keys = $GameControl/Buttons/LongRange/KeyS
 @onready var keyd = $GameControl/Buttons/SRhack/KeyD
@@ -21,6 +22,7 @@ extends Control
 @onready var next_line = $GameControl/Dialogue/Panel/Next
 @onready var skip_button = $MainMenu/Skip
 @onready var countdown = $GameControl/Sats/Countdown
+@onready var countdown_timer = $CountdownTimer
 @onready var credits = $MainMenu/Credits
 @onready var quit_butt = $MainMenu/VBoxContainer/Quit
 
@@ -29,8 +31,6 @@ extends Control
 var line_id := 0
 var dialogue_active := false
 var start_game_controls := false
-var time_left := 0.0
-var countdown_started = false
 
 var selected_satellite: Variant
 
@@ -38,6 +38,8 @@ func _ready() -> void:
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
 	Signals.time_scale_set.connect(_on_time_scale_set)
+	
+	Signals.mother_soothed.connect(func(): countdown_timer.paused = true)
 	
 	_on_time_scale_set(1.0)
 
@@ -152,7 +154,13 @@ func _on_satellite_selected(satellite: Satellite) -> void:
 	selected_satellite = satellite
 	if dialogue_active:
 		return
-	_toggle_abilities(true)
+		
+	if satellite.name == "Soother":
+		_toggle_soother(true)
+	else:
+		_toggle_soother(false)
+		_toggle_abilities(true)
+	
 	loc.text = satellite.name
 
 func _on_planet_selected(planet: Planet):
@@ -190,41 +198,51 @@ func _toggle_abilities(enabled: bool) -> void:
 		keyd.modulate = key_ab_color
 		keyf.modulate = key_ab_color
 
+func _toggle_soother(is_soother: bool):
+	ability1_butt.visible = !is_soother
+	ability2_butt.visible = !is_soother
+	ability3_butt.visible = !is_soother
+	ability4_butt.visible = !is_soother
+	ability5_butt.visible = is_soother
+	ability5_butt.disabled = !is_soother 
+
 func _on_ability1_pressed() -> void:
-	if dialogue_active:
+	if dialogue_active or not selected_satellite.can_ping:
 		return
 	print_debug("Ability 1 pressed")
 	Signals.ping.emit()
 
 func _on_ability2_pressed() -> void:
-	if dialogue_active:
+	if dialogue_active or not selected_satellite.can_scan:
 		return
 	print_debug("Ability 2 pressed")
 	Signals.scan.emit()
 
 func _on_ability3_pressed() -> void:
-	if dialogue_active:
+	if dialogue_active or not selected_satellite.can_hack:
 		return
 	print_debug("Ability 3 pressed")
 	Signals.hack.emit()
 	
 func _on_ability4_pressed() -> void:
-	if dialogue_active:
+	if dialogue_active or not selected_satellite.can_beam:
 		return
 	print_debug("Ability 4 pressed")
 	Signals.beam.emit()
+
+func _on_ability5_pressed() -> void:
+	if dialogue_active or selected_satellite.name != "Soother":
+		return
+	print_debug("Ability 5 pressed")
+	Signals.soothe.emit()
 	
 func _start_countdown():
 	countdown.show()
-	countdown_started = true
-	time_left = 20 * 60
+	countdown_timer.timeout.connect(func(): Signals.timer_expired.emit())
+	countdown_timer.start(20 * 60)
 	
 func _process(delta: float) -> void:
-	if dialogue_active == false:
-		time_left -= delta
-	
-	if countdown_started == true:
-		countdown.text = _format_time(time_left)
+	countdown.text = _format_time(countdown_timer.time_left)
 
 func _format_time(t: float) -> String:
 	var total_ms = int(t * 1000)
