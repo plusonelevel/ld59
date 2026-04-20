@@ -8,6 +8,11 @@ extends StaticBody3D
 @onready var LRscan_fx = $Scan_LR
 @onready var SRscan_fx = $Scan_SR
 @onready var LRhack_fx = $LRhack
+@onready var sound_hack = $AudioManager/Hack
+@onready var sound_ping = $AudioManager/Ping
+@onready var sound_beam = $AudioManager/Beam
+@onready var sound_scan = $AudioManager/Scan
+
 
 @export var sat_model : PackedScene
 
@@ -66,38 +71,48 @@ func activate() -> void:
 
 
 func hack_fail():
+	sound_hack.play()
 	hack_fx.emitting = true
 	await get_tree().create_timer(1.0).timeout
 	hack_fx.emitting = false
 	
 func hack(target: Satellite):
+	sound_hack.play()
 	target_lock = target
 	hack_fx.emitting = true
 	await get_tree().create_timer(3.0).timeout
 	hack_fx.emitting = false
 	target_lock = null
+	
 
 func ping():
+	sound_ping.play()
 	SRscan_fx.emitting = true
 	await get_tree().create_timer(3.0).timeout
 	SRscan_fx.emitting = false
+	
 
 func scan():
+	sound_scan.play()
 	LRscan_fx.emitting = true
 	await get_tree().create_timer(3.0).timeout
 	LRscan_fx.emitting = false
+	
 
 func beam_fail():
+	sound_beam.play()
 	LRhack_fx.emitting = true
 	await get_tree().create_timer(1.0).timeout
 	LRhack_fx.emitting = false
 
 func beam(target: Node3D):
+	sound_beam.play()
 	target_lock = target
 	LRhack_fx.emitting = true
 	await get_tree().create_timer(5.0).timeout
 	LRhack_fx.emitting = false
 	target_lock = null
+	
 
 
 func aim_start():

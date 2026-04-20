@@ -31,6 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="27_yq6so"]
 [ext_resource type="Texture2D" uid="uid://cppgdftl45emj" path="res://assets/2d/sat-sprite.png" id="28_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://c6rjjncks16b1" path="res://assets/2d/sun.png" id="30_fv21b"]
+[ext_resource type="Script" uid="uid://be820dv7r6ecx" path="res://scenes/audio_manager.gd" id="32_5q0nq"]
+[ext_resource type="AudioStream" uid="uid://nsn3t5dxp834" path="res://assets/sounds/pju.mp3" id="33_dgi5k"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("2_choun")
@@ -429,6 +431,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../../AudioManager/Intro:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_yq6so"]
 resource_name = "start_game"
@@ -564,6 +578,18 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../../AudioManager/Intro:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(4.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fv21b"]
@@ -807,7 +833,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_85g3d")
 script = ExtResource("1_o5qli")
-lines = Array[String](["[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]", "What the [shake rate=500 level=50 connected=0].-.-.-.-.[/shake] was that?", "Can you hea[shake rate=500 level=50 connected=0].-.[/shake] me?", "We’ve lost every link down here. How’s your connection?", "Hold on. I’m pulling your [color=#F20505]SatBoard[/color].", "...", "Oh [shake rate=500 level=50 connected=0].-.-.-.-.[/shake]", "That’s not good. ", "Listen.", "The [color=#F20505]Mother Soother[/color] system is offline and we don’t have time to reconnect it from base.", "We have about 20 minutes to restart the [color=#F20505]Soother[/color] before the [color=#F20505]Mother[/color] starts eating us up.", "You have [color=#F20505]20 minutes[/color] to establish a link and restart the [color=#F20505]Soother[/color].", "You may need to route the signal through other satellites to reach long range.", "Find [color=#F20505]LRSAT-1[/color] on [color=#F20505]Aiga[/color]’s outer orbit."])
+lines = Array[String](["[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]", "What the [shake rate=500 level=50 connected=0].-.-.-.-.[/shake] was that?", "Can you hea[shake rate=500 level=50 connected=0].-.[/shake] me?", "We’ve lost every link down here. How’s your connection?", "Hold on. I’m pulling your [color=#F20505]SatBoard[/color].", "...", "Oh [shake rate=500 level=50 connected=0].-.-.-.-.[/shake]", "That’s not good. ", "Listen.", "The [color=#F20505]Mother Soother[/color] system is offline and we don’t have time to reconnect it from base.", "We have about 20 minutes to restart the [color=#F20505]Soother[/color] before the [color=#F20505]Mother[/color] starts eating us up.", "You may need to route the signal through other satellites to reach long range.", "Find [color=#F20505]LRSAT-1[/color] on [color=#F20505]Aiga[/color]’s outer orbit."])
 
 [node name="GameControl" type="Control" parent="UI" unique_id=1214834009]
 layout_mode = 1
@@ -1297,7 +1323,6 @@ texture = ExtResource("27_yq6so")
 expand_mode = 1
 
 [node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1434,8 +1459,51 @@ text = "[space] to skip"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Credits" type="Label" parent="UI/MainMenu" unique_id=1593603477]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -448.0
+offset_top = -93.0
+offset_right = -52.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.4509804, 0.33333334, 0.43137255, 1)
+text = "LUDUM DARE #59
+PARXER and NADAN"
+horizontal_alignment = 2
+
+[node name="AudioManager" type="Node" parent="." unique_id=392114094]
+script = ExtResource("32_5q0nq")
+
+[node name="Music" type="AudioStreamPlayer" parent="AudioManager" unique_id=527837993]
+stream = ExtResource("33_dgi5k")
+autoplay = true
+
+[node name="Intro" type="AudioStreamPlayer" parent="AudioManager" unique_id=261077837]
+stream = ExtResource("33_dgi5k")
+
+[node name="Hover" type="AudioStreamPlayer" parent="AudioManager" unique_id=2087572859]
+stream = ExtResource("33_dgi5k")
+
+[node name="Click" type="AudioStreamPlayer" parent="AudioManager" unique_id=1697451641]
+stream = ExtResource("33_dgi5k")
+
 [connection signal="pressed" from="UI/GameControl/Buttons/ShortRange" to="UI" method="_on_ability1_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/LongRange" to="UI" method="_on_ability2_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/SRhack" to="UI" method="_on_ability3_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/LRhack" to="UI" method="_on_ability4_pressed"]
+[connection signal="mouse_entered" from="UI/MainMenu/VBoxContainer/Play" to="AudioManager" method="_on_play_mouse_entered"]
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Play" to="UI" method="_on_play_pressed"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Play" to="AudioManager" method="_on_play_pressed"]
+[connection signal="mouse_entered" from="UI/MainMenu/VBoxContainer/Credits" to="AudioManager" method="_on_credits_mouse_entered"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Credits" to="UI" method="_on_credits_pressed"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Credits" to="AudioManager" method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="UI/MainMenu/VBoxContainer/Quit" to="AudioManager" method="_on_quit_mouse_entered"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Quit" to="UI" method="_on_quit_pressed"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Quit" to="AudioManager" method="_on_quit_pressed"]
