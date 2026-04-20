@@ -8,9 +8,11 @@ extends Node
 @export var scan_distance := 100000.0
 @export var scan_angle := 60.0
 
+@export var starting_satellite: Satellite
+
 @onready var cam := $World/Camera
 
-var satellites: Array[Satellite]
+var local_satellites: Array[Satellite]
 var discovered_planets: Array[Planet]
 var undiscovered_planets: Array[Planet]
 
@@ -20,13 +22,11 @@ var planet: Variant
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	satellites.assign(get_tree().get_nodes_in_group("satellite").filter(
-		func(sat): return sat is Satellite
-	))
 	discovered_planets = []
 	undiscovered_planets.assign(get_tree().get_nodes_in_group("planet").filter(
 		func(p): return p is Planet and not p.discovered
 	))
+	local_satellites = []
 
 	Signals.planet_discovered.connect(_on_planet_discovered)
 	Signals.planet_selected.connect(_on_planet_selected)
@@ -37,13 +37,10 @@ func _ready() -> void:
 	Signals.scan.connect(_on_scan_used)
 	
 	
-	var starting_sat = satellites[0]
-	starting_sat.activate()
-	Signals.satellite_selected.emit(starting_sat)
+	starting_satellite.activate()
+	Signals.satellite_selected.emit(starting_satellite)
 
 func _process(_delta: float) -> void:
-	if InputListener.dialogue_active:
-		return
 	if selection is Satellite and Input.is_action_pressed("move_drag"):
 		(selection as Satellite).set_target_rotation(cam.get_camera_rotation())
 			
@@ -56,8 +53,6 @@ func _input(event: InputEvent) -> void:
 	
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if InputListener.dialogue_active:
-		return
 	if event.is_action_pressed("select_1"):
 		_select_satellite(0)
 	elif event.is_action_pressed("select_2"):
@@ -74,21 +69,20 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			Signals.planet_selected.emit(next_planet)
 
 func _select_satellite(idx: int):
-	var sat = satellites[idx]
-	if sat and sat.activated:
-		Signals.satellite_selected.emit(sat)
+	if idx < local_satellites.size():
+		var sat = local_satellites[idx]
+		if sat.activated:
+			Signals.satellite_selected.emit(sat)
 
 
 func _on_hack_used() -> void:
-	if InputListener.dialogue_active:
-		return
 	if selection is not Satellite:
 		return
 	var sel = selection as Satellite
 	var space_state := sel.get_world_3d().direct_space_state
 	var origin: Vector3 = sel.global_position
 	var possible_targets = []
-	for sat in satellites:
+	for sat in local_satellites:
 		if sat == sel:
 			continue
 		
@@ -184,11 +178,14 @@ func _on_scan_used():
 func _on_planet_discovered(new_planet: Planet) -> void:
 	discovered_planets.append(new_planet)
 	undiscovered_planets.erase(new_planet)
+	
+	new_planet.get_satellites()[0].activate()
 
 
 func _on_planet_selected(new_planet: Planet) -> void:
 	if new_planet.discovered:
 		planet = new_planet
+		local_satellites = new_planet.get_satellites()
 		selection = null
 
 func _on_satellite_selected(sat: Satellite) -> void:
