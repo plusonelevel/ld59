@@ -1201,6 +1201,11 @@ offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
+tooltip_text = "PING 
+
+Short-range scan to detect nearby celestial objects.
+
+Range: ~3000 km"
 focus_mode = 0
 theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
@@ -1243,6 +1248,11 @@ offset_right = -12.5
 offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 0
+tooltip_text = "SCAN
+
+Long-range directional scan. Can detect celestial objects in a general direction.
+
+Range: ~40 000 km"
 focus_mode = 0
 theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
@@ -1285,6 +1295,12 @@ offset_right = 137.5
 offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 0
+tooltip_text = "HACK
+
+Very short range.
+Use to take over a nearby satellite.
+
+Range: ~300km"
 focus_mode = 0
 theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
@@ -1327,6 +1343,11 @@ offset_right = 287.5
 offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 0
+tooltip_text = "BEAM
+
+Long-range version of Hack. Hack devices over vast distances. Requires precision aiming.
+
+Range: inf."
 focus_mode = 0
 theme_override_colors/font_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
@@ -1574,3 +1595,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="UI/GameControl/Buttons/LongRange" to="UI" method="_on_ability2_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/SRhack" to="UI" method="_on_ability3_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/LRhack" to="UI" method="_on_ability4_pressed"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Play" to="UI" method="_on_play_pressed"]

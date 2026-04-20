@@ -8,6 +8,9 @@ extends Node
 @export var scan_distance := 100000.0
 @export var scan_angle := 60.0
 
+@export var beam_gap := 3000.0
+@export var beam_angle := 15.0
+
 @export var starting_satellite: Satellite
 
 @onready var cam := $World/Camera
@@ -138,9 +141,45 @@ func _on_ping_used():
 				planet = pl
 
 func _on_beam_used():
-	if selection is Satellite:
-		selection.beam_fail()
-		(find_child("Planet2") as Planet).discover()
+	if selection is not Satellite:
+		return
+	var sel = selection as Satellite
+	var space_state := sel.get_world_3d().direct_space_state
+	var origin: Vector3 = sel.global_position
+	var possible_targets = []
+	for sat in get_tree().get_nodes_in_group("satellite").filter(func(s): return s.beamable):
+		if !sat or sat == sel:
+			continue
+		
+		var target := (sat as Satellite).global_position
+		var query := PhysicsRayQueryParameters3D.create(origin, origin + (target - origin).normalized() * hack_distance)
+		query.exclude = [sel]
+		var result := space_state.intersect_ray(query)
+		DebugDraw.draw_line(query.from, query.to, Color.GREEN_YELLOW, 5.0)
+		if result.has("collider") and result.collider and result.collider is Satellite:
+			
+			# check if in "line of sight"
+			#DebugDraw.draw_arrow_ray(origin, origin.direction_to(result.collider.global_position) * 100, 20.0, 10.0, Color.ALICE_BLUE, 5.0)
+			#DebugDraw.draw_arrow_ray(origin, -selection.global_transform.basis.z * 100, 20, 10, Color.BISQUE, 5.0)
+			var accuracy := origin.direction_to(result.collider.global_position).dot(-sel.global_transform.basis.z)
+			print_debug("angle to %s: %f" % [result.collider.name, accuracy])
+			if accuracy > cos(beam_angle):
+				possible_targets.append([result.collider, accuracy])
+			else:
+				print_debug("Object %s out of sight" % [result.collider.name])
+		else:
+			print_debug("Object out of range or not a satellite")
+		
+	print_debug("Objects in range: %s" % [possible_targets])
+	if possible_targets.size() > 0:
+		possible_targets.sort_custom(func(a, b): a[1] > b[1])
+		var target = possible_targets[0][0] as Satellite
+		if target:
+			sel.beam(target)
+			await get_tree().create_timer(3.0).timeout
+			target.activate()
+	else:
+		sel.beam_fail()
 
 func _on_scan_used():
 	if selection is not Satellite:
