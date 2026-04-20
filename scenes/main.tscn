@@ -28,6 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://deql1gacrqliv" path="res://assets/2d/SR_hack.png" id="18_0ld40"]
 [ext_resource type="Texture2D" uid="uid://re81q0an3f3e" path="res://assets/2d/LR_hack.png" id="19_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://bqdoi8k10omcp" path="res://assets/2d/time-forward-svgrepo-com.svg" id="21_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="27_yq6so"]
+[ext_resource type="Texture2D" uid="uid://cppgdftl45emj" path="res://assets/2d/sat-sprite.png" id="28_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://c6rjjncks16b1" path="res://assets/2d/sun.png" id="30_fv21b"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("2_choun")
@@ -257,6 +260,292 @@ unicode = 102
 events = [SubResource("InputEventKey_jscy8")]
 
 [node name="Main" type="Node" unique_id=8165444 node_paths=PackedStringArray("starting_satellite")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv21b"]
+bg_color = Color(0.9529412, 0.9372549, 0.87058824, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+
+[sub_resource type="Animation" id="Animation_tel4y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-187, -175)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sun:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sun:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sun:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Title:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VBoxContainer:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RichTextLabel:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RichTextLabel2:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RichTextLabel:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("RichTextLabel2:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_yq6so"]
+resource_name = "start_game"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9666667),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(-187, -175), Vector2(-2145, -1097.9999)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sun:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9666667),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.6, 1.6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sun:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(12.066667, 19.495611),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sun:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6.7, 19.495611),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.0357704, 2.1007419),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Title:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.0465991, 2.047),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VBoxContainer:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2.0462, 2.0468),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RichTextLabel:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.1333334, 4.5, 9.6, 10.429013),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RichTextLabel2:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(5.1, 7.733333, 9.6, 10.429013),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RichTextLabel:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.77251947),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("RichTextLabel2:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2.9847343),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fv21b"]
+_data = {
+&"RESET": SubResource("Animation_tel4y"),
+&"start_game": SubResource("Animation_yq6so")
+}
+
+[node name="Main" type="Node" unique_id=8165444]
 script = ExtResource("1_jyhfs")
 hack_distance = 300.0
 hack_angle = 15.0
@@ -284,30 +573,30 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 y_speed = 0.01
 z_speed = -0.01
 
-[node name="Planet" type="StaticBody3D" parent="World" unique_id=1859286445 groups=["planet"]]
+[node name="Aiga" type="StaticBody3D" parent="World" unique_id=1859286445 groups=["planet"]]
 collision_layer = 2
 script = ExtResource("6_2f3dj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet" unique_id=621919284]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Aiga" unique_id=621919284]
 shape = SubResource("SphereShape3D_o5qli")
 
-[node name="Satellites" type="Node3D" parent="World/Planet" unique_id=1428361193]
+[node name="Satellites" type="Node3D" parent="World/Aiga" unique_id=1428361193]
 
-[node name="Path3D" type="Path3D" parent="World/Planet/Satellites" unique_id=957064632]
+[node name="Path3D" type="Path3D" parent="World/Aiga/Satellites" unique_id=957064632]
 transform = Transform3D(1.0000001, 0, 0, 0, 0.9659258, -0.258819, 0, 0.25881904, 0.96592575, 0, 0, 0)
 curve = SubResource("Curve3D_tipki")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/Planet/Satellites/Path3D" unique_id=1765511152]
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Aiga/Satellites/Path3D" unique_id=1765511152]
 transform = Transform3D(0.99999547, 0, 0, 0, 1, 0, 0, 0, 0.99999547, 104.912415, 0, -680.92645)
 progress = 3728.07
 rotation_mode = 0
 
-[node name="Satellite" parent="World/Planet/Satellites/Path3D/PathFollow3D" unique_id=434412478 instance=ExtResource("1_sugp2")]
+[node name="Sat-1" parent="World/Aiga/Satellites/Path3D/PathFollow3D" unique_id=434412478 instance=ExtResource("1_sugp2")]
 transform = Transform3D(1.0000024, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000023, 0, 0, 0)
 sat_model = ExtResource("7_pm3ni")
 speed = 30.0
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D" unique_id=534762476]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Aiga/Satellites/Path3D" unique_id=534762476]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
 polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
 mode = 2
@@ -323,18 +612,18 @@ path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_85g3d")
 
-[node name="Path3D2" type="Path3D" parent="World/Planet/Satellites" unique_id=313585038]
+[node name="Path3D2" type="Path3D" parent="World/Aiga/Satellites" unique_id=313585038]
 curve = SubResource("Curve3D_choun")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/Planet/Satellites/Path3D2" unique_id=1732977435]
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Aiga/Satellites/Path3D2" unique_id=1732977435]
 transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, -600, 0, -600)
 rotation_mode = 0
 
-[node name="Satellite" parent="World/Planet/Satellites/Path3D2/PathFollow3D" unique_id=2134328555 instance=ExtResource("1_sugp2")]
+[node name="Sat-2" parent="World/Aiga/Satellites/Path3D2/PathFollow3D" unique_id=2134328555 instance=ExtResource("1_sugp2")]
 sat_model = ExtResource("8_vxglm")
 speed = 15.0
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D2" unique_id=570443404]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Aiga/Satellites/Path3D2" unique_id=570443404]
 polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
 mode = 2
 path_node = NodePath("..")
@@ -349,19 +638,19 @@ path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_85g3d")
 
-[node name="Path3D3" type="Path3D" parent="World/Planet/Satellites" unique_id=2104374244]
+[node name="Path3D3" type="Path3D" parent="World/Aiga/Satellites" unique_id=2104374244]
 transform = Transform3D(1, 0, 0, 0, 0.64278764, -0.76604444, 0, 0.76604444, 0.64278764, 0, 0, 0)
 curve = SubResource("Curve3D_ya4ey")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/Planet/Satellites/Path3D3" unique_id=245595815]
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Aiga/Satellites/Path3D3" unique_id=245595815]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -650, 0, -650)
 rotation_mode = 0
 
-[node name="Satellite" parent="World/Planet/Satellites/Path3D3/PathFollow3D" unique_id=1118772254 instance=ExtResource("1_sugp2")]
+[node name="LRSat-1" parent="World/Aiga/Satellites/Path3D3/PathFollow3D" unique_id=1118772254 instance=ExtResource("1_sugp2")]
 sat_model = ExtResource("9_2f3dj")
 speed = 80.0
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Planet/Satellites/Path3D3" unique_id=2043161800]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Aiga/Satellites/Path3D3" unique_id=2043161800]
 transform = Transform3D(1, 0, 0, 0, 0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, 0, 0, 0)
 polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
 mode = 2
@@ -377,12 +666,12 @@ path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_85g3d")
 
-[node name="Planet" parent="World/Planet" unique_id=463863642 instance=ExtResource("5_85g3d")]
+[node name="Planet" parent="World/Aiga" unique_id=463863642 instance=ExtResource("5_85g3d")]
 
 [node name="Camera" type="Node3D" parent="World" unique_id=1725945604 node_paths=PackedStringArray("focus")]
 script = ExtResource("2_0wfyh")
 camera_sensitivity = 2.0
-focus = NodePath("../Planet/Satellites/Path3D/PathFollow3D/Satellite")
+focus = NodePath("../Aiga/Satellites/Path3D/PathFollow3D/Sat-1")
 
 [node name="Pivot" type="Node3D" parent="World/Camera" unique_id=353975901]
 
@@ -488,6 +777,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_85g3d")
 script = ExtResource("1_o5qli")
+lines = Array[String](["[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]", "What the [shake rate=500 level=50 connected=0].-.-.-.-.[/shake] was that?", "Can you hea[shake rate=500 level=50 connected=0].-.[/shake] me?", "We’ve lost every link down here. How’s your connection?", "Hold on. I’m pulling your [color=#D90D0D]SatBoard[/color].", "...", "Oh [shake rate=500 level=50 connected=0].-.-.-.-.[/shake]", "That’s not good. ", "Listen.", "The [color=#D90D0D]Mother Soother[/color] system is offline and we don’t have time to reconnect it from base.", "Without it, the Mother’s event horizon starts expanding - and will swallow us whole.", "You have [color=#D90D0D]20 minutes[/color] to establish a link and restart the [color=#D90D0D]Soother[/color].", "You may need to route the signal through other satellites to reach long range.", "Find [color=#D90D0D]LRSAT-1[/color] on [color=#D90D0D]Aiga[/color]’s outer orbit."])
 
 [node name="GameControl" type="Control" parent="UI" unique_id=1214834009]
 layout_mode = 1
@@ -502,24 +792,25 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sats" type="Panel" parent="UI/GameControl" unique_id=489136306]
+visible = false
 layout_mode = 1
-offset_right = 366.0
+offset_right = 389.0
 offset_bottom = 956.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dp3eg")
 
 [node name="Label" type="Label" parent="UI/GameControl/Sats" unique_id=702503419]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -102.5
-offset_top = 13.0
-offset_right = 102.5
-offset_bottom = 76.0
+offset_left = -103.5
+offset_top = 26.0
+offset_right = 103.5
+offset_bottom = 89.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.6666667, 0.827451, 0.79607844, 1)
-theme_override_font_sizes/font_size = 46
-text = "Uplink"
+theme_override_font_sizes/font_size = 30
+text = "SatBoard"
 
 [node name="Line" type="TextureRect" parent="UI/GameControl/Sats" unique_id=1694960566]
 layout_mode = 1
@@ -528,7 +819,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -165.0
 offset_top = 30.0
-offset_right = -108.0
+offset_right = -115.0
 offset_bottom = 70.0
 grow_horizontal = 2
 texture = ExtResource("15_jbj1t")
@@ -539,9 +830,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 108.0
+offset_left = 114.5
 offset_top = 30.0
-offset_right = 165.0
+offset_right = 164.5
 offset_bottom = 70.0
 grow_horizontal = 2
 texture = ExtResource("15_jbj1t")
@@ -549,12 +840,10 @@ expand_mode = 1
 
 [node name="Sat1" type="Control" parent="UI/GameControl/Sats" unique_id=2009001006]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -176.0
+anchors_preset = 0
+offset_left = 7.0
 offset_top = 103.0
-offset_right = 176.0
+offset_right = 359.0
 offset_bottom = 197.0
 grow_horizontal = 2
 
@@ -581,19 +870,18 @@ offset_top = -41.5
 offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
-text = "ID: Sat - 1
-Loc: PMK-67.N
-Status: ONLINE"
+bbcode_enabled = true
+text = "ID: Sat-1
+Loc: AIGA.LO
+Status: [color=#abd3ca]ONLINE[/color]"
 scroll_active = false
 
 [node name="Sat2" type="Control" parent="UI/GameControl/Sats" unique_id=555606218]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -176.0
+anchors_preset = 0
+offset_left = 7.0
 offset_top = 197.0
-offset_right = 176.0
+offset_right = 359.0
 offset_bottom = 291.0
 grow_horizontal = 2
 
@@ -620,19 +908,18 @@ offset_top = -41.5
 offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
-text = "ID: Sat - 2
-Loc: PMK-67.DIS
-Status: OFFLINE"
+bbcode_enabled = true
+text = "ID: Sat-2
+Loc: AIGA.DIS
+Status: [pulse freq=3.0 color=#D90D0D 50]OFFLINE[/pulse]"
 scroll_active = false
 
 [node name="Sat3" type="Control" parent="UI/GameControl/Sats" unique_id=98165777]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -176.0
+anchors_preset = 0
+offset_left = 7.0
 offset_top = 290.0
-offset_right = 176.0
+offset_right = 359.0
 offset_bottom = 384.0
 grow_horizontal = 2
 
@@ -659,19 +946,18 @@ offset_top = -41.5
 offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
-text = "ID: LRSATTE-1
-Loc: PMK-67.-OW
-Status: ???"
+bbcode_enabled = true
+text = "ID: LRSAT-1
+Loc: AIGA.-OO
+Status: [shake rate=50 level=50 connected=0]----------[/shake]"
 scroll_active = false
 
 [node name="Sat4" type="Control" parent="UI/GameControl/Sats" unique_id=592595056]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -176.0
+anchors_preset = 0
+offset_left = 7.0
 offset_top = 387.0
-offset_right = 176.0
+offset_right = 359.0
 offset_bottom = 481.0
 grow_horizontal = 2
 
@@ -698,12 +984,14 @@ offset_top = -41.5
 offset_right = 353.0
 offset_bottom = 41.5
 grow_vertical = 2
-text = "ID: ???
-Loc: ???
-Status: ???"
+bbcode_enabled = true
+text = "ID: [shake rate=50 level=50 connected=0]----------[/shake]
+Loc: [shake rate=50 level=50 connected=0]----------[/shake]
+Status: [shake rate=50 level=50 connected=0]----------[/shake]"
 scroll_active = false
 
 [node name="Name" type="Panel" parent="UI/GameControl" unique_id=1500183693]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -725,6 +1013,7 @@ offset_bottom = 64.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 46
 text = "SAT - 1"
+horizontal_alignment = 1
 
 [node name="Line" type="TextureRect" parent="UI/GameControl/Name" unique_id=631313780]
 layout_mode = 1
@@ -733,7 +1022,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 20.0
 offset_top = -20.0
-offset_right = 265.04254
+offset_right = 194.0
 offset_bottom = 20.0
 grow_vertical = 2
 texture = ExtResource("15_jbj1t")
@@ -746,7 +1035,7 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -265.04254
+offset_left = -192.00006
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = 20.0
@@ -813,6 +1102,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Buttons" type="Control" parent="UI/GameControl" unique_id=678460478]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -845,10 +1135,28 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+disabled = true
 shortcut = SubResource("Shortcut_0ld40")
+shortcut_in_tooltip = false
 icon = ExtResource("12_a8y0u")
 icon_alignment = 1
 expand_icon = true
+
+[node name="KeyA" type="Label" parent="UI/GameControl/Buttons/ShortRange" unique_id=625007764]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -3.0
+offset_right = 22.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+text = "[A]"
 
 [node name="LongRange" type="Button" parent="UI/GameControl/Buttons" unique_id=605761156]
 layout_mode = 1
@@ -869,10 +1177,28 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+disabled = true
 shortcut = SubResource("Shortcut_yc10j")
+shortcut_in_tooltip = false
 icon = ExtResource("13_jkv2x")
 icon_alignment = 1
 expand_icon = true
+
+[node name="KeyS" type="Label" parent="UI/GameControl/Buttons/LongRange" unique_id=1782069044]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -4.0
+offset_right = 23.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+text = "[S]"
 
 [node name="SRhack" type="Button" parent="UI/GameControl/Buttons" unique_id=388741094]
 layout_mode = 1
@@ -893,10 +1219,28 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+disabled = true
 shortcut = SubResource("Shortcut_pm3ni")
+shortcut_in_tooltip = false
 icon = ExtResource("18_0ld40")
 icon_alignment = 1
 expand_icon = true
+
+[node name="KeyD" type="Label" parent="UI/GameControl/Buttons/SRhack" unique_id=1023370374]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -4.0
+offset_right = 23.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+text = "[D]"
 
 [node name="LRhack" type="Button" parent="UI/GameControl/Buttons" unique_id=414623908]
 layout_mode = 1
@@ -917,77 +1261,105 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+disabled = true
 shortcut = SubResource("Shortcut_y6deb")
+shortcut_in_tooltip = false
 icon = ExtResource("19_gqmmt")
 icon_alignment = 1
 expand_icon = true
 
-[node name="KeyA" type="Label" parent="UI/GameControl/Buttons" unique_id=625007764]
+[node name="KeyF" type="Label" parent="UI/GameControl/Buttons/LRhack" unique_id=518293681]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -249.0
-offset_top = -48.0
-offset_right = -203.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
-text = "[A]"
-
-[node name="KeyS" type="Label" parent="UI/GameControl/Buttons" unique_id=1782069044]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -98.0
-offset_top = -49.0
-offset_right = -52.0
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
-text = "[S]"
-
-[node name="KeyD" type="Label" parent="UI/GameControl/Buttons" unique_id=1023370374]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 51.0
-offset_top = -49.0
-offset_right = 98.0
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
-text = "[D]"
-
-[node name="KeyF" type="Label" parent="UI/GameControl/Buttons" unique_id=518293681]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 203.0
-offset_top = -49.0
-offset_right = 249.0
-offset_bottom = -6.0
+offset_left = -22.0
+offset_top = -4.0
+offset_right = 24.0
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
 text = "[F]"
 
+[node name="Dialogue" type="Control" parent="UI/GameControl" unique_id=1865856948]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -635.0
+offset_top = -191.0
+offset_right = 635.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/GameControl/Dialogue" unique_id=394790976]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 199.0
+offset_top = -127.0
+offset_right = 1164.0
+offset_bottom = 127.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fv21b")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/GameControl/Dialogue/Panel" unique_id=1033134812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 129.0
+offset_top = 53.0
+offset_right = -48.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.4509804, 0.33333334, 0.43529412, 1)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Next" type="Label" parent="UI/GameControl/Dialogue/Panel" unique_id=437993392]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -55.0
+offset_right = -34.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.4509804, 0.33333334, 0.43529412, 1)
+theme_override_font_sizes/font_size = 26
+text = "[NEXT]"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/GameControl/Dialogue" unique_id=851837576]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -155.0
+offset_right = 310.0
+offset_bottom = 155.0
+grow_vertical = 2
+texture = ExtResource("27_yq6so")
+expand_mode = 1
+
 [node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1004,15 +1376,25 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_choun")
 
+[node name="Sat" type="TextureRect" parent="UI/MainMenu/BG" unique_id=200363705]
+layout_mode = 0
+offset_left = 132.00002
+offset_top = 607.0
+offset_right = 487.93195
+offset_bottom = 962.9319
+scale = Vector2(0.19666667, 0.19666667)
+texture = ExtResource("28_2f3dj")
+expand_mode = 1
+
 [node name="Title" type="Label" parent="UI/MainMenu" unique_id=699606979]
 layout_mode = 1
 offset_left = 103.0
-offset_top = 54.0
-offset_right = 932.0
-offset_bottom = 231.0
+offset_top = 36.0
+offset_right = 958.0
+offset_bottom = 245.0
 theme_override_colors/font_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
-theme_override_font_sizes/font_size = 120
-text = "COMMGATE"
+theme_override_font_sizes/font_size = 160
+text = "MOTHER"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu" unique_id=125888855]
 layout_mode = 0
@@ -1023,19 +1405,96 @@ offset_bottom = 510.0
 
 [node name="Play" type="Button" parent="UI/MainMenu/VBoxContainer" unique_id=1655061712]
 layout_mode = 2
+focus_mode = 0
 text = "Play"
 alignment = 0
 
 [node name="Credits" type="Button" parent="UI/MainMenu/VBoxContainer" unique_id=1535045554]
 layout_mode = 2
+focus_mode = 0
 text = "Credits"
 alignment = 0
 
 [node name="Quit" type="Button" parent="UI/MainMenu/VBoxContainer" unique_id=1843783977]
 layout_mode = 2
+focus_mode = 0
 text = "Quit
 "
 alignment = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MainMenu" unique_id=613738477]
+libraries/ = SubResource("AnimationLibrary_fv21b")
+
+[node name="Sun" type="TextureRect" parent="UI/MainMenu" unique_id=179038752]
+layout_mode = 0
+offset_left = -187.0
+offset_top = -175.0
+offset_right = 3910.0962
+offset_bottom = 2103.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+texture = ExtResource("30_fv21b")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/MainMenu" unique_id=597596530]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -910.0
+offset_top = -115.0
+offset_right = 910.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.9490196, 0.015686275, 0.023529412, 1)
+theme_override_font_sizes/normal_font_size = 72
+text = "\"I could just eat you up\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/MainMenu" unique_id=893267750]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = 42.0
+offset_right = 686.0
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.9490196, 0.015686275, 0.023529412, 1)
+theme_override_font_sizes/normal_font_size = 40
+text = "- mothers"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Skip" type="RichTextLabel" parent="UI/MainMenu" unique_id=2045766227]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -363.0
+offset_top = 403.0
+offset_right = 361.0
+offset_bottom = 502.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.9490196, 0.015686275, 0.023529412, 1)
+theme_override_font_sizes/normal_font_size = 32
+text = "[space] to skip"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="UI/GameControl/Buttons/ShortRange" to="UI" method="_on_ability1_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/LongRange" to="UI" method="_on_ability2_pressed"]
