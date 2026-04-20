@@ -27,10 +27,10 @@
 [ext_resource type="Texture2D" uid="uid://dwx5kilcyckch" path="res://assets/2d/line.png" id="15_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://deql1gacrqliv" path="res://assets/2d/SR_hack.png" id="18_0ld40"]
 [ext_resource type="Texture2D" uid="uid://re81q0an3f3e" path="res://assets/2d/LR_hack.png" id="19_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://bqdoi8k10omcp" path="res://assets/2d/time-forward-svgrepo-com.svg" id="21_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="27_yq6so"]
 [ext_resource type="Texture2D" uid="uid://cppgdftl45emj" path="res://assets/2d/sat-sprite.png" id="28_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://c6rjjncks16b1" path="res://assets/2d/sun.png" id="30_fv21b"]
-[ext_resource type="Texture2D" uid="uid://bqdoi8k10omcp" path="res://assets/2d/time-forward-svgrepo-com.svg" id="21_2f3dj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("2_choun")

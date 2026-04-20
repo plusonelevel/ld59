@@ -46,7 +46,7 @@ func _ready() -> void:
 	_toggle_abilities(false)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept") or event.is_action_pressed("select_default"):
+	if event.is_action_pressed("ui_accept") or event.is_action_pressed("dialog_progress"):
 		if anim.is_playing() and anim.current_animation == "start_game":
 			skip_animation()
 			get_viewport().set_input_as_handled()
@@ -70,7 +70,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	var next_pressed := false
 
-	if event.is_action_pressed("select_default"):
+	if event.is_action_pressed("dialog_progress"):
 		next_pressed = true
 	elif event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

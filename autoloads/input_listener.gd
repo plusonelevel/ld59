@@ -16,7 +16,7 @@ func _input(event: InputEvent) -> void:
 	if dialogue_active:
 		var next_pressed := false
 
-		if event.is_action_pressed("select_default"):
+		if event.is_action_pressed("dialog_progress"):
 			next_pressed = true
 		elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			next_pressed = true
