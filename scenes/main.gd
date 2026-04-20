@@ -79,7 +79,7 @@ func _select_satellite(idx: int):
 
 
 func _on_hack_used() -> void:
-	if selection is not Satellite:
+	if selection is not Satellite or not (selection as Satellite).can_hack:
 		return
 	var sel = selection as Satellite
 	var space_state := sel.get_world_3d().direct_space_state
@@ -120,7 +120,7 @@ func _on_hack_used() -> void:
 		sel.hack_fail()
 
 func _on_ping_used():
-	if selection is not Satellite:
+	if selection is not Satellite or not (selection as Satellite).can_ping:
 		return
 		
 	var sel = selection as Satellite
@@ -136,12 +136,13 @@ func _on_ping_used():
 		var result := space_state.intersect_ray(query)
 		DebugDraw.draw_line(query.from, query.to, Color.WEB_PURPLE, 5.0)
 		if result.has("collider") and result.collider and result.collider == pl:
+			await get_tree().create_timer(1.0).timeout
 			pl.discover()
 			if not planet:
-				planet = pl
+				Signals.planet_selected.emit(pl)
 
 func _on_beam_used():
-	if selection is not Satellite:
+	if selection is not Satellite or not (selection as Satellite).can_beam:
 		return
 	var sel = selection as Satellite
 	var space_state := sel.get_world_3d().direct_space_state
@@ -182,8 +183,9 @@ func _on_beam_used():
 		sel.beam_fail()
 
 func _on_scan_used():
-	if selection is not Satellite:
+	if selection is not Satellite or not (selection as Satellite).can_scan:
 		return
+
 	var sel = selection as Satellite
 	sel.scan()
 	var space_state := sel.get_world_3d().direct_space_state
