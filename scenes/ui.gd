@@ -22,6 +22,7 @@ extends Control
 @onready var next_line = $GameControl/Dialogue/Panel/Next
 @onready var skip_button = $MainMenu/Skip
 @onready var countdown = $GameControl/Sats/Countdown
+@onready var countdown_timer = $CountdownTimer
 @onready var credits = $MainMenu/Credits
 @onready var quit_butt = $MainMenu/VBoxContainer/Quit
 
@@ -30,8 +31,6 @@ extends Control
 var line_id := 0
 var dialogue_active := false
 var start_game_controls := false
-var time_left := 0.0
-var countdown_started = false
 
 var selected_satellite: Variant
 
@@ -39,6 +38,8 @@ func _ready() -> void:
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
 	Signals.time_scale_set.connect(_on_time_scale_set)
+	
+	Signals.mother_soothed.connect(func(): countdown_timer.paused = true)
 	
 	_on_time_scale_set(1.0)
 
@@ -237,15 +238,11 @@ func _on_ability5_pressed() -> void:
 	
 func _start_countdown():
 	countdown.show()
-	countdown_started = true
-	time_left = 20 * 60
+	countdown_timer.timeout.connect(func(): Signals.timer_expired.emit())
+	countdown_timer.start(20 * 60)
 	
 func _process(delta: float) -> void:
-	if dialogue_active == false:
-		time_left -= delta
-	
-	if countdown_started == true:
-		countdown.text = _format_time(time_left)
+	countdown.text = _format_time(countdown_timer.time_left)
 
 func _format_time(t: float) -> String:
 	var total_ms = int(t * 1000)

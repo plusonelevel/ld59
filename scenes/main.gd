@@ -211,6 +211,10 @@ func _on_scan_used():
 	for p in possible_targets:
 		p.discover()
 
+func _on_soothe_used():
+	if selection.name == "Soother":
+		selection.soothe()
+		
 
 func _on_planet_discovered(new_planet: Planet) -> void:
 	undiscovered_planets.erase(new_planet)

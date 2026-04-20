@@ -1667,6 +1667,8 @@ text = "LUDUM DARE #59
 PARXER and NADAN"
 horizontal_alignment = 2
 
+[node name="CountdownTimer" type="Timer" parent="UI" unique_id=1708006775]
+
 [node name="AudioManager" type="Node" parent="." unique_id=392114094]
 script = ExtResource("32_5q0nq")
 

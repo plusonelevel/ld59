@@ -111,8 +111,11 @@ func beam(target: Node3D):
 	LRhack_fx.emitting = false
 	target_lock = null
 	
-func soothe(target: Planet):
-	pass
+func soothe():
+	#TODO effects
+	await get_tree().create_timer(3.0).timeout
+	#TODO stop effects
+	Signals.mother_soothed.emit()
 
 func aim_start():
 	$Aim.show()
