@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmnkm4rk5bvdq"
-path.s3tc="res://.godot/imported/commander.png-9a33bf67b997dead282b718406769f09.s3tc.ctex"
-path.etc2="res://.godot/imported/commander.png-9a33bf67b997dead282b718406769f09.etc2.ctex"
+uid="uid://cxgllgbur6tam"
+path.s3tc="res://.godot/imported/circle_blue.png-91dea94e1e65b521059d1160d28b50e9.s3tc.ctex"
+path.etc2="res://.godot/imported/circle_blue.png-91dea94e1e65b521059d1160d28b50e9.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/2d/commander.png"
-dest_files=["res://.godot/imported/commander.png-9a33bf67b997dead282b718406769f09.s3tc.ctex", "res://.godot/imported/commander.png-9a33bf67b997dead282b718406769f09.etc2.ctex"]
+source_file="res://assets/2d/circle_blue.png"
+dest_files=["res://.godot/imported/circle_blue.png-91dea94e1e65b521059d1160d28b50e9.s3tc.ctex", "res://.godot/imported/circle_blue.png-91dea94e1e65b521059d1160d28b50e9.etc2.ctex"]
 
 [params]
 
