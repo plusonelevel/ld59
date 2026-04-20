@@ -1063,7 +1063,6 @@ Status: [shake rate=50 level=50 connected=0]----------[/shake]"
 scroll_active = false
 
 [node name="Name" type="Panel" parent="UI/GameControl" unique_id=1500183693]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1174,7 +1173,6 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Buttons" type="Control" parent="UI/GameControl" unique_id=678460478]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1357,7 +1355,6 @@ theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
 text = "[F]"
 
 [node name="Dialogue" type="Control" parent="UI/GameControl" unique_id=1865856948]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1433,7 +1430,6 @@ texture = ExtResource("27_yq6so")
 expand_mode = 1
 
 [node name="MainMenu" type="Control" parent="UI" unique_id=1795624454]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

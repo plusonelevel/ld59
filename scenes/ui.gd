@@ -42,7 +42,15 @@ func _ready() -> void:
 	start_game_controls = false
 	next_line.hide()
 	line_id = 0
-
+	
+	#Startup show/hide UI logic
+	mainmenu.show()
+	satboard.hide()
+	name_tag.hide()
+	abilities_bar.hide()
+	dialogue_overlay.show()
+	
+	
 	_toggle_abilities(false)
 
 func _input(event: InputEvent) -> void:
