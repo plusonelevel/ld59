@@ -5,6 +5,8 @@ signal camera_reset
 signal camera_centered(node: Node3D)
 
 signal planet_discovered(planet: Planet)
+signal planet_beamed(planet: Planet)
+signal planet_unlocked(planet: Planet)
 signal planet_selected(planet: Planet)
 signal satellite_selected(idx: int)
 

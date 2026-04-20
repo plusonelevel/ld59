@@ -26,37 +26,10 @@ scroll_active = false
 autowrap_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Name" unique_id=620452885]
+[node name="SecurityLevel" type="HBoxContainer" parent="Name" unique_id=620452885]
 layout_mode = 2
 size_flags_horizontal = 10
 alignment = 2
-
-[node name="Ping1" type="RichTextLabel" parent="Name/HBoxContainer" unique_id=1238320872]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 34
-bbcode_enabled = true
-text = "I"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="Ping2" type="RichTextLabel" parent="Name/HBoxContainer" unique_id=1731324865]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 34
-bbcode_enabled = true
-text = "I"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="Ping3" type="RichTextLabel" parent="Name/HBoxContainer" unique_id=192087443]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 34
-bbcode_enabled = true
-text = "I"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
 
 [node name="Satellites" type="VBoxContainer" parent="." unique_id=1707084401]
 layout_mode = 2

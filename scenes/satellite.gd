@@ -18,7 +18,6 @@ var elapsed := 0.0
 var sat_abilities = false
 
 @export var activated := false
-@export var beamable := false
 
 @export var can_ping := true
 @export var can_scan := true
@@ -67,7 +66,7 @@ func activate() -> void:
 
 func hack_fail():
 	hack_fx.emitting = true
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.8).timeout
 	hack_fx.emitting = false
 	
 func hack(target: Satellite):
@@ -89,7 +88,7 @@ func scan():
 
 func beam_fail():
 	LRhack_fx.emitting = true
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.8).timeout
 	LRhack_fx.emitting = false
 
 func beam(target: Node3D):

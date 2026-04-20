@@ -16,7 +16,7 @@ extends Node
 @onready var cam := $World/Camera
 
 var local_satellites: Array[Satellite]
-var discovered_planets: Array[Planet]
+var unlocked_planets: Array[Planet]
 var undiscovered_planets: Array[Planet]
 
 var selection: Variant
@@ -25,7 +25,7 @@ var planet: Variant
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	discovered_planets = []
+	unlocked_planets = []
 	undiscovered_planets.assign(get_tree().get_nodes_in_group("planet").filter(
 		func(p): return p is Planet and not p.discovered
 	))
@@ -33,6 +33,7 @@ func _ready() -> void:
 
 	Signals.planet_discovered.connect(_on_planet_discovered)
 	Signals.planet_selected.connect(_on_planet_selected)
+	Signals.planet_unlocked.connect(_on_planet_unlocked)
 	Signals.satellite_selected.connect(_on_satellite_selected)
 	Signals.hack.connect(_on_hack_used)
 	Signals.beam.connect(_on_beam_used)
@@ -67,8 +68,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			selection = null
 			Signals.planet_selected.emit(planet)
 		else:
-			var current_idx = discovered_planets.find(planet)
-			var next_planet = discovered_planets[(current_idx + 1) % discovered_planets.size()]
+			var current_idx = unlocked_planets.find(planet)
+			var next_planet = unlocked_planets[(current_idx + 1) % unlocked_planets.size()]
 			Signals.planet_selected.emit(next_planet)
 
 func _select_satellite(idx: int):
@@ -138,8 +139,6 @@ func _on_ping_used():
 		if result.has("collider") and result.collider and result.collider == pl:
 			await get_tree().create_timer(1.0).timeout
 			pl.discover()
-			if not planet:
-				Signals.planet_selected.emit(pl)
 
 func _on_beam_used():
 	if selection is not Satellite or not (selection as Satellite).can_beam:
@@ -148,16 +147,13 @@ func _on_beam_used():
 	var space_state := sel.get_world_3d().direct_space_state
 	var origin: Vector3 = sel.global_position
 	var possible_targets = []
-	for sat in get_tree().get_nodes_in_group("satellite").filter(func(s): return s.beamable):
-		if !sat or sat == sel:
-			continue
-		
-		var target := (sat as Satellite).global_position
-		var query := PhysicsRayQueryParameters3D.create(origin, origin + (target - origin).normalized() * hack_distance)
-		query.exclude = [sel]
+	for pl in get_tree().get_nodes_in_group("planet").filter(func(p): return !p.unlocked):
+		var target := (pl as Planet).global_position
+		var query := PhysicsRayQueryParameters3D.create(origin, target)
+		query.collision_mask = 0b00000010
 		var result := space_state.intersect_ray(query)
-		DebugDraw.draw_line(query.from, query.to, Color.GREEN_YELLOW, 5.0)
-		if result.has("collider") and result.collider and result.collider is Satellite:
+		DebugDraw.draw_line(query.from, query.to, Color.GRAY, 5.0)
+		if result.has("collider") and result.collider and result.collider is Planet:
 			
 			# check if in "line of sight"
 			#DebugDraw.draw_arrow_ray(origin, origin.direction_to(result.collider.global_position) * 100, 20.0, 10.0, Color.ALICE_BLUE, 5.0)
@@ -174,11 +170,11 @@ func _on_beam_used():
 	print_debug("Objects in range: %s" % [possible_targets])
 	if possible_targets.size() > 0:
 		possible_targets.sort_custom(func(a, b): a[1] > b[1])
-		var target = possible_targets[0][0] as Satellite
+		var target = possible_targets[0][0] as Planet
 		if target:
 			sel.beam(target)
 			await get_tree().create_timer(3.0).timeout
-			target.activate()
+			target.get_beamed(sel)
 	else:
 		sel.beam_fail()
 
@@ -217,11 +213,13 @@ func _on_scan_used():
 
 
 func _on_planet_discovered(new_planet: Planet) -> void:
-	discovered_planets.append(new_planet)
 	undiscovered_planets.erase(new_planet)
-	
-	new_planet.get_satellites()[0].activate()
 
+func _on_planet_unlocked(new_planet: Planet) -> void:
+	unlocked_planets.append(new_planet)
+	new_planet.get_satellites()[0].activate()
+	await get_tree().create_timer(1.0).timeout
+	Signals.planet_selected.emit(new_planet)
 
 func _on_planet_selected(new_planet: Planet) -> void:
 	if new_planet.discovered:
