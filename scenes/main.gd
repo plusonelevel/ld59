@@ -42,6 +42,8 @@ func _ready() -> void:
 	Signals.satellite_selected.emit(starting_sat)
 
 func _process(_delta: float) -> void:
+	if InputListener.dialogue_active:
+		return
 	if selection is Satellite and Input.is_action_pressed("move_drag"):
 		(selection as Satellite).set_target_rotation(cam.get_camera_rotation())
 			
@@ -54,6 +56,8 @@ func _input(event: InputEvent) -> void:
 	
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if InputListener.dialogue_active:
+		return
 	if event.is_action_pressed("select_1"):
 		_select_satellite(0)
 	elif event.is_action_pressed("select_2"):
@@ -76,6 +80,8 @@ func _select_satellite(idx: int):
 
 
 func _on_hack_used() -> void:
+	if InputListener.dialogue_active:
+		return
 	if selection is not Satellite:
 		return
 	var sel = selection as Satellite
