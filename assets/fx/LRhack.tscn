@@ -9,8 +9,8 @@ curve = SubResource("Curve_7nw8l")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mpy4i"]
 spread = 0.0
-initial_velocity_min = 1250.0
-initial_velocity_max = 1250.0
+initial_velocity_min = 2500.0
+initial_velocity_max = 2500.0
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_lvhda")
 
@@ -23,8 +23,8 @@ albedo_color = Color(0.9490196, 0.019607844, 0.019607844, 0.5882353)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_12m5o"]
 material = SubResource("StandardMaterial3D_ukbj4")
-size = Vector2(100, 2)
-center_offset = Vector3(50, 0, 0)
+size = Vector2(200, 30)
+center_offset = Vector3(100, 0, 0)
 
 [node name="LRhack" type="GPUParticles3D" unique_id=622870475]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0, 0, 0)
