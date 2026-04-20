@@ -27,6 +27,8 @@ var line_id := 0
 var dialogue_active := false
 var start_game_controls := false
 
+var selected_satellite: Variant
+
 func _ready() -> void:
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
@@ -136,6 +138,7 @@ func _on_animation_finished(anim_name: String) -> void:
 	skip_button.hide()
 
 func _on_satellite_selected(satellite: Satellite) -> void:
+	selected_satellite = satellite
 	if dialogue_active:
 		return
 	_toggle_abilities(true)
@@ -161,10 +164,10 @@ func _toggle_abilities(enabled: bool) -> void:
 		keyf.modulate = key_dis_color
 	else:
 		abilities_bar.show()
-		ability1_butt.disabled = false
-		ability2_butt.disabled = false
-		ability3_butt.disabled = false
-		ability4_butt.disabled = false
+		ability1_butt.disabled = !selected_satellite.can_ping
+		ability2_butt.disabled = !selected_satellite.can_scan
+		ability3_butt.disabled = !selected_satellite.can_hack
+		ability4_butt.disabled = !selected_satellite.can_beam
 		ability1_butt.show()
 		ability2_butt.show()
 		ability3_butt.show()

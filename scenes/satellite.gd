@@ -20,6 +20,11 @@ var sat_abilities = false
 @export var activated := false
 @export var beamable := false
 
+@export var can_ping := true
+@export var can_scan := true
+@export var can_hack := true
+@export var can_beam := true
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
