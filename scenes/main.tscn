@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="27_yq6so"]
 [ext_resource type="Texture2D" uid="uid://cppgdftl45emj" path="res://assets/2d/sat-sprite.png" id="28_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://c6rjjncks16b1" path="res://assets/2d/sun.png" id="30_fv21b"]
-[ext_resource type="Script" uid="uid://be820dv7r6ecx" path="res://scenes/audio_manager.gd" id="32_5q0nq"]
+[ext_resource type="Script" path="res://scenes/audio_manager.gd" id="32_5q0nq"]
 [ext_resource type="AudioStream" uid="uid://nsn3t5dxp834" path="res://assets/sounds/pju.mp3" id="33_dgi5k"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
@@ -705,17 +705,17 @@ script = ExtResource("6_2f3dj")
 security_level = 3
 cam_distance = 4000.0
 
-[node name="BlackHole" type="MeshInstance3D" parent="World/Env/???" unique_id=690092645]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Env/???" unique_id=690092645]
 transform = Transform3D(-9.588722, 10.340255, -5.1122947, -11.46595, -9.270457, 2.755106, -1.2603209, 5.6690173, 13.830178, 0, 0, 0)
 mesh = SubResource("SphereMesh_eb6dy")
 skeleton = NodePath("../..")
 
-[node name="BlackHoleRing1" type="MeshInstance3D" parent="World/Env/???/BlackHole" unique_id=645760110]
+[node name="BlackHoleRing1" type="MeshInstance3D" parent="World/Env/???/MeshInstance3D" unique_id=645760110]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 0.01, 0, -0.86602545, 0, 0.49999997, 0, 0, 0)
 mesh = SubResource("TorusMesh_trceg")
 skeleton = NodePath("../../..")
 
-[node name="BlackHoleRing2" type="MeshInstance3D" parent="World/Env/???/BlackHole" unique_id=1682213946]
+[node name="BlackHoleRing2" type="MeshInstance3D" parent="World/Env/???/MeshInstance3D" unique_id=1682213946]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 0.01, 0, -0.86602545, 0, 0.49999997, 0, -2.687439, 0)
 mesh = SubResource("TorusMesh_0ld40")
 skeleton = NodePath("../../..")
@@ -724,7 +724,6 @@ skeleton = NodePath("../../..")
 shape = SubResource("SphereShape3D_dgi5k")
 
 [node name="Aiga" type="StaticBody3D" parent="World" unique_id=1859286445 groups=["planet"]]
-visible = false
 collision_layer = 2
 script = ExtResource("6_2f3dj")
 security_level = 0
