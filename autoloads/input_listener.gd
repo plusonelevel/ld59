@@ -1,7 +1,7 @@
 extends Node
 
 const MIN_SPEED := 1.0
-const MAX_SPEED := 3.0
+const MAX_SPEED := 10.0
 const SPEED_STEP := 1.0
 
 func _shortcut_input(event: InputEvent) -> void:
@@ -17,7 +17,10 @@ func _shortcut_input(event: InputEvent) -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("speed_up"):
-		Engine.time_scale = minf(MAX_SPEED, Engine.time_scale + SPEED_STEP)
+		var scale = minf(MAX_SPEED, Engine.time_scale + SPEED_STEP)
+		Engine.time_scale = scale
+		Signals.time_scale_set.emit(scale)
 	elif event.is_action_pressed("speed_down"):
-		Engine.time_scale = maxf(MIN_SPEED, Engine.time_scale - SPEED_STEP)
-	
+		var scale = maxf(MIN_SPEED, Engine.time_scale - SPEED_STEP)
+		Engine.time_scale = scale
+		Signals.time_scale_set.emit(scale)

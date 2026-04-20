@@ -21,6 +21,10 @@ func _ready() -> void:
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
 	Signals.hack.connect(_on_hack_used)
+	Signals.beam.connect(_on_beam_used)
+	Signals.ping.connect(_on_ping_used)
+	Signals.scan.connect(_on_scan_used)
+	
 	
 	satellites[0].activate()
 	Signals.planet_selected.emit(planet)
@@ -44,6 +48,7 @@ func _select_satellite(idx: int):
 	var sat = satellites[idx]
 	if sat and sat.activated:
 		Signals.satellite_selected.emit(sat)
+
 
 func _on_hack_used() -> void:
 	if selection is not Satellite:
@@ -84,6 +89,19 @@ func _on_hack_used() -> void:
 			target.activate()
 	else:
 		sel.hack_fail()
+
+func _on_ping_used():
+	if selection is Satellite:
+		selection.ping()
+
+func _on_beam_used():
+	if selection is Satellite:
+		selection.beam_fail()
+
+func _on_scan_used():
+	if selection is Satellite:
+		selection.scan()
+
 
 func _on_planet_selected(new_planet: Node3D) -> void:
 	planet = new_planet
