@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://csj88a2ilhls7"]
 
+[ext_resource type="Texture2D" uid="uid://bfq4ry6albqt0" path="res://assets/2d/circle_white.png" id="1_myqgy"]
+
 [sub_resource type="Curve" id="Curve_7nw8l"]
 _data = [Vector2(0, 1), 0.0, -1.1916405, 0, 0, Vector2(1, 0), -1.1903135, 0.0, 0, 0]
 point_count = 2
@@ -21,16 +23,13 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_c3vyf")
 alpha_curve = SubResource("CurveTexture_lvhda")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oab3c"]
-load_path = "res://.godot/imported/circle.png-1a5a6c7a5fd8d86a9953adabf9bb7e7b.s3tc.ctex"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_myqgy"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.67058825, 0.827451, 0.7921569, 1)
-albedo_texture = SubResource("CompressedTexture2D_oab3c")
+albedo_texture = ExtResource("1_myqgy")
 stencil_flags = 2
 stencil_outline_thickness = 0.165
 

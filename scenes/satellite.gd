@@ -18,6 +18,7 @@ var elapsed := 0.0
 var sat_abilities = false
 
 @export var activated := false
+@export var beamable := false
 
 
 # Called when the node enters the scene tree for the first time.

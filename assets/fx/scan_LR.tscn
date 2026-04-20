@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dlq44y8elgqew"]
 
-[ext_resource type="Texture2D" uid="uid://bw3dj01rr1ktc" path="res://assets/2d/circle.png" id="1_x1eqr"]
+[ext_resource type="Texture2D" uid="uid://bfq4ry6albqt0" path="res://assets/2d/circle_white.png" id="1_x1eqr"]
 
 [sub_resource type="Curve" id="Curve_7nw8l"]
 _data = [Vector2(0, 1), 0.0, -1.1916405, 0, 0, Vector2(1, 0), -1.1903135, 0.0, 0, 0]

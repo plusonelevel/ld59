@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://nk6quv8ur5y5"]
+
+[ext_resource type="PackedScene" uid="uid://sj8xh0m5hip2" path="res://scenes/ui/sat.tscn" id="1_kegh1"]
+[ext_resource type="Script" uid="uid://8302wbao1gkm" path="res://scenes/ui/planet.gd" id="1_must5"]
+
+[node name="Planet" type="VBoxContainer" unique_id=743945583]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 51.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_must5")
+sat_scene = ExtResource("1_kegh1")
+
+[node name="Name" type="HBoxContainer" parent="." unique_id=2071219548]
+layout_mode = 2
+
+[node name="PlanetLabel" type="RichTextLabel" parent="Name" unique_id=992739812]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 34
+bbcode_enabled = true
+text = "AIGA"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Name" unique_id=620452885]
+layout_mode = 2
+size_flags_horizontal = 10
+alignment = 2
+
+[node name="Ping1" type="RichTextLabel" parent="Name/HBoxContainer" unique_id=1238320872]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 34
+bbcode_enabled = true
+text = "I"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Ping2" type="RichTextLabel" parent="Name/HBoxContainer" unique_id=1731324865]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 34
+bbcode_enabled = true
+text = "I"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Ping3" type="RichTextLabel" parent="Name/HBoxContainer" unique_id=192087443]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 34
+bbcode_enabled = true
+text = "I"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Satellites" type="VBoxContainer" parent="." unique_id=1707084401]
+layout_mode = 2
+size_flags_vertical = 3

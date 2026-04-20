@@ -28,8 +28,6 @@ var dialogue_active := false
 var start_game_controls := false
 
 func _ready() -> void:
-	$MainMenu/VBoxContainer/Play.pressed.connect(_on_play_pressed)
-
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
 	Signals.time_scale_set.connect(_on_time_scale_set)
@@ -42,7 +40,15 @@ func _ready() -> void:
 	start_game_controls = false
 	next_line.hide()
 	line_id = 0
-
+	
+	#Startup show/hide UI logic
+	mainmenu.show()
+	satboard.hide()
+	name_tag.hide()
+	abilities_bar.hide()
+	dialogue_overlay.show()
+	
+	
 	_toggle_abilities(false)
 
 func _input(event: InputEvent) -> void:
@@ -54,6 +60,7 @@ func _input(event: InputEvent) -> void:
 func skip_animation():
 	if not skip_button.visible:
 		skip_button.show()
+		get_tree().create_timer(2.0).timeout.connect(func(): skip_button.hide())
 	else:
 		anim.seek(20, true)
 		skip_button.hide()
@@ -96,6 +103,7 @@ func next_dialogue_line() -> void:
 		
 
 func start_dialogue() -> void:
+	mainmenu.hide()
 	dialogue_active = true
 	InputListener.input_locked = false
 	InputListener.dialogue_active = true
@@ -117,9 +125,6 @@ func end_dialogue() -> void:
 	_toggle_abilities(true)
 
 func _on_play_pressed() -> void:
-	if dialogue_active:
-		return
-
 	start_game_controls = false
 	InputListener.input_locked = true
 	anim.play("start_game")
@@ -128,6 +133,7 @@ func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == "start_game":
 		start_game_controls = true
 		start_dialogue()
+	skip_button.hide()
 
 func _on_satellite_selected(satellite: Satellite) -> void:
 	if dialogue_active:
