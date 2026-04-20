@@ -10,7 +10,7 @@ var discovered := false
 var satellites: Array[Satellite]
 
 func _ready() -> void:
-  mesh.hide()
+	mesh.hide()
 	for sat in get_tree().get_nodes_in_group("satellite"):
 		if sat is Satellite and is_ancestor_of(sat):
 			satellites.append(sat)
