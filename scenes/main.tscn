@@ -871,7 +871,7 @@ focus = NodePath("../Aiga/Satellites/Path3D/PathFollow3D/Sat-1")
 [node name="Pivot" type="Node3D" parent="World/Camera" unique_id=353975901]
 
 [node name="Camera3D" type="Camera3D" parent="World/Camera/Pivot" unique_id=1693231485]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 120)
 far = 160000.0
 
 [node name="Planet2" type="StaticBody3D" parent="World" unique_id=1744713887 groups=["planet"]]
