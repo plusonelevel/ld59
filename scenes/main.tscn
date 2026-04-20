@@ -526,7 +526,7 @@ transform = Transform3D(0.99999547, 0, 0, 0, 1, 0, 0, 0, 0.99999547, 104.912415,
 progress = 3728.07
 rotation_mode = 0
 
-[node name="Satte-1" parent="World/Aiga/Satellites/Path3D/PathFollow3D" unique_id=434412478 instance=ExtResource("1_sugp2")]
+[node name="Sat-1" parent="World/Aiga/Satellites/Path3D/PathFollow3D" unique_id=434412478 instance=ExtResource("1_sugp2")]
 transform = Transform3D(1.0000024, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000023, 0, 0, 0)
 sat_model = ExtResource("7_pm3ni")
 speed = 30.0
@@ -554,7 +554,7 @@ curve = SubResource("Curve3D_choun")
 transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, -600, 0, -600)
 rotation_mode = 0
 
-[node name="Satte-2" parent="World/Aiga/Satellites/Path3D2/PathFollow3D" unique_id=2134328555 instance=ExtResource("1_sugp2")]
+[node name="Sat-2" parent="World/Aiga/Satellites/Path3D2/PathFollow3D" unique_id=2134328555 instance=ExtResource("1_sugp2")]
 sat_model = ExtResource("8_vxglm")
 speed = 15.0
 
@@ -581,7 +581,7 @@ curve = SubResource("Curve3D_ya4ey")
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -650, 0, -650)
 rotation_mode = 0
 
-[node name="LRSatte-1" parent="World/Aiga/Satellites/Path3D3/PathFollow3D" unique_id=1118772254 instance=ExtResource("1_sugp2")]
+[node name="LRSat-1" parent="World/Aiga/Satellites/Path3D3/PathFollow3D" unique_id=1118772254 instance=ExtResource("1_sugp2")]
 sat_model = ExtResource("9_2f3dj")
 speed = 80.0
 
@@ -606,7 +606,7 @@ material = SubResource("StandardMaterial3D_85g3d")
 [node name="Camera" type="Node3D" parent="World" unique_id=1725945604 node_paths=PackedStringArray("focus")]
 script = ExtResource("2_0wfyh")
 camera_sensitivity = 2.0
-focus = NodePath("../Aiga/Satellites/Path3D/PathFollow3D/Satte-1")
+focus = NodePath("../Aiga/Satellites/Path3D/PathFollow3D/Sat-1")
 
 [node name="Pivot" type="Node3D" parent="World/Camera" unique_id=353975901]
 
@@ -696,7 +696,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_85g3d")
 script = ExtResource("1_o5qli")
-lines = Array[String](["[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]", "[shake rate=5000 level=500 connected=0]………………………………………………………………….[/shake]", "What the [shake rate=500 level=50 connected=0].-.-.-.-.[/shake] was that?", "Can you hea[shake rate=500 level=50 connected=0].-.[/shake] me?", "We’ve lost every link down here.", "Hold on. I’m pulling your SatBoard.", "Oh [shake rate=500 level=50 connected=0].-.-.-.-.[/shake]", "That’s not good. ", "Listen…", "The Mother Soother system is offline and we don’t have time to reconnect from the base.", "You have 20 minutes to establish a link and restart the Soother.", "You may need to route the signal through other satellites to reach long range.", "Find LRSAT-1 on Aiga’s outer orbit."])
+lines = Array[String](["[shake rate=5000 level=500 connected=0]-------------------------------------------[/shake]", "What the [shake rate=500 level=50 connected=0].-.-.-.-.[/shake] was that?", "Can you hea[shake rate=500 level=50 connected=0].-.[/shake] me?", "We’ve lost every link down here. How’s your connection?", "Hold on. I’m pulling your [color=#D90D0D]SatBoard[/color].", "...", "Oh [shake rate=500 level=50 connected=0].-.-.-.-.[/shake]", "That’s not good. ", "Listen.", "The [color=#D90D0D]Mother Soother[/color] system is offline and we don’t have time to reconnect it from base.", "Without it, the Mother’s event horizon starts expanding - and will swallow us whole.", "You have [color=#D90D0D]20 minutes[/color] to establish a link and restart the [color=#D90D0D]Soother[/color].", "You may need to route the signal through other satellites to reach long range.", "Find [color=#D90D0D]LRSAT-1[/color] on [color=#D90D0D]Aiga[/color]’s outer orbit."])
 
 [node name="GameControl" type="Control" parent="UI" unique_id=1214834009]
 layout_mode = 1
@@ -722,14 +722,14 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -102.5
-offset_top = 13.0
-offset_right = 102.5
-offset_bottom = 76.0
+offset_left = -103.5
+offset_top = 26.0
+offset_right = 103.5
+offset_bottom = 89.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.6666667, 0.827451, 0.79607844, 1)
-theme_override_font_sizes/font_size = 46
-text = "Uplink"
+theme_override_font_sizes/font_size = 30
+text = "SatBoard"
 
 [node name="Line" type="TextureRect" parent="UI/GameControl/Sats" unique_id=1694960566]
 layout_mode = 1
@@ -738,7 +738,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -165.0
 offset_top = 30.0
-offset_right = -108.0
+offset_right = -115.0
 offset_bottom = 70.0
 grow_horizontal = 2
 texture = ExtResource("15_jbj1t")
@@ -749,9 +749,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 108.0
+offset_left = 114.5
 offset_top = 30.0
-offset_right = 165.0
+offset_right = 164.5
 offset_bottom = 70.0
 grow_horizontal = 2
 texture = ExtResource("15_jbj1t")
@@ -759,6 +759,7 @@ expand_mode = 1
 
 [node name="Sat1" type="Control" parent="UI/GameControl/Sats" unique_id=2009001006]
 layout_mode = 1
+anchors_preset = 0
 offset_left = 7.0
 offset_top = 103.0
 offset_right = 359.0
@@ -796,6 +797,7 @@ scroll_active = false
 
 [node name="Sat2" type="Control" parent="UI/GameControl/Sats" unique_id=555606218]
 layout_mode = 1
+anchors_preset = 0
 offset_left = 7.0
 offset_top = 197.0
 offset_right = 359.0
@@ -833,6 +835,7 @@ scroll_active = false
 
 [node name="Sat3" type="Control" parent="UI/GameControl/Sats" unique_id=98165777]
 layout_mode = 1
+anchors_preset = 0
 offset_left = 7.0
 offset_top = 290.0
 offset_right = 359.0
@@ -870,6 +873,7 @@ scroll_active = false
 
 [node name="Sat4" type="Control" parent="UI/GameControl/Sats" unique_id=592595056]
 layout_mode = 1
+anchors_preset = 0
 offset_left = 7.0
 offset_top = 387.0
 offset_right = 359.0
@@ -993,7 +997,9 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+disabled = true
 shortcut = SubResource("Shortcut_0ld40")
+shortcut_in_tooltip = false
 icon = ExtResource("12_a8y0u")
 icon_alignment = 1
 expand_icon = true
@@ -1033,7 +1039,9 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+disabled = true
 shortcut = SubResource("Shortcut_yc10j")
+shortcut_in_tooltip = false
 icon = ExtResource("13_jkv2x")
 icon_alignment = 1
 expand_icon = true
@@ -1073,7 +1081,9 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+disabled = true
 shortcut = SubResource("Shortcut_pm3ni")
+shortcut_in_tooltip = false
 icon = ExtResource("18_0ld40")
 icon_alignment = 1
 expand_icon = true
@@ -1113,7 +1123,9 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_jbj1t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yc10j")
 theme_override_styles/hover = SubResource("StyleBoxTexture_muem4")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
+disabled = true
 shortcut = SubResource("Shortcut_y6deb")
+shortcut_in_tooltip = false
 icon = ExtResource("19_gqmmt")
 icon_alignment = 1
 expand_icon = true
@@ -1239,11 +1251,11 @@ expand_mode = 1
 [node name="Title" type="Label" parent="UI/MainMenu" unique_id=699606979]
 layout_mode = 1
 offset_left = 103.0
-offset_top = 54.0
-offset_right = 932.0
-offset_bottom = 231.0
+offset_top = 36.0
+offset_right = 958.0
+offset_bottom = 245.0
 theme_override_colors/font_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
-theme_override_font_sizes/font_size = 120
+theme_override_font_sizes/font_size = 160
 text = "MOTHER"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu" unique_id=125888855]
@@ -1324,6 +1336,26 @@ theme_override_colors/default_color = Color(0.9490196, 0.015686275, 0.023529412,
 theme_override_font_sizes/normal_font_size = 40
 text = "- mothers"
 horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Skip" type="RichTextLabel" parent="UI/MainMenu" unique_id=2045766227]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -363.0
+offset_top = 403.0
+offset_right = 361.0
+offset_bottom = 502.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.9490196, 0.015686275, 0.023529412, 1)
+theme_override_font_sizes/normal_font_size = 32
+text = "[space] to skip"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="UI/GameControl/Buttons/ShortRange" to="UI" method="_on_ability1_pressed"]

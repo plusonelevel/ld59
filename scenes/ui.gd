@@ -4,6 +4,8 @@ extends Control
 @onready var anim = $MainMenu/AnimationPlayer
 @onready var loc = $GameControl/Name/LocName
 @onready var satboard = $GameControl/Sats
+@onready var name_tag = $GameControl/Name
+@onready var abilities_bar = $GameControl/Buttons
 @onready var ability1_butt = $GameControl/Buttons/ShortRange
 @onready var ability2_butt = $GameControl/Buttons/LongRange
 @onready var ability3_butt = $GameControl/Buttons/SRhack
@@ -12,8 +14,10 @@ extends Control
 @onready var keys = $GameControl/Buttons/LongRange/KeyS
 @onready var keyd = $GameControl/Buttons/SRhack/KeyD
 @onready var keyf = $GameControl/Buttons/LRhack/KeyF
+@onready var dialogue_overlay = $GameControl/Dialogue
 @onready var dialogue_bubble = $GameControl/Dialogue/Panel/RichTextLabel
 @onready var next_line = $GameControl/Dialogue/Panel/Next
+@onready var skip_button = $MainMenu/Skip
 
 @export var lines: Array[String]
 
@@ -35,6 +39,21 @@ func _ready() -> void:
 	line_id = 0
 
 	_toggle_abilities(false)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept") or event.is_action_pressed("select_default"):
+		if anim.is_playing() and anim.current_animation == "start_game":
+			skip_animation()
+			get_viewport().set_input_as_handled()
+
+func skip_animation():
+	if not skip_button.visible:
+		skip_button.show()
+	else:
+		anim.seek(20, true)
+		skip_button.hide()
+		start_dialogue()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not dialogue_active:
@@ -66,9 +85,9 @@ func next_dialogue_line() -> void:
 		dialogue_bubble.text = lines[line_id]
 	else:
 		end_dialogue()
-		
-	if line_id == 6:
+	if line_id == 5:
 		satboard.show()
+		name_tag.show()
 		
 
 func start_dialogue() -> void:
@@ -89,7 +108,7 @@ func end_dialogue() -> void:
 	InputListener.dialogue_active = false
 	InputListener.dialogue_ui = null
 	next_line.hide()
-	dialogue_bubble.text = ""
+	dialogue_overlay.hide()
 	_toggle_abilities(true)
 
 func _on_play_pressed() -> void:
@@ -130,10 +149,15 @@ func _toggle_abilities(enabled: bool) -> void:
 		keyd.modulate = key_dis_color
 		keyf.modulate = key_dis_color
 	else:
+		abilities_bar.show()
 		ability1_butt.disabled = false
 		ability2_butt.disabled = false
 		ability3_butt.disabled = false
 		ability4_butt.disabled = false
+		ability1_butt.show()
+		ability2_butt.show()
+		ability3_butt.show()
+		ability4_butt.show()
 
 		var key_ab_color = Color(0.671, 0.827, 0.792, 1.0)
 		keya.modulate = key_ab_color
