@@ -23,6 +23,10 @@ func _process(_delta: float) -> void:
 	cam.position.z = camera_zoom * distance
 
 func _input(event: InputEvent) -> void:
+	if InputListener.dialogue_active:
+		return
+	if InputListener.input_locked:
+		return
 	if event.is_action("camera_drag") or event.is_action("move_drag"):
 		if event.is_pressed():
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
