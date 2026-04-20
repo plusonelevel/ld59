@@ -6,6 +6,8 @@ extends Control
 @onready var satboard = $GameControl/Sats
 @onready var name_tag = $GameControl/Name
 @onready var abilities_bar = $GameControl/Buttons
+@onready var time_scale := $GameControl/TimeScale
+@onready var time_scale_value := $GameControl/TimeScale/Value
 @onready var ability1_butt = $GameControl/Buttons/ShortRange
 @onready var ability2_butt = $GameControl/Buttons/LongRange
 @onready var ability3_butt = $GameControl/Buttons/SRhack
@@ -30,6 +32,9 @@ func _ready() -> void:
 
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
+	Signals.time_scale_set.connect(_on_time_scale_set)
+	
+	_on_time_scale_set(1.0)
 
 	anim.animation_finished.connect(_on_animation_finished)
 
@@ -130,7 +135,7 @@ func _on_satellite_selected(satellite: Satellite) -> void:
 	_toggle_abilities(true)
 	loc.text = satellite.name
 
-func _on_planet_selected(planet: Node3D) -> void:
+func _on_planet_selected(planet: Planet):
 	if dialogue_active:
 		return
 	_toggle_abilities(false)
@@ -169,19 +174,30 @@ func _on_ability1_pressed() -> void:
 	if dialogue_active:
 		return
 	print_debug("Ability 1 pressed")
+	Signals.ping.emit()
 
 func _on_ability2_pressed() -> void:
 	if dialogue_active:
 		return
 	print_debug("Ability 2 pressed")
+	Signals.scan.emit()
 
 func _on_ability3_pressed() -> void:
 	if dialogue_active:
 		return
 	print_debug("Ability 3 pressed")
-
+	Signals.hack.emit()
+	
 func _on_ability4_pressed() -> void:
 	if dialogue_active:
 		return
 	print_debug("Ability 4 pressed")
-	Signals.hack.emit()
+	Signals.beam.emit()
+	
+	
+func _on_time_scale_set(scale: float) -> void:
+	time_scale_value.text = "%d" % [scale]
+	if scale == 1.0:
+		time_scale.hide()
+	else:
+		time_scale.show()

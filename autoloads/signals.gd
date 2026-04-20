@@ -4,9 +4,15 @@ extends Node
 signal camera_reset
 signal camera_centered(node: Node3D)
 
-signal planet_selected(planet: Node3D)
+signal planet_discovered(planet: Planet)
+signal planet_selected(planet: Planet)
 signal satellite_selected(idx: int)
 
 signal hack
+signal ping
+signal scan
+signal beam
+
+signal time_scale_set(scale: float)
 
 @warning_ignore_restore("unused_signal")

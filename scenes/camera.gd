@@ -47,9 +47,9 @@ func get_camera_rotation() -> Vector3:
 	return cam.global_rotation
 
 
-func _on_planet_selected(planet: Node3D) -> void:
+func _on_planet_selected(planet: Planet) -> void:
 	focus = planet
-	distance = 1000
+	distance = planet.cam_distance
 
 func _on_satellite_selected(sat: Satellite) -> void:
 	focus = sat

@@ -23,6 +23,7 @@ var sat_abilities = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var model_instance = sat_model.instantiate()
+	model_instance.name = "Satellite"
 	add_child(model_instance)
 	
 	assert(path and path is Path3D and path_follow and path_follow is PathFollow3D, "Satellite must be a child of PathFollow3D!")
@@ -69,7 +70,35 @@ func hack(target: Satellite):
 	await get_tree().create_timer(3.0).timeout
 	hack_fx.emitting = false
 	target_lock = null
-		
+
+func ping():
+	SRscan_fx.emitting = true
+	await get_tree().create_timer(3.0).timeout
+	SRscan_fx.emitting = false
+
+func scan():
+	LRscan_fx.emitting = true
+	await get_tree().create_timer(3.0).timeout
+	LRscan_fx.emitting = false
+
+func beam_fail():
+	LRhack_fx.emitting = true
+	await get_tree().create_timer(1.0).timeout
+	LRhack_fx.emitting = false
+
+func beam(target: Node3D):
+	target_lock = target
+	LRhack_fx.emitting = true
+	await get_tree().create_timer(5.0).timeout
+	LRhack_fx.emitting = false
+	target_lock = null
+
+
+func aim_start():
+	$Aim.show()
+
+func aim_stop():
+	$Aim.hide()
 
 func set_target_rotation(new_rotation: Vector3) -> void:
 	target_rotation = new_rotation

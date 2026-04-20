@@ -7,16 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://oph2b6du1tj8" path="res://assets/2d/Sky.png" id="2_choun"]
 [ext_resource type="PackedScene" uid="uid://noak0lb744vu" path="res://scenes/moon.tscn" id="4_tipki"]
 [ext_resource type="PackedScene" uid="uid://cijm7gc0ojv53" path="res://scenes/planet.tscn" id="5_85g3d"]
+[ext_resource type="Script" uid="uid://uuq4rgq8jngs" path="res://planet.gd" id="6_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://c0fwrhpfjcu6t" path="res://scenes/sun.tscn" id="6_choun"]
 [ext_resource type="PackedScene" uid="uid://c8v06kj0kqc46" path="res://scenes/black_hole.tscn" id="7_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://eaaxx1gme477" path="res://scenes/satellite_models/satellite1.tscn" id="7_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://cb6wmsx67xnm1" path="res://scenes/satellite_models/satellite2.tscn" id="8_vxglm"]
-[ext_resource type="PackedScene" uid="uid://c1cua1f4cj84a" path="res://scenes/planet2.tscn" id="8_yc10j"]
 [ext_resource type="PackedScene" uid="uid://blknl31oseggm" path="res://scenes/satellite_models/satellite3.tscn" id="9_2f3dj"]
 [ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://b0lid10nct2w7" path="res://assets/2d/Title.png" id="10_choun"]
-[ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="10_pm3ni"]
 [ext_resource type="Texture2D" uid="uid://bijr0154oiu55" path="res://assets/2d/SR.png" id="12_a8y0u"]
+[ext_resource type="Script" uid="uid://pvufjyu8vtsa" path="res://scenes/rotation_single.gd" id="13_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://d17vx4wpetx5u" path="res://assets/2d/LR.png" id="13_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://dql5i64va5aq0" path="res://assets/2d/icon.png" id="13_muem4"]
 [ext_resource type="PackedScene" uid="uid://cyohlne4vqg3f" path="res://scenes/satellite_models/satellite4.tscn" id="13_yq6so"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="27_yq6so"]
 [ext_resource type="Texture2D" uid="uid://cppgdftl45emj" path="res://assets/2d/sat-sprite.png" id="28_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://c6rjjncks16b1" path="res://assets/2d/sun.png" id="30_fv21b"]
+[ext_resource type="Texture2D" uid="uid://bqdoi8k10omcp" path="res://assets/2d/time-forward-svgrepo-com.svg" id="21_2f3dj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("2_choun")
@@ -75,6 +76,63 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wmcs"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.9490196, 0.019607844, 0.019607844, 1)
+grow = true
+grow_amount = 20.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cktii"]
+next_pass = SubResource("StandardMaterial3D_0wmcs")
+shading_mode = 0
+albedo_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.9490196, 0.019607844, 0.019607844, 1)
+stencil_outline_thickness = 20.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_h8ms6"]
+material = SubResource("StandardMaterial3D_cktii")
+radius = 1500.0
+height = 3000.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dje5j"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
+grow = true
+grow_amount = 20.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc8um"]
+next_pass = SubResource("StandardMaterial3D_dje5j")
+shading_mode = 0
+albedo_color = Color(0.4509804, 0.33333334, 0.43137255, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.9490196, 0.9372549, 0.8745098, 1)
+stencil_outline_thickness = 20.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_pibw8"]
+material = SubResource("StandardMaterial3D_tc8um")
+inner_radius = 1650.0
+outer_radius = 3500.0
+rings = 32
+ring_segments = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pibw8"]
+radius = 1500.0
 
 [sub_resource type="Curve3D" id="Curve3D_yc10j"]
 closed = true
@@ -489,6 +547,9 @@ _data = {
 [node name="Main" type="Node" unique_id=8165444]
 script = ExtResource("1_jyhfs")
 hack_distance = 300.0
+hack_angle = 15.0
+ping_distance = 3000.0
+scan_angle = 30.0
 
 [node name="World" type="Node3D" parent="." unique_id=1994692815]
 
@@ -510,7 +571,9 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 y_speed = 0.01
 z_speed = -0.01
 
-[node name="Aiga" type="StaticBody3D" parent="World" unique_id=1859286445]
+[node name="Aiga" type="StaticBody3D" parent="World" unique_id=1859286445 groups=["planet"]]
+collision_layer = 2
+script = ExtResource("6_2f3dj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Aiga" unique_id=621919284]
 shape = SubResource("SphereShape3D_o5qli")
@@ -614,11 +677,27 @@ focus = NodePath("../Aiga/Satellites/Path3D/PathFollow3D/Sat-1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120)
 far = 80000.0
 
-[node name="Planet2" parent="World" unique_id=1744713887 instance=ExtResource("8_yc10j")]
+[node name="Planet2" type="StaticBody3D" parent="World" unique_id=1744713887 groups=["planet"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21076.129, -12568.249, 21924.936)
+collision_layer = 2
+script = ExtResource("6_2f3dj")
+cam_distance = 3000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet2" unique_id=229713047]
+mesh = SubResource("SphereMesh_h8ms6")
+script = ExtResource("13_2f3dj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet2/MeshInstance3D" unique_id=752237190]
+transform = Transform3D(-0.104153186, 0.0043273275, 0.89548576, 0.37185144, 0.008520259, -0.36848164, -0.9224312, 0.0029460916, -0.24965347, 0, 0, 0)
+mesh = SubResource("TorusMesh_pibw8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet2" unique_id=781015554]
+shape = SubResource("SphereShape3D_pibw8")
 
 [node name="Satellites" type="Node3D" parent="World/Planet2" unique_id=949803191]
 
 [node name="Path3D" type="Path3D" parent="World/Planet2/Satellites" unique_id=1396684431]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.99999994, 0, 0, 0, 1.0000001, -21076.129, 12568.249, -21924.936)
 curve = SubResource("Curve3D_yc10j")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="World/Planet2/Satellites/Path3D" unique_id=2082006701]
@@ -643,26 +722,26 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
-[node name="Planet3" type="StaticBody3D" parent="World" unique_id=188102119]
-script = ExtResource("10_pm3ni")
-y_speed = -0.001
-x_speed = 0.001
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet3" unique_id=229713047]
+[node name="Planet3" type="StaticBody3D" parent="World" unique_id=188102119 groups=["planet"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1145.2344, 19415.676, -33961.086)
+collision_layer = 2
+script = ExtResource("6_2f3dj")
+cam_distance = 2000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet3" unique_id=1149922294]
 mesh = SubResource("SphereMesh_vxglm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Planet3/MeshInstance3D" unique_id=1989761095]
 transform = Transform3D(-0.104153186, 0.0043273275, 0.89548576, 0.37185144, 0.008520259, -0.36848164, -0.9224312, 0.0029460916, -0.24965347, 0, 0, 0)
 mesh = SubResource("TorusMesh_og1vs")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet3" unique_id=781015554]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1145.2344, 19415.676, -33961.086)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Planet3" unique_id=594134206]
 shape = SubResource("SphereShape3D_jscy8")
 
 [node name="Satellites" type="Node3D" parent="World/Planet3" unique_id=577644141]
 
 [node name="Path3D" type="Path3D" parent="World/Planet3/Satellites" unique_id=1801580731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1145.234, -19415.676, 33961.086)
 curve = SubResource("Curve3D_pm3ni")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="World/Planet3/Satellites/Path3D" unique_id=995710058]
@@ -962,6 +1041,63 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("15_jbj1t")
 expand_mode = 1
+
+[node name="TimeScale" type="Panel" parent="UI/GameControl" unique_id=585195300]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -174.0
+offset_bottom = 118.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/GameControl/TimeScale" unique_id=836415310]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -28.0
+offset_right = 72.0
+offset_bottom = 30.0
+grow_vertical = 2
+texture = ExtResource("21_2f3dj")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="X" type="Label" parent="UI/GameControl/TimeScale" unique_id=550998936]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -25.999992
+offset_right = 33.0
+offset_bottom = 17.000008
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.7853982
+text = "+"
+
+[node name="Value" type="Label" parent="UI/GameControl/TimeScale" unique_id=1434046029]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -37.0
+offset_right = -14.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 46
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="Buttons" type="Control" parent="UI/GameControl" unique_id=678460478]
 visible = false

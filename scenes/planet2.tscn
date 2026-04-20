@@ -65,7 +65,6 @@ script = ExtResource("1_tc8um")
 x_speed = 0.01
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=229713047]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21076.129, -12568.249, 21924.936)
 mesh = SubResource("SphereMesh_h8ms6")
 script = ExtResource("2_pibw8")
 
@@ -74,5 +73,4 @@ transform = Transform3D(-0.104153186, 0.0043273275, 0.89548576, 0.37185144, 0.00
 mesh = SubResource("TorusMesh_pibw8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=781015554]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21076.129, -12568.249, 21924.936)
 shape = SubResource("SphereShape3D_pibw8")
