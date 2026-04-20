@@ -114,7 +114,8 @@ func beam(target: Node3D):
 	LRhack_fx.emitting = false
 	target_lock = null
 	
-
+func soothe(target: Planet):
+	pass
 
 func aim_start():
 	$Aim.show()

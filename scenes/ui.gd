@@ -12,6 +12,7 @@ extends Control
 @onready var ability2_butt = $GameControl/Buttons/LongRange
 @onready var ability3_butt = $GameControl/Buttons/SRhack
 @onready var ability4_butt = $GameControl/Buttons/LRhack
+@onready var ability5_butt = $GameControl/Buttons/Soothe
 @onready var keya = $GameControl/Buttons/ShortRange/KeyA
 @onready var keys = $GameControl/Buttons/LongRange/KeyS
 @onready var keyd = $GameControl/Buttons/SRhack/KeyD
@@ -152,7 +153,13 @@ func _on_satellite_selected(satellite: Satellite) -> void:
 	selected_satellite = satellite
 	if dialogue_active:
 		return
-	_toggle_abilities(true)
+		
+	if satellite.name == "Soother":
+		_toggle_soother(true)
+	else:
+		_toggle_soother(false)
+		_toggle_abilities(true)
+	
 	loc.text = satellite.name
 
 func _on_planet_selected(planet: Planet):
@@ -190,29 +197,43 @@ func _toggle_abilities(enabled: bool) -> void:
 		keyd.modulate = key_ab_color
 		keyf.modulate = key_ab_color
 
+func _toggle_soother(is_soother: bool):
+	ability1_butt.visible = !is_soother
+	ability2_butt.visible = !is_soother
+	ability3_butt.visible = !is_soother
+	ability4_butt.visible = !is_soother
+	ability5_butt.visible = is_soother
+	ability5_butt.disabled = !is_soother 
+
 func _on_ability1_pressed() -> void:
-	if dialogue_active:
+	if dialogue_active or not selected_satellite.can_ping:
 		return
 	print_debug("Ability 1 pressed")
 	Signals.ping.emit()
 
 func _on_ability2_pressed() -> void:
-	if dialogue_active:
+	if dialogue_active or not selected_satellite.can_scan:
 		return
 	print_debug("Ability 2 pressed")
 	Signals.scan.emit()
 
 func _on_ability3_pressed() -> void:
-	if dialogue_active:
+	if dialogue_active or not selected_satellite.can_hack:
 		return
 	print_debug("Ability 3 pressed")
 	Signals.hack.emit()
 	
 func _on_ability4_pressed() -> void:
-	if dialogue_active:
+	if dialogue_active or not selected_satellite.can_beam:
 		return
 	print_debug("Ability 4 pressed")
 	Signals.beam.emit()
+
+func _on_ability5_pressed() -> void:
+	if dialogue_active or selected_satellite.name != "Soother":
+		return
+	print_debug("Ability 5 pressed")
+	Signals.soothe.emit()
 	
 func _start_countdown():
 	countdown.show()
