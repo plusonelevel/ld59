@@ -204,6 +204,7 @@ func _on_ability4_pressed() -> void:
 func _on_time_scale_set(scale: float) -> void:
 	time_scale_value.text = "%d" % [scale]
 	if scale == 1.0:
-		time_scale.hide()
+		#time_scale.hide()
+		pass
 	else:
 		time_scale.show()
