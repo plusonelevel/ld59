@@ -8,6 +8,7 @@ extends StaticBody3D
 @onready var LRscan_fx = $Scan_LR
 @onready var SRscan_fx = $Scan_SR
 @onready var LRhack_fx = $LRhack
+@onready var soothe_fx = $Soothe
 @onready var sound_hack = $AudioManager/Hack
 @onready var sound_ping = $AudioManager/Ping
 @onready var sound_beam = $AudioManager/Beam
@@ -112,9 +113,10 @@ func beam(target: Node3D):
 	target_lock = null
 	
 func soothe():
-	#TODO effects
+	print("soothinga")
+	soothe_fx.emitting = true
 	await get_tree().create_timer(3.0).timeout
-	#TODO stop effects
+	soothe_fx.emitting = false
 	Signals.mother_soothed.emit()
 
 func aim_start():

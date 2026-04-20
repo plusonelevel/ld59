@@ -1,6 +1,22 @@
-[gd_scene format=4 uid="uid://bf2twb5eg277o"]
+[gd_scene format=4 uid="uid://bnaltylihir2y"]
 
-[ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="1_kw3cl"]
+[ext_resource type="Script" uid="uid://cwyhqeev40fwk" path="res://scenes/loss.gd" id="1_ba8ck"]
+[ext_resource type="Texture2D" uid="uid://oph2b6du1tj8" path="res://assets/2d/Sky.png" id="2_l0dbl"]
+[ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="3_p1v82"]
+[ext_resource type="Shader" uid="uid://gmppkc8h4s1r" path="res://scenes/blackhole.gdshader" id="4_tbh6f"]
+[ext_resource type="Texture2D" uid="uid://bw3dj01rr1ktc" path="res://assets/2d/circle.png" id="6_4pa70"]
+[ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="7_emg2o"]
+[ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="8_u4ckb"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_531e2"]
+panorama = ExtResource("2_l0dbl")
+
+[sub_resource type="Sky" id="Sky_tbgi4"]
+sky_material = SubResource("PanoramaSkyMaterial_531e2")
+
+[sub_resource type="Environment" id="Environment_d70ak"]
+background_mode = 2
+sky = SubResource("Sky_tbgi4")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkr8s"]
 resource_name = "Satellite"
@@ -121,12 +137,325 @@ material = SubResource("StandardMaterial3D_fkr8s")
 radius = 100.0
 height = 200.0
 
-[node name="Satellite" type="Node3D" unique_id=1426937462]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trceg"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.9372549, 0.8784314, 0.81960785, 1)
+grow = true
+grow_amount = 5.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
 
-[node name="soother" type="Node3D" parent="." unique_id=2129798378]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya4ey"]
+next_pass = SubResource("StandardMaterial3D_trceg")
+shading_mode = 0
+albedo_color = Color(0.2509804, 0.08235294, 0.1764706, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.9372549, 0.8784314, 0.81960785, 1)
+stencil_outline_thickness = 5.0
 
-[node name="Cylinder" type="MeshInstance3D" parent="soother" unique_id=224586992]
+[sub_resource type="SphereMesh" id="SphereMesh_eb6dy"]
+material = SubResource("StandardMaterial3D_ya4ey")
+radius = 150.0
+height = 300.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_trceg"]
+noise_type = 0
+frequency = 0.0045
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a8y0u"]
+noise = SubResource("FastNoiseLite_trceg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkv2x"]
+render_priority = 0
+shader = ExtResource("4_tbh6f")
+shader_parameter/my_texture = ExtResource("6_4pa70")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_a8y0u")
+shader_parameter/speed = 0.1
+shader_parameter/noise_intensity = 0.34
+
+[sub_resource type="TorusMesh" id="TorusMesh_trceg"]
+lightmap_size_hint = Vector2i(7855, 1572)
+material = SubResource("ShaderMaterial_jkv2x")
+inner_radius = 150.0
+outer_radius = 260.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbj1t"]
+load_path = "res://.godot/imported/circle_red.png-a5566f9e7292c3f615fa9ce8d51ab199.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_muem4"]
+noise_type = 0
+frequency = 0.0126
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dp3eg"]
+noise = SubResource("FastNoiseLite_muem4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ld40"]
+render_priority = 0
+shader = ExtResource("4_tbh6f")
+shader_parameter/my_texture = SubResource("CompressedTexture2D_jbj1t")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_dp3eg")
+shader_parameter/speed = 0.2
+shader_parameter/noise_intensity = 0.2
+
+[sub_resource type="TorusMesh" id="TorusMesh_0ld40"]
+lightmap_size_hint = Vector2i(7855, 1572)
+material = SubResource("ShaderMaterial_0ld40")
+inner_radius = 150.0
+outer_radius = 250.0
+
+[sub_resource type="Animation" id="Animation_ir6vj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.42916736, 0.55905825, -0.025849601)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-71.90963, -197.80103, 728.87445)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Dialogue:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BlackHole:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/BackToMain:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ba8ck"]
+resource_name = "loss_anim"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackHole:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 9.966666),
+"transitions": PackedFloat32Array(8.000004, 6.233796),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(2.0195045, 2.0195045, 2.0195045)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(10.991468, 11.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(10.991468, 11.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Dialogue:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.85070217, 6.1941752, 6.8853707),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [false, true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/BackToMain:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 13.903664, 14.621443),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_5dn2x"]
+resource_name = "win_anim"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(0.8, 0.1),
+"update": 0,
+"values": [Vector3(0.4291674, 0.5590583, -0.025849603), Vector3(0.42916736, 0.55905825, -0.025849601)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(0.8, 50),
+"update": 0,
+"values": [Vector3(-879.6549, -376.7761, 36.8761), Vector3(-156.29086, -371.5955, 728.87445)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Dialogue:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.71777993, 10.022335, 10.5008545),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(24.032335, 24.766666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(24.032335, 24.793251),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_inwc4"]
+_data = {
+&"RESET": SubResource("Animation_ir6vj"),
+&"loss_anim": SubResource("Animation_ba8ck"),
+&"win_anim": SubResource("Animation_5dn2x")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_531e2"]
+bg_color = Color(0.24705882, 0.08627451, 0.18039216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d70ak"]
+bg_color = Color(0.9529412, 0.9372549, 0.87058824, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+
+[node name="Node3D" type="Node3D" unique_id=411964207]
+script = ExtResource("1_ba8ck")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=649182239]
+environment = SubResource("Environment_d70ak")
+
+[node name="Satellite" type="Node3D" parent="." unique_id=1426937462]
+transform = Transform3D(0.38361356, -0.5849743, -0.7145948, 0.8362287, 0.5483808, 0, 0.39187005, -0.5975647, 0.69953865, 0, 0, 0)
+
+[node name="soother" type="Node3D" parent="Satellite" unique_id=2129798378]
+transform = Transform3D(0.98991513, -0.14166148, 0, 0.14136572, 0.98784846, 0.06458455, -0.0091491435, -0.06393322, 0.99791217, 0, 0, 0)
+
+[node name="Cylinder" type="MeshInstance3D" parent="Satellite/soother" unique_id=224586992]
 transform = Transform3D(36.694366, 0, 0, 0, -64.50595, -5.5406954e-06, 0, 9.740128e-06, -36.694366, 0, 0, 0)
 mesh = SubResource("ArrayMesh_wsh7n")
 skeleton = NodePath("")
@@ -134,26 +463,162 @@ metadata/extras = {
 "yp_decal": {}
 }
 
-[node name="Torus_005" type="MeshInstance3D" parent="soother" unique_id=485900312]
+[node name="Torus_005" type="MeshInstance3D" parent="Satellite/soother" unique_id=485900312]
 transform = Transform3D(3.9465377, 0, 0, 0, 3.9465377, 0, 0, 0, 3.9465377, 0, 0, 0)
 mesh = SubResource("ArrayMesh_u0sm7")
 skeleton = NodePath("")
-script = ExtResource("1_kw3cl")
+script = ExtResource("3_p1v82")
 y_speed = 1.0
 metadata/extras = {
 "yp_decal": {}
 }
 
-[node name="Torus_001" type="MeshInstance3D" parent="soother" unique_id=275893667]
+[node name="Torus_001" type="MeshInstance3D" parent="Satellite/soother" unique_id=275893667]
 transform = Transform3D(1.3114253e-06, 0, 7.3340216, 0, 7.3340216, 0, -7.3340216, 0, 1.3114253e-06, 0, 0, 0)
 mesh = SubResource("ArrayMesh_a4wwu")
 skeleton = NodePath("")
-script = ExtResource("1_kw3cl")
+script = ExtResource("3_p1v82")
 y_speed = -0.02
 metadata/extras = {
 "yp_decal": {}
 }
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="soother" unique_id=913397096]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Satellite/soother" unique_id=913397096]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 398.9903, 0)
 mesh = SubResource("SphereMesh_kw3cl")
+
+[node name="BlackHole" type="Node3D" parent="." unique_id=1652954569]
+transform = Transform3D(0.8759028, 0, -0.48248765, 0, 1, 0, 0.48248765, 0, 0.8759028, -2497.2166, 1107.284, -3136.3179)
+
+[node name="BlackHole" type="MeshInstance3D" parent="BlackHole" unique_id=690092645]
+transform = Transform3D(-9.588722, 10.340255, -5.1122947, -11.46595, -9.270457, 2.755106, -1.2603209, 5.6690173, 13.830178, 0, 0, 0)
+mesh = SubResource("SphereMesh_eb6dy")
+skeleton = NodePath("../..")
+
+[node name="BlackHoleRing1" type="MeshInstance3D" parent="BlackHole/BlackHole" unique_id=645760110]
+transform = Transform3D(0.74953365, 0, -0.6619662, 0, 0.01, 0, 0.6619662, 0, 0.74953365, 0, 0, 0)
+mesh = SubResource("TorusMesh_trceg")
+skeleton = NodePath("../../..")
+
+[node name="BlackHoleRing2" type="MeshInstance3D" parent="BlackHole/BlackHole" unique_id=1682213946]
+transform = Transform3D(0.74953365, 0, -0.6619662, 0, 0.01, 0, 0.6619662, 0, 0.74953365, 0, -2.687439, 0)
+mesh = SubResource("TorusMesh_0ld40")
+skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1916679548]
+transform = Transform3D(0.84176713, 0.24253976, 0.4822885, -0.023502747, 0.90900874, -0.41611382, -0.5393285, 0.3389359, 0.7708742, -71.90963, -197.80103, 728.87445)
+far = 160000.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1040162955]
+libraries/ = SubResource("AnimationLibrary_inwc4")
+
+[node name="Control" type="Control" parent="." unique_id=968892426]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_emg2o")
+
+[node name="Panel" type="Panel" parent="Control" unique_id=877177583]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_531e2")
+
+[node name="Label" type="Label" parent="Control" unique_id=472367077]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.5
+offset_top = -21.5
+offset_right = 91.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "YOU LOST"
+
+[node name="Dialogue" type="Control" parent="Control" unique_id=423515321]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -635.0
+offset_top = 152.0
+offset_right = 635.0
+offset_bottom = 534.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control/Dialogue" unique_id=2106320498]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 199.0
+offset_top = -127.0
+offset_right = 1164.0
+offset_bottom = 127.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d70ak")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/Dialogue/Panel" unique_id=2109027260]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 129.0
+offset_top = 53.0
+offset_right = -48.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.4509804, 0.33333334, 0.43529412, 1)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "OH NO! THE MOTHER IS EXPANDING!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/Dialogue" unique_id=501830350]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -155.0
+offset_right = 310.0
+offset_bottom = 155.0
+grow_vertical = 2
+texture = ExtResource("8_u4ckb")
+expand_mode = 1
+
+[node name="BackToMain" type="Button" parent="Control" unique_id=471375836]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.5
+offset_top = -147.0
+offset_right = 94.5
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+text = "Back to Main menu"
+alignment = 0
+
+[connection signal="pressed" from="Control/BackToMain" to="." method="_on_back_to_main_pressed"]
