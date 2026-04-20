@@ -1230,7 +1230,7 @@ offset_right = 22.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "[A]"
 
 [node name="LongRange" type="Button" parent="UI/GameControl/Buttons" unique_id=605761156]
@@ -1248,7 +1248,8 @@ grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "SCAN
 
-Long-range directional scan. Can detect celestial objects in a general direction.
+Long-range directional scan. 
+Can detect celestial objects in a general direction.
 
 Range: ~40 000 km"
 focus_mode = 0
@@ -1277,7 +1278,7 @@ offset_right = 23.0
 offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "[S]"
 
 [node name="SRhack" type="Button" parent="UI/GameControl/Buttons" unique_id=388741094]
@@ -1325,7 +1326,7 @@ offset_right = 23.0
 offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "[D]"
 
 [node name="LRhack" type="Button" parent="UI/GameControl/Buttons" unique_id=414623908]
@@ -1343,7 +1344,9 @@ grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "BEAM
 
-Long-range version of Hack. Hack devices over vast distances. Requires precision aiming.
+Long-range version of Hack. 
+Hack devices over vast distances. 
+Requires precision aiming.
 
 Range: inf."
 focus_mode = 0
@@ -1372,7 +1375,7 @@ offset_right = 24.0
 offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "[F]"
 
 [node name="Dialogue" type="Control" parent="UI/GameControl" unique_id=1865856948]
