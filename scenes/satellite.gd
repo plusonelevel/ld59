@@ -54,11 +54,12 @@ func _physics_process(delta: float) -> void:
 	
 	if not rotation.is_equal_approx(target_rotation):
 		if target_lock:
-			look_at(target_lock.global_position)
+			var target_transform = global_transform.looking_at(target_lock.global_position, Vector3.UP)
+			global_transform.basis = global_transform.basis.slerp(target_transform.basis, 0.01)
 		else:
-			rotation.y = lerp_angle(rotation.y, target_rotation.y, 0.1)
-			rotation.x = lerp_angle(rotation.x, target_rotation.x, 0.1)
-			rotation.z = lerp_angle(rotation.z, target_rotation.z, 0.1)
+			rotation.y = lerp_angle(rotation.y, target_rotation.y, 0.005)
+			rotation.x = lerp_angle(rotation.x, target_rotation.x, 0.005)
+			rotation.z = lerp_angle(rotation.z, target_rotation.z, 0.005)
 
 
 func activate() -> void:
