@@ -113,7 +113,6 @@ func beam(target: Node3D):
 	target_lock = null
 	
 func soothe():
-	print("soothinga")
 	soothe_fx.emitting = true
 	await get_tree().create_timer(3.0).timeout
 	soothe_fx.emitting = false
