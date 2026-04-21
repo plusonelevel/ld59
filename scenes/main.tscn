@@ -737,17 +737,6 @@ shape = SubResource("SphereShape3D_dgi5k")
 [node name="Path3D" type="Path3D" parent="World/Env/???/Satellites" unique_id=1295336334]
 curve = SubResource("Curve3D_dgi5k")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/Env/???/Satellites/Path3D" unique_id=1771720211]
-transform = Transform3D(-0.9790414, 0.0022087593, 0.20363785, -1.1641505e-10, 0.99993557, -0.010845876, -0.20364985, -0.010618553, -0.97898376, 2544.4736, -4167.2803, 493.7741)
-
-[node name="Soother" parent="World/Env/???/Satellites/Path3D/PathFollow3D" unique_id=948626965 instance=ExtResource("1_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3181.3672, -3100.7861, 1532.978)
-sat_model = ExtResource("9_j8jky")
-can_ping = false
-can_scan = false
-can_hack = false
-can_beam = false
-
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="World/Env/???/Satellites/Path3D" unique_id=2086303329]
 transform = Transform3D(-0.9790414, 0.002208759, 0.20363784, -1.1641505e-10, 0.9999355, -0.010845875, -0.20364985, -0.010618552, -0.9789837, 2544.4736, -4167.2803, 493.7741)
 polygon = PackedVector2Array(0.65255153, 0.20106673, 5.714959, 0.19314444, 5.699115, 4.81982, 0.6568979, 4.82615)
@@ -763,6 +752,16 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_85g3d")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Env/???/Satellites/Path3D" unique_id=1788564264]
+
+[node name="Soother" parent="World/Env/???/Satellites/Path3D/PathFollow3D" unique_id=948626965 instance=ExtResource("1_sugp2")]
+transform = Transform3D(-0.9790414, 0.0022087593, 0.20363785, -1.1641505e-10, 0.99993557, -0.010845876, -0.20364985, -0.010618553, -0.9789837, -264.89258, -7284.493, -1621.9456)
+sat_model = ExtResource("9_j8jky")
+can_ping = false
+can_scan = false
+can_hack = false
+can_beam = false
 
 [node name="Aiga" type="StaticBody3D" parent="World" unique_id=1859286445 groups=["planet"]]
 collision_layer = 2
@@ -1424,7 +1423,7 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_gqmmt")
 disabled = true
 shortcut = SubResource("Shortcut_0ld40")
 shortcut_in_tooltip = false
-icon = ExtResource("12_a8y0u")
+icon = ExtResource("30_fv21b")
 icon_alignment = 1
 expand_icon = true
 
@@ -1441,7 +1440,7 @@ offset_right = 22.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.67058825, 0.827451, 0.7921569, 1)
 text = "[A]"
 
 [node name="Dialogue" type="Control" parent="UI/GameControl" unique_id=1865856948]

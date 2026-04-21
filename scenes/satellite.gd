@@ -118,7 +118,7 @@ func beam(target: Node3D):
 func soothe():
 	sound_soothe.play()
 	soothe_fx.emitting = true
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(8.0).timeout
 	soothe_fx.emitting = false
 	Signals.mother_soothed.emit()
 

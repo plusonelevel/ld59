@@ -53,5 +53,5 @@ func _on_planet_selected(planet: Planet) -> void:
 
 func _on_satellite_selected(sat: Satellite) -> void:
 	focus = sat
-	distance = 200 if sat.name == "Soother" else 100
+	distance = 300 if sat.name == "Soother" else 100
 	
