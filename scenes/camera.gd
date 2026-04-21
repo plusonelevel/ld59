@@ -35,8 +35,8 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion and (Input.is_action_pressed("camera_drag") or Input.is_action_pressed("move_drag")):
 		var sensitivity = camera_sensitivity / 10.0 if Input.is_action_pressed("move_drag") else camera_sensitivity
-		rotate_y(-event.screen_relative.x * 0.001 * sensitivity)
-		pivot.rotate_x(-event.screen_relative.y * 0.001 * sensitivity)
+		rotate_y(-event.screen_relative.x * 0.01 * sensitivity)
+		pivot.rotate_x(-event.screen_relative.y * 0.01 * sensitivity)
 	elif event.is_action("zoom_in"):
 		camera_zoom = maxf(MIN_ZOOM_RATIO, camera_zoom - ZOOM_STEP)
 	elif event.is_action("zoom_out"):
@@ -53,5 +53,5 @@ func _on_planet_selected(planet: Planet) -> void:
 
 func _on_satellite_selected(sat: Satellite) -> void:
 	focus = sat
-	distance = 200 if sat.name == "Soother" else 100
+	distance = 300 if sat.name == "Soother" else 100
 	

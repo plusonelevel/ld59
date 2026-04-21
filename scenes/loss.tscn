@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://bnaltylihir2y"]
 
-[ext_resource type="Script" path="res://scenes/loss.gd" id="1_ba8ck"]
+[ext_resource type="Script" uid="uid://cwyhqeev40fwk" path="res://scenes/loss.gd" id="1_ba8ck"]
 [ext_resource type="Texture2D" uid="uid://oph2b6du1tj8" path="res://assets/2d/Sky.png" id="2_l0dbl"]
 [ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="3_p1v82"]
-[ext_resource type="Shader" path="res://scenes/blackhole.gdshader" id="4_tbh6f"]
+[ext_resource type="Shader" uid="uid://gmppkc8h4s1r" path="res://scenes/blackhole.gdshader" id="4_tbh6f"]
 [ext_resource type="Texture2D" uid="uid://bw3dj01rr1ktc" path="res://assets/2d/circle.png" id="6_4pa70"]
 [ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="7_emg2o"]
 [ext_resource type="AudioStream" uid="uid://bw5wwk0kyrhav" path="res://assets/sounds/game_over_short.mp3" id="8_ba8ck"]
@@ -285,22 +285,10 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Control/BackToMain:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_ba8ck"]
 resource_name = "loss_anim"
-length = 15.0
+length = 20.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -348,18 +336,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [false, true, true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Control/BackToMain:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 13.903664, 14.621443),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_5dn2x"]
@@ -605,25 +581,6 @@ grow_vertical = 2
 texture = ExtResource("8_u4ckb")
 expand_mode = 1
 
-[node name="BackToMain" type="Button" parent="Control" unique_id=471375836]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -94.5
-offset_top = -147.0
-offset_right = 94.5
-offset_bottom = -66.0
-grow_horizontal = 2
-grow_vertical = 0
-focus_mode = 0
-text = "Back to Main menu"
-alignment = 0
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1139727571]
 stream = ExtResource("8_ba8ck")
 autoplay = true
-
-[connection signal="pressed" from="Control/BackToMain" to="." method="_on_back_to_main_pressed"]

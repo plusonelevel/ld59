@@ -122,7 +122,8 @@ func next_dialogue_line() -> void:
 		name_tag.show()
 		
 	if line_id == 10:
-		_start_countdown()
+		_show_countdown()
+		
 	
 
 func start_dialogue() -> void:
@@ -146,6 +147,7 @@ func end_dialogue() -> void:
 	next_line.hide()
 	dialogue_overlay.hide()
 	_toggle_abilities(true)
+	_start_countdown()
 
 func _on_play_pressed() -> void:
 	credits.hide()
@@ -282,14 +284,18 @@ func start_cooldown(id: String, button: Button) -> void:
 	cooling[id] = false
 	_refresh_ability_states()
 
-func _start_countdown():
+func _show_countdown():
 	countdown.show()
+	countdown.text = "20:00"
+
+func _start_countdown():
 	countdown_timer.timeout.connect(func(): Signals.timer_expired.emit())
 	countdown_timer.start(20 * 60)
 	$"../AudioManager/Music".play()
 	
 func _process(delta: float) -> void:
-	countdown.text = _format_time(countdown_timer.time_left)
+	if dialogue_active == false:
+		countdown.text = _format_time(countdown_timer.time_left)
 
 func _format_time(t: float) -> String:
 	var total_ms = int(t * 1000)

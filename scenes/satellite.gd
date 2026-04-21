@@ -54,11 +54,14 @@ func _physics_process(delta: float) -> void:
 	
 	if not rotation.is_equal_approx(target_rotation):
 		if target_lock:
-			look_at(target_lock.global_position)
+			var target_transform = global_transform.looking_at(target_lock.global_position, Vector3.UP)
+			var from_basis = global_transform.basis.orthonormalized()
+			var to_basis = target_transform.basis.orthonormalized()
+			global_transform.basis = from_basis.slerp(to_basis, 0.01).orthonormalized()
 		else:
-			rotation.y = lerp_angle(rotation.y, target_rotation.y, 0.1)
-			rotation.x = lerp_angle(rotation.x, target_rotation.x, 0.1)
-			rotation.z = lerp_angle(rotation.z, target_rotation.z, 0.1)
+			rotation.y = lerp_angle(rotation.y, target_rotation.y, 0.005)
+			rotation.x = lerp_angle(rotation.x, target_rotation.x, 0.005)
+			rotation.z = lerp_angle(rotation.z, target_rotation.z, 0.005)
 
 
 func activate() -> void:
@@ -115,7 +118,7 @@ func beam(target: Node3D):
 func soothe():
 	sound_soothe.play()
 	soothe_fx.emitting = true
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(8.0).timeout
 	soothe_fx.emitting = false
 	Signals.mother_soothed.emit()
 

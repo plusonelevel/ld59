@@ -1,7 +1,7 @@
 extends Node
 
 const MIN_SPEED := 1.0
-const MAX_SPEED := 10.0
+const MAX_SPEED := 3.0
 const SPEED_STEP := 1.0
 
 var input_locked := false
