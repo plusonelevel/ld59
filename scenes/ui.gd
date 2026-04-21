@@ -34,6 +34,15 @@ var start_game_controls := false
 
 var selected_satellite: Variant
 
+var cooldowns := {
+	"ability1": 15.0,
+	"ability2": 20.0,
+	"ability3": 8.0,
+	"ability4": 12.0,
+}
+
+var cooling := {}
+
 func _ready() -> void:
 	Signals.planet_selected.connect(_on_planet_selected)
 	Signals.satellite_selected.connect(_on_satellite_selected)
@@ -181,22 +190,36 @@ func _toggle_abilities(enabled: bool) -> void:
 		keys.modulate = key_dis_color
 		keyd.modulate = key_dis_color
 		keyf.modulate = key_dis_color
-	else:
-		abilities_bar.show()
-		ability1_butt.disabled = !selected_satellite.can_ping
-		ability2_butt.disabled = !selected_satellite.can_scan
-		ability3_butt.disabled = !selected_satellite.can_hack
-		ability4_butt.disabled = !selected_satellite.can_beam
-		ability1_butt.show()
-		ability2_butt.show()
-		ability3_butt.show()
-		ability4_butt.show()
+		return
 
-		var key_ab_color = Color(0.671, 0.827, 0.792, 1.0)
-		keya.modulate = key_ab_color
-		keys.modulate = key_ab_color
-		keyd.modulate = key_ab_color
-		keyf.modulate = key_ab_color
+	abilities_bar.show()
+	ability1_butt.show()
+	ability2_butt.show()
+	ability3_butt.show()
+	ability4_butt.show()
+
+	_refresh_ability_states()
+
+	var key_ab_color = Color(0.671, 0.827, 0.792, 1.0)
+	keya.modulate = key_ab_color
+	keys.modulate = key_ab_color
+	keyd.modulate = key_ab_color
+	keyf.modulate = key_ab_color
+	
+func _refresh_ability_states() -> void:
+	if selected_satellite == null:
+		ability1_butt.disabled = true
+		ability2_butt.disabled = true
+		ability3_butt.disabled = true
+		ability4_butt.disabled = true
+		ability5_butt.disabled = true
+		return
+
+	ability1_butt.disabled = !selected_satellite.can_ping or cooling.get("ability1", false)
+	ability2_butt.disabled = !selected_satellite.can_scan or cooling.get("ability2", false)
+	ability3_butt.disabled = !selected_satellite.can_hack or cooling.get("ability3", false)
+	ability4_butt.disabled = !selected_satellite.can_beam or cooling.get("ability4", false)
+	ability5_butt.disabled = selected_satellite.name != "Soother" or cooling.get("ability5", false)
 
 func _toggle_soother(is_soother: bool):
 	ability1_butt.visible = !is_soother
@@ -207,35 +230,58 @@ func _toggle_soother(is_soother: bool):
 	ability5_butt.disabled = !is_soother 
 
 func _on_ability1_pressed() -> void:
-	if dialogue_active or not selected_satellite.can_ping:
+	if dialogue_active or not selected_satellite.can_ping or cooling.get("ability1", false):
 		return
 	print_debug("Ability 1 pressed")
 	Signals.ping.emit()
+	start_cooldown("ability1", ability1_butt)
+
 
 func _on_ability2_pressed() -> void:
-	if dialogue_active or not selected_satellite.can_scan:
+	if dialogue_active or not selected_satellite.can_scan or cooling.get("ability2", false):
 		return
 	print_debug("Ability 2 pressed")
 	Signals.scan.emit()
+	start_cooldown("ability2", ability2_butt)
+
 
 func _on_ability3_pressed() -> void:
-	if dialogue_active or not selected_satellite.can_hack:
+	if dialogue_active or not selected_satellite.can_hack or cooling.get("ability3", false):
 		return
 	print_debug("Ability 3 pressed")
 	Signals.hack.emit()
-	
+	start_cooldown("ability3", ability3_butt)
+
+
 func _on_ability4_pressed() -> void:
-	if dialogue_active or not selected_satellite.can_beam:
+	if dialogue_active or not selected_satellite.can_beam or cooling.get("ability4", false):
 		return
 	print_debug("Ability 4 pressed")
 	Signals.beam.emit()
+	start_cooldown("ability4", ability4_butt)
+
 
 func _on_ability5_pressed() -> void:
 	if dialogue_active or selected_satellite.name != "Soother":
 		return
 	print_debug("Ability 5 pressed")
 	Signals.soothe.emit()
-	
+
+func start_cooldown(id: String, button: Button) -> void:
+	cooling[id] = true
+	button.disabled = true
+
+	var time_left: float = cooldowns[id]
+
+	while time_left > 0.0:
+		button.text = str(ceili(time_left))
+		await get_tree().create_timer(1.0).timeout
+		time_left -= 1.0
+
+	button.text = ""
+	cooling[id] = false
+	_refresh_ability_states()
+
 func _start_countdown():
 	countdown.show()
 	countdown_timer.timeout.connect(func(): Signals.timer_expired.emit())
