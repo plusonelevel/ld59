@@ -1,13 +1,14 @@
 [gd_scene format=4 uid="uid://735jeiwrhq6i"]
 
-[ext_resource type="Script" uid="uid://lho6t37rwap8" path="res://scenes/win.gd" id="1_5vxan"]
+[ext_resource type="Script" path="res://scenes/win.gd" id="1_5vxan"]
 [ext_resource type="Texture2D" uid="uid://oph2b6du1tj8" path="res://assets/2d/Sky.png" id="1_yxbqr"]
 [ext_resource type="Script" uid="uid://ds6v5ehvryueg" path="res://scenes/rotation.gd" id="2_tylv2"]
-[ext_resource type="Shader" uid="uid://gmppkc8h4s1r" path="res://scenes/blackhole.gdshader" id="3_5vxan"]
+[ext_resource type="Shader" path="res://scenes/blackhole.gdshader" id="3_5vxan"]
 [ext_resource type="Texture2D" uid="uid://bw3dj01rr1ktc" path="res://assets/2d/circle.png" id="4_4826q"]
 [ext_resource type="Texture2D" uid="uid://cxgllgbur6tam" path="res://assets/2d/circle_blue.png" id="4_tylv2"]
 [ext_resource type="Theme" uid="uid://pvyjsbvqmc1u" path="res://theme.tres" id="7_4826q"]
 [ext_resource type="Texture2D" uid="uid://cmnkm4rk5bvdq" path="res://assets/2d/commander.png" id="8_531e2"]
+[ext_resource type="AudioStream" uid="uid://bw5wwk0kyrhav" path="res://assets/sounds/game_over_short.mp3" id="9_d70ak"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_531e2"]
 panorama = ExtResource("1_yxbqr")
@@ -501,7 +502,7 @@ mesh = SubResource("TorusMesh_0ld40")
 skeleton = NodePath("../../..")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1916679548]
-transform = Transform3D(0.8417673, 0.24253976, 0.4822885, -0.02350275, 0.90900874, -0.41611382, -0.53932863, 0.3389359, 0.7708742, -71.90963, -197.80103, 728.87445)
+transform = Transform3D(0.84176725, 0.24253976, 0.4822885, -0.023502748, 0.90900874, -0.41611382, -0.5393286, 0.3389359, 0.7708742, -71.90963, -197.80103, 728.87445)
 far = 160000.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1040162955]
@@ -616,5 +617,9 @@ grow_vertical = 0
 focus_mode = 0
 text = "Back to Main menu"
 alignment = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=670322046]
+stream = ExtResource("9_d70ak")
+autoplay = true
 
 [connection signal="pressed" from="Control/BackToMain" to="." method="_on_back_to_main_pressed"]

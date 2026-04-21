@@ -240,6 +240,7 @@ func _start_countdown():
 	countdown.show()
 	countdown_timer.timeout.connect(func(): Signals.timer_expired.emit())
 	countdown_timer.start(20 * 60)
+	$"../AudioManager/Music".play()
 	
 func _process(delta: float) -> void:
 	countdown.text = _format_time(countdown_timer.time_left)

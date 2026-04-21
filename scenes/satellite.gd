@@ -10,9 +10,11 @@ extends StaticBody3D
 @onready var LRhack_fx = $LRhack
 @onready var soothe_fx = $Soothe
 @onready var sound_hack = $AudioManager/Hack
+@onready var sound_hack_fail = $AudioManager/HackFail
 @onready var sound_ping = $AudioManager/Ping
 @onready var sound_beam = $AudioManager/Beam
 @onready var sound_scan = $AudioManager/Scan
+@onready var sound_soothe = $AudioManager/Soothe
 
 
 @export var sat_model : PackedScene
@@ -20,8 +22,6 @@ extends StaticBody3D
 @export var speed := 300.0
 var target_rotation: Vector3
 var target_lock: Variant = null
-var elapsed := 0.0
-var sat_abilities = false
 
 @export var activated := false
 
@@ -70,7 +70,7 @@ func activate() -> void:
 
 
 func hack_fail():
-	sound_hack.play()
+	sound_hack_fail.play()
 	hack_fx.emitting = true
 	await get_tree().create_timer(0.8).timeout
 	hack_fx.emitting = false
@@ -113,7 +113,7 @@ func beam(target: Node3D):
 	target_lock = null
 	
 func soothe():
-	print("soothinga")
+	sound_soothe.play()
 	soothe_fx.emitting = true
 	await get_tree().create_timer(3.0).timeout
 	soothe_fx.emitting = false

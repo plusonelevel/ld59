@@ -7,9 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://csj88a2ilhls7" path="res://assets/fx/scan_SR.tscn" id="6_2raoy"]
 [ext_resource type="PackedScene" uid="uid://cjbxsupd6yg86" path="res://assets/fx/LRhack.tscn" id="7_2raoy"]
 [ext_resource type="Texture2D" uid="uid://bfq4ry6albqt0" path="res://assets/2d/circle_white.png" id="7_cgr3m"]
-[ext_resource type="AudioStream" uid="uid://nsn3t5dxp834" path="res://assets/sounds/pju.mp3" id="7_ec352"]
-[ext_resource type="Shader" uid="uid://gmppkc8h4s1r" path="res://scenes/blackhole.gdshader" id="7_gir2f"]
+[ext_resource type="Shader" path="res://scenes/blackhole.gdshader" id="7_gir2f"]
 [ext_resource type="Texture2D" uid="uid://cxgllgbur6tam" path="res://assets/2d/circle_blue.png" id="8_bdwl6"]
+[ext_resource type="AudioStream" uid="uid://du6g0yftxyj4r" path="res://assets/sounds/sonar.mp3" id="10_sx66s"]
+[ext_resource type="AudioStream" uid="uid://bod0c5xbnia0g" path="res://assets/sounds/hack.mp3" id="11_xuk2f"]
+[ext_resource type="AudioStream" uid="uid://c14kj7jugitlc" path="res://assets/sounds/dialing-fade.mp3" id="12_6uio1"]
+[ext_resource type="AudioStream" uid="uid://dugjh7psik4kt" path="res://assets/sounds/radar.mp3" id="13_c4104"]
+[ext_resource type="AudioStream" uid="uid://0ik5ce4py1nm" path="res://assets/sounds/beam.mp3" id="14_rupif"]
+[ext_resource type="AudioStream" uid="uid://fbf5tvtjtweo" path="res://assets/sounds/soothe.mp3" id="15_42lf1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0wfyh"]
 radius = 100.0
@@ -114,14 +119,26 @@ mesh = SubResource("PlaneMesh_bdwl6")
 
 [node name="AudioManager" type="Node" parent="." unique_id=283691858]
 
-[node name="Hack" type="AudioStreamPlayer" parent="AudioManager" unique_id=1269541846]
-stream = ExtResource("7_ec352")
+[node name="Ping" type="AudioStreamPlayer" parent="AudioManager" unique_id=468705300]
+stream = ExtResource("10_sx66s")
+volume_db = -6.0
 
-[node name="Scan" type="AudioStreamPlayer" parent="AudioManager" unique_id=63526660]
-stream = ExtResource("7_ec352")
+[node name="Hack" type="AudioStreamPlayer" parent="AudioManager" unique_id=424439657]
+stream = ExtResource("11_xuk2f")
+volume_db = -6.0
 
-[node name="Beam" type="AudioStreamPlayer" parent="AudioManager" unique_id=1304840715]
-stream = ExtResource("7_ec352")
+[node name="HackFail" type="AudioStreamPlayer" parent="AudioManager" unique_id=1958813133]
+stream = ExtResource("12_6uio1")
+volume_db = -6.0
 
-[node name="Ping" type="AudioStreamPlayer" parent="AudioManager" unique_id=1345191072]
-stream = ExtResource("7_ec352")
+[node name="Scan" type="AudioStreamPlayer" parent="AudioManager" unique_id=1459041422]
+stream = ExtResource("13_c4104")
+volume_db = 2.0
+
+[node name="Beam" type="AudioStreamPlayer" parent="AudioManager" unique_id=254167604]
+stream = ExtResource("14_rupif")
+volume_db = -6.0
+
+[node name="Soothe" type="AudioStreamPlayer" parent="AudioManager" unique_id=1286094603]
+stream = ExtResource("15_42lf1")
+volume_db = -2.0

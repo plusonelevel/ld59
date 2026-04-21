@@ -34,7 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://cppgdftl45emj" path="res://assets/2d/sat-sprite.png" id="28_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://c6rjjncks16b1" path="res://assets/2d/sun.png" id="30_fv21b"]
 [ext_resource type="Script" path="res://scenes/audio_manager.gd" id="32_5q0nq"]
-[ext_resource type="AudioStream" uid="uid://nsn3t5dxp834" path="res://assets/sounds/pju.mp3" id="33_dgi5k"]
+[ext_resource type="AudioStream" uid="uid://bj5pp3gm3mhd3" path="res://assets/sounds/bgm.mp3" id="35_kmb1v"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("2_choun")
@@ -711,7 +711,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17592.723, 16381.041, 378.47162)
 collision_layer = 2
 script = ExtResource("6_2f3dj")
-security_level = 0
+security_level = 3
 cam_distance = 4000.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Env/???" unique_id=690092645]
@@ -1673,17 +1673,15 @@ horizontal_alignment = 2
 script = ExtResource("32_5q0nq")
 
 [node name="Music" type="AudioStreamPlayer" parent="AudioManager" unique_id=527837993]
-stream = ExtResource("33_dgi5k")
-autoplay = true
+stream = ExtResource("35_kmb1v")
+volume_db = 1.0
+parameters/looping = true
 
 [node name="Intro" type="AudioStreamPlayer" parent="AudioManager" unique_id=261077837]
-stream = ExtResource("33_dgi5k")
 
 [node name="Hover" type="AudioStreamPlayer" parent="AudioManager" unique_id=2087572859]
-stream = ExtResource("33_dgi5k")
 
 [node name="Click" type="AudioStreamPlayer" parent="AudioManager" unique_id=1697451641]
-stream = ExtResource("33_dgi5k")
 
 [connection signal="pressed" from="UI/GameControl/Buttons/ShortRange" to="UI" method="_on_ability1_pressed"]
 [connection signal="pressed" from="UI/GameControl/Buttons/LongRange" to="UI" method="_on_ability2_pressed"]
