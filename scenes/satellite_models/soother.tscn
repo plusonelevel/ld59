@@ -122,7 +122,7 @@ radius = 100.0
 height = 200.0
 
 [node name="Satellite" type="Node3D" unique_id=1426937462]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-5.7320566e-15, 1.3113416e-07, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, 1.3113416e-07, 0, 0, 0)
 
 [node name="soother" type="Node3D" parent="." unique_id=2129798378]
 
@@ -139,7 +139,7 @@ transform = Transform3D(3.9465377, 0, 0, 0, 3.9465377, 0, 0, 0, 3.9465377, 0, 0,
 mesh = SubResource("ArrayMesh_u0sm7")
 skeleton = NodePath("")
 script = ExtResource("1_kw3cl")
-y_speed = 1.0
+y_speed = 0.5
 metadata/extras = {
 "yp_decal": {}
 }
@@ -149,7 +149,7 @@ transform = Transform3D(1.3114253e-06, 0, 7.3340216, 0, 7.3340216, 0, -7.3340216
 mesh = SubResource("ArrayMesh_a4wwu")
 skeleton = NodePath("")
 script = ExtResource("1_kw3cl")
-y_speed = -0.02
+y_speed = -0.1
 metadata/extras = {
 "yp_decal": {}
 }
