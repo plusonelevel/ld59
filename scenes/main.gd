@@ -98,7 +98,7 @@ func _on_hack_used() -> void:
 		var query := PhysicsRayQueryParameters3D.create(origin, origin + (target - origin).normalized() * hack_distance)
 		query.exclude = [sel]
 		var result := space_state.intersect_ray(query)
-		DebugDraw.draw_line(query.from, query.to, Color.GREEN_YELLOW, 5.0)
+		#DebugDraw.draw_line(query.from, query.to, Color.GREEN_YELLOW, 5.0)
 		if result.has("collider") and result.collider and result.collider is Satellite:
 			
 			# check if in "line of sight"
@@ -139,7 +139,7 @@ func _on_ping_used():
 		var query := PhysicsRayQueryParameters3D.create(origin, origin + (target - origin).normalized() * ping_distance)
 		query.collision_mask = 0b00000010
 		var result := space_state.intersect_ray(query)
-		DebugDraw.draw_line(query.from, query.to, Color.WEB_PURPLE, 5.0)
+		#DebugDraw.draw_line(query.from, query.to, Color.WEB_PURPLE, 5.0)
 		if result.has("collider") and result.collider and result.collider == pl:
 			await get_tree().create_timer(1.0).timeout
 			pl.discover()
@@ -156,7 +156,7 @@ func _on_beam_used():
 		var query := PhysicsRayQueryParameters3D.create(origin, target)
 		query.collision_mask = 0b00000010
 		var result := space_state.intersect_ray(query)
-		DebugDraw.draw_line(query.from, query.to, Color.GRAY, 5.0)
+		#DebugDraw.draw_line(query.from, query.to, Color.GRAY, 5.0)
 		if result.has("collider") and result.collider and result.collider is Planet:
 			
 			# check if in "line of sight"
@@ -197,7 +197,7 @@ func _on_scan_used():
 		var query := PhysicsRayQueryParameters3D.create(origin, origin + (target - origin).normalized() * scan_distance)
 		query.collision_mask = 0b00000010
 		var result := space_state.intersect_ray(query)
-		DebugDraw.draw_line(query.from, query.to, Color.ORANGE, 5.0)
+		#DebugDraw.draw_line(query.from, query.to, Color.ORANGE, 5.0)
 		if result.has("collider") and result.collider and result.collider == p:
 			
 			# check if in "line of sight"
