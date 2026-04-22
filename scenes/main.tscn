@@ -689,6 +689,7 @@ hack_distance = 300.0
 hack_angle = 15.0
 ping_distance = 3000.0
 scan_angle = 30.0
+beam_angle = 0.7
 starting_satellite = NodePath("World/Aiga/Satellites/Path3D/PathFollow3D/Sat-1")
 
 [node name="World" type="Node3D" parent="." unique_id=1994692815]
