@@ -174,9 +174,12 @@ func _on_satellite_selected(satellite: Satellite) -> void:
 	
 	loc.text = satellite.name
 
-func _on_planet_selected(planet: Planet):
+func _on_planet_selected(planet: Planet) -> void:
 	if dialogue_active:
 		return
+
+	selected_satellite = null
+	_toggle_soother(false)
 	_toggle_abilities(false)
 	loc.text = planet.name
 

@@ -90,11 +90,11 @@ func _on_hack_used() -> void:
 	var space_state := sel.get_world_3d().direct_space_state
 	var origin: Vector3 = sel.global_position
 	var possible_targets = []
-	for sat in local_satellites:
+	for sat in local_satellites.filter(func(s): return !s.activated):
 		if sat == sel:
 			continue
 		
-		var target := sat.global_position
+		var target := (sat as Satellite).global_position
 		var query := PhysicsRayQueryParameters3D.create(origin, origin + (target - origin).normalized() * hack_distance)
 		query.exclude = [sel]
 		var result := space_state.intersect_ray(query)
@@ -151,7 +151,7 @@ func _on_beam_used():
 	var space_state := sel.get_world_3d().direct_space_state
 	var origin: Vector3 = sel.global_position
 	var possible_targets = []
-	for pl in get_tree().get_nodes_in_group("planet").filter(func(p): return !p.unlocked):
+	for pl in get_tree().get_nodes_in_group("planet").filter(func(p): return p.discovered and !p.unlocked):
 		var target := (pl as Planet).global_position
 		var query := PhysicsRayQueryParameters3D.create(origin, target)
 		query.collision_mask = 0b00000010
